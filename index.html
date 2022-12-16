@@ -4,11 +4,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Avenir Light";}
-body, html {height: 100%;color: #777;line-height: 1.8;}
+body, html {height: 100%; color: #777;line-height: 1.8;}
 /* Create a Parallax Effect */
 .bgimg-1, .bgimg-2, .bgimg-3 {background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;}
 /* Second image (Portfolio) */
@@ -21,6 +21,15 @@ body, html {height: 100%;color: #777;line-height: 1.8;}
 .w3-hover-opacity {cursor: pointer;}
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1600px) {.bgimg-1, .bgimg-2, .bgimg-3 {background-attachment: scroll;min-height: 400px;}}
+/* Create an ellipsis */
+.ellipse { display: -webkit-box;
+max-width: 2000px;
+height: 100px;
+/*-webkit-line-clamp: */
+3;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;}
 </style>
 	
 <body>
@@ -30,7 +39,6 @@ body, html {height: 100%;color: #777;line-height: 1.8;}
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" 
 	   href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i></a>
-    <a href="#home" class="w3-bar-item w3-button">HOME</a>
     <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT ME</a>
     <a href="#publications" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-book"></i> MY PUBLICATIONS</a> 
 	<a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a> </div>
@@ -41,7 +49,6 @@ body, html {height: 100%;color: #777;line-height: 1.8;}
 	<a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a></div> </div>
 
 <!-- First Parallax Image -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home"> </div>
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
   <h3 class="w3-center">ABOUT ME</h3>
@@ -51,35 +58,137 @@ body, html {height: 100%;color: #777;line-height: 1.8;}
     <div class="w3-col m6" > <p style: align="justify"> I was born on the French west coast. Since my childhood, I have dedicated a great place in my heart to the ocean. Both swimming and beach lover, I used to spend every free time either in a swimming pool for practicing or on the beach for surfing, contemplating waves rolling, or observing littoral species. Enjoying traveling, I’ve visited reef islands ecosystems during my bachelor and sadly found how these ecosystems are vulnerable to climate change. In this context, I decided to start a Ph.D. on coastal protection in French Polynesia. </p> </div> </div> </div>
 
 <!-- Second Parallax Image -->
-<div class="bgimg-3 w3-display-container w3-opacity-min" id = "publications">
+<div class="bgimg-2 w3-display-container w3-opacity-min" id = "publications">
   <div class="w3-display-middle">
     <span class="w3-xxlarge w3-text-white w3-wide">MY PUBLICATIONS</span> </div> </div>
 <div class="w3-row">
     <div class="w3-col"></div>
     <div class="w3-col w3-padding-large"> <p style: align="justify"> 
 
-<strong><u>Peer-reviewed publications</u></strong> <br>
-		
-	10) <strong>Carlot, J.</strong>, Vousdoukas, M., Karambas, T., Rovere, A., Lenihan, H., S., Kayal, M., Adjeroud, M., Hedouin, L., Parravicini V. (2022) Coral reef structural complexity loss exposes coastlines to waves. Research Square. https://doi.org/10.21203/rs.3.rs-2107831/v1 <br>
-	09) Pérez-Rosales, G., Hernández-Agreda A., Bongaerts, P., Rouzé, H., Pichon, M., <strong>Carlot, J.</strong>, Torda, G., UTP consortium, Parravicini, V., Hédouin, L. (2022) Mesophotic depths hide high coral cover communities in French Polynesia. Science of the Total Environment. http://dx.doi.org/10.1016/j.scitotenv.2022.157049 <br>
-	08) Pérez-Rosales, G., Pichon, M., Rouzé, H., Villeger, S., Torda, G., Bongaerts, P., <strong>Carlot, J.</strong>, UTP Consortium, Parravicini, V., Hédouin, L. (2022) Mesophotic coral ecosystems of French Polynesia are hotspots of alpha and beta generic diversity for scleractinian assemblages. Diversity and Distributions. https://doi.org/ 10.1111/ddi.13549 <br>
-	07) <strong>Carlot, J.</strong>, Rouzé, H., Barneche, D., Merciere, A., Espiau, B., Cardini, U., Brandl, S. J., Casey, J. M., Pérez- Rosales, G., Adjeroud, M., Hédouin, L., Parravicini, V. (2022) Scaling up calcification, respiration, and photosynthesis rates of six prominent coral taxa. Ecology and Evolution. https://doi.org/10.1002/ece3.8613 <br>
-	06) <strong>Carlot, J.</strong>, Kayal, M., Brandl, S. J., Casey, J. M., Lenihan, H. S., Adjeroud, M., Cardini, U., Merciere, A., Barneche, D., Rovere, A., Hedouin, L., Parravicini, V. (2021) Juvenile corals underpin coral reef carbonate production after disturbance. Global Change Biology. https://doi.org/10.1111/gcb.15610 <br>
-	05) Morat, F., Wicquart, J., Schiettekatte, N., De Sinéty, G., Bienvenu, J., Casey, J., Brandl, S., <strong>Carlot, J.</strong>, Degregori, S., Mercière, A., Fey, P., Galzin, R., Letourneur, Y., Sasal, P., Vii, J., Parravicini, V. (2020) Individual back-calculated size-at-age based on otoliths from Pacific coral reef fish species. Scientific data. https://doi.org/10.1038/s41597-020-00711-y <br>
-	04) Parravicini, V., Casey, J., Schiettekatte, N., Brandl, S., Pozas-Schacre, C., <strong>Carlot, J.</strong>, Edgar, G., Graham, N. A. J., Harmelin-Vivien, M., Kulbicki, M., Strona, G., Stuart-Smith, R. D. (2020) Delineating reef fish trophic guilds with global gut content data synthesis and phylogeny. Plos Biology. https://doi.org/ 10.1101/2020.03.04.977116 <br>
-	03) <strong>Carlot, J.</strong>, Rovere, A., Casella, E., Harris, D., Grellet-Munoz, C., Chancerelle, Y., Dormy, E., Hedouin, L., Parravicini, V. (2020) Community composition predicts photogrammetry-based structural complexity on coral reefs. Coral Reefs. https://doi.org/10.1007/s00338-020-01916-8 <br>
-	02) Bruge, A., Barreau, C., <strong>Carlot, J.</strong>, Collin, H., Moreno, C., Maison, P. (2018) Monitoring Litter Inputs from the Adour River (Southwest France) to the Marine Environment. Journal of Marine Science and Engineering, 6(1), 24. https://doi.org/10.3390/jmse6010024 <br>
-	01) Siu, G., Bacchet, P., Bernardi, G., Brooks, A. J., <strong>Carlot, J.</strong>, Causse, R., Claudet, J., Clua, E., Delrieu-Trottin, E., Espiau, B., Harmelin-Vivien, M., Keith, P., Lecchini, D., Maddi-Moussa, R., Parravicini, V., Planes, S., Ponsonnet, C., Randall, J.E., Sasal, P., Taquet, M., Williams, J., Galzin, R. (2017) Shore fishes of French Polynesia. Cybium, 41(3), 245-278. https://doi.org/10.26028/cybium/2017-413-003 <br><br>
-		
-<strong><u>Non-peer-reviewed publications</u></strong> <br>
+<font size="5"> <strong> <u> PEER–REVIEWED PUBLICATIONS </u> </strong> <br> <br> </font>
 	
-	01) Étonnants récifs - Les écosystèmes coralliens – CNRS Éditions. EAN: 9782271139092
-	<strong>Carlot, J.</strong>, Rovere, A., Dormy, E., Biausque, M., Parravicini, V. Les derniers gardiens de la côte. </p> </div> </div>
+    <div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_10_icn" src="Illustrations/10.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4"> Coral reef structural complexity loss exposes coastlines to waves </font> </strong> – <em>Research Square</em> (2022) <br>
+	<font size="2"> <strong>Carlot, J.</strong>, Vousdoukas, M., Karambas, T., Rovere, A., Lenihan, H. S., Kayal, M., Adjeroud, M., Perez-Rosales, G., Hedouin, L., Parravicini V. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> Coral reefs offer natural coastal protection by attenuating incoming waves. Here we combine unique coral disturbance-recovery observations with hydrodynamic models to quantify how structural complexity dissipates incoming wave energy. We find that if the structural complexity of healthy coral reefs conditions is halved, extreme wave run-up heights that occur once in a 100-years will become 50 times more frequent, threatening reef-backed coastal communities with increased waves, erosion, and flooding.</p> </span>
+	<a href="Papers/10.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.21203/rs.3.rs-2107831/v1"><input type="button" class="favorite styled" value="Journal"></a>
+	<a href="https://github.com/JayCrlt/Wave_energy"><input type="button" class="favorite styled" value="Code"></a> <br> <br> <br> 
+		
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_09_icn" src="Illustrations/09.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4">Mesophotic depths hide high coral cover communities in French Polynesia </font> </strong> – <em> Science of the Total Environment </em> (2022) <br> 
+	<font size="2">Pérez-Rosales, G., Hernández-Agreda A., Bongaerts, P., Rouzé, H., Pichon, M., <strong>Carlot, J.</strong>, Torda, G., UTP consortium, Parravicini, V., Hédouin, L. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> The rapid decline of shallow coral reefs has increased the interest in the long-understudied mesophotic coral ecosystems (MCEs). However, MCEs are usually characterised by rather low to moderate scleractinian coral cover, with only a few descriptions of high coral cover at depth. Here, we explored eight islands across French Polynesia over a wide depth range (6 to 120 m) to identify coral cover hotspots at mesophotic depths and the co-occurrent biotic groups and abiotic factors that influence such high scleractinian cover. Using Bayesian modelling, we found that 20 out of 64 of studied deep sites exhibited a coral cover higher than expected in the mesophotic range (e.g. as high as 81.8 % at 40 m, 74.5 % at 60 m, 53 % at 90 m and 42 % at 120 m vs the average expected values based on the model of 31.2 % at 40 m, 22.8 % at 60 m, 14.6 % at 90 m and 9.8 % at 120 m). Omitting the collinear factors light-irradiance and depth, these ‘hotspots’ of coral cover corresponded to mesophotic sites and depths characterised by hard substrate, a steep to moderate slope, and the dominance of laminar corals. Our work unveils the presence of unexpectedly and unique high coral cover communities at mesophotic depths in French Polynesia, highlighting the importance of expanding the research on deeper depths for the potential relevance in the conservation management of tropical coral reefs. </p> </span>
+	<a href="Papers/09.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="http://dx.doi.org/10.1016/j.scitotenv.2022.157049"><input type="button" class="favorite styled" value="Journal"></a>
+	<a href="https://github.com/gonzaloprb/Cover_with_Depth"><input type="button" class="favorite styled" value="Code"></a> <br> <br> <br> 
+		
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_08_icn" src="Illustrations/08.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4">
+	Mesophotic coral ecosystems of French Polynesia are hotspots of alpha and beta generic diversity for scleractinian assemblages </font> </strong> – <em> Diversity and Distributions </em> (2022) <br> 
+	<font size="2">Pérez-Rosales, G., Pichon, M., Rouzé, H., Villeger, S., Torda, G., Bongaerts, P., <strong>Carlot, J.</strong>, UTP Consortium, Parravicini, V., Hédouin, L. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> Revealing how diversity varies across the depth gradient is key for understanding the role of mesophotic coral ecosystems in the functioning of coral reefs. We quantitatively examined how alpha and beta generic diversity of scleractinian coral assemblages vary across a wide depth gradient for coral reefs.
+	Location: Sixteen sites in eight islands of three archipelagos in French Polynesia. Methods: We studied generic diversity patterns of scleractinian corals, as derived from the analysis of photo-quadrats, across the seafloor from shallow to lower mesophotic depths (6–120 m) and on a wide geographic scale. Our sampling considered quantitative coral cover to explore the patterns of alpha and beta components of diversity across depth and horizontal space.
+	Results: We show that in French Polynesia, mesophotic coral ecosystems host higher alpha and beta generic diversity than shallow reefs despite decreasing coral cover with depth. The variation of coral genus richness across the depth gradient is mainly driven by a mid-domain effect with a peak at 40 m depth. At the same time, we found that the differences in coral genera across islands (spatial beta-diversity) increased steadily along the depth gradient.Main conclusions: Our findings report the first quantitative results of coral cover and diversity from mesophotic coral ecosystems in French Polynesia and also present one of the few existing studies to examine the broad breadth of the mesophotic depth gradient. We demonstrate that mesophotic depths can host unexpectedly high generic richness of scleractinian coral assemblages. At the same time, we showed that increasing depth increases the differences in generic diversity composition across islands, whereas shallow reefs are similar in between. While a single island could conserve shallow regional biodiversity, mesophotic depths containing the richest diversity require site-specific measures, suggesting that considering these mesophotic depths in conservation is necessary to maintain regional diversity.</p> </span>
+	<a href="Papers/08.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.1111/ddi.13549"><input type="button" class="favorite styled" value="Journal"></a>
+	<a href="https://github.com/gonzaloprb/Diversity_with_Depth"><input type="button" class="favorite styled" value="Code"></a> <br> <br>
+	
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_07_icn" src="Illustrations/07.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4">	
+	Scaling up calcification, respiration, and photosynthesis rates of six prominent coral taxa </font> </strong> – <em> Ecology and Evolution </em> (2022) <br> 
+	<font size="2"><strong>Carlot, J.</strong>, Rouzé, H., Barneche, D., Merciere, A., Espiau, B., Cardini, U., Brandl, S. J., Casey, J. M., Pérez- Rosales, G., Adjeroud, M., Hédouin, L., Parravicini, V. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> Coral reefs provide a range of important services to humanity, which are underpinned by community-level ecological processes such as coral calcification. Estimating these processes relies on our knowledge of individual physiological rates and species-specific abundances in the field. For colonial animals such as reef-building corals, abundance is frequently expressed as the relative surface cover of coral colonies, a metric that does not account for demographic parameters such as coral size. This may be problematic because many physiological rates are directly related to organism size, and failure to account for linear scaling patterns may skew estimates of ecosystem functioning. In the present study, we characterize the scaling of three physiological rates — calcification, respiration, and photosynthesis — considering the colony size for six prominent, reef-building coral taxa in Mo'orea, French Polynesia. After a seven-day acclimation period in the laboratory, we quantified coral physiological rates for three hours during daylight (i.e., calcification and gross photosynthesis) and one hour during night light conditions (i.e., dark respiration). Our results indicate that area-specific cal- cification rates are higher for smaller colonies across all taxa. However, photosynthesis and respiration rates remain constant over the colony-size gradient. Furthermore, we revealed a correlation between the demographic dynamics of coral genera and the ratio between net primary production and calcification rates. Therefore, intraspe- cific scaling of reef-building coral physiology not only improves our understanding of community-level coral reef functioning but it may also explain species-specific responses to disturbances.</p> </span>
+	<a href="Papers/07.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.1002/ece3.8613"><input type="button" class="favorite styled" value="Journal"></a>
+	<a href="https://github.com/JayCrlt/Coral_Physiology"><input type="button" class="favorite styled" value="Code"></a> <br> <br>
+	
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_06_icn" src="Illustrations/06.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4">	
+	Juvenile corals underpin coral reef carbonate production after disturbance </font> </strong> – <em> Global Change Biology </em> (2021) <br> 
+	<font size="2"><strong>Carlot, J.</strong>, Kayal, M., Brandl, S. J., Casey, J. M., Lenihan, H. S., Adjeroud, M., Cardini, U., Merciere, A., Barneche, D., Rovere, A., Hedouin, L., Parravicini, V. (2021) <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> Sea-level rise is predicted to cause major damage to tropical coastlines. While coral reefs can act as natural barriers for ocean waves, their protection hinges on the ability of scleractinian corals to produce enough calcium carbonate (CaCO<sub>3</sub>) to keep up with rising sea levels. As a consequence of intensifying disturbances, coral communities are changing rapidly, potentially reducing community-level CaCO<sub>3</sub> production. By combining colony-level physiology and long-term monitoring data, we show that reefs recovering from major disturbances can produce 40% more CaCO<sub>3</sub> than currently estimated due to the disproportionate contribution of juvenile corals. However, the buffering effect of highly productive juvenile corals is compromised by recruitment failures, which have been more frequently observed after large-scale, repeated bleaching events. While the size structure of corals can bolster a critical ecological function on reefs, climate change impacts on recruitment may undermine this buffering effect, thus further compromising the persistence of reefs and their provision of important ecosystem services.</p> </span>
+	<a href="Papers/06.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.1111/gcb.15610"><input type="button" class="favorite styled" value="Journal"></a>
+	<a href="https://github.com/JayCrlt/Allometric_coral_growth"><input type="button" class="favorite styled" value="Code"></a> <br> <br>
+	
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_05_icn" src="Illustrations/05.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4">	
+	Individual back-calculated size-at-age based on otoliths from Pacific coral reef fish species</font> </strong> – <em> Scientific Data </em> (2020) <br> 
+	<font size="2">Morat, F., Wicquart, J., Schiettekatte, N., De Sinéty, G., Bienvenu, J., Casey, J., Brandl, S., <strong>Carlot, J.</strong>, Degregori, S., Mercière, A., Fey, P., Galzin, R., Letourneur, Y., Sasal, P., Vii, J., Parravicini, V. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> Somatic growth is a critical biological trait for organismal, population, and ecosystem-level processes. Due to its direct link with energetic demands, growth also represents an important parameter to estimate energy and nutrient fluxes. For marine fishes, growth rate information is most frequently derived from sagittal otoliths, and most of the available data stems from studies on temperate species that are targeted by commercial fisheries. Although the analysis of otoliths is a powerful tool to estimate individual growth, the time-consuming nature of otolith processing is one barrier for collection of comprehensive datasets across multiple species. This is especially true for coral reef fishes, which are extremely diverse. Here, we provide back-calculated size-at-age estimates (including measures of uncertainty) based on sagittal otoliths from 710 individuals belonging to 45 coral reef fish species from French Polynesia. In addition, we provide Von Bertalanffy growth parameters which are useful to predict community level biomass production.</p> </span>
+	<a href="Papers/05.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.1038/s41597-020-00711-y	"><input type="button" class="favorite styled" value="Journal"></a> <br> <br>	
+		
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_04_icn" src="Illustrations/04.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4"> Delineating reef fish trophic guilds with global gut content data synthesis and phylogeny </font> </strong> – <em> Plos Biology </em> (2020) <br> 
+	<font size="2">Parravicini, V., Casey, J., Schiettekatte, N., Brandl, S., Pozas-Schacre, C., <strong>Carlot, J.</strong>, Edgar, G., Graham, N. A. J., Harmelin-Vivien, M., Kulbicki, M., Strona, G., Stuart-Smith, R. D.<br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> Understanding species’ roles in food webs requires an accurate assessment of their trophic niche. However, it is challenging to delineate potential trophic interactions across an ecosystem, and a paucity of empirical information often leads to inconsistent definitions of trophic guilds based on expert opinion, especially when applied to hyperdiverse ecosystems. Using coral reef fishes as a model group, we show that experts disagree on the assignment of broad trophic guilds for more than 20% of species, which hampers comparability across studies. Here, we propose a quantitative, unbiased, and reproducible approach to define trophic guilds and apply recent advances in machine learning to predict probabilities of pair-wise trophic interactions with high accuracy. We synthesize data from community-wide gut content analyses of tropical coral reef fishes worldwide, resulting in diet information from 13,961 individuals belonging to 615 reef fish. We then use network analysis to identify 8 trophic guilds and Bayesian phylogenetic modeling to show that trophic guilds can be predicted based on phylogeny and maximum body size. Finally, we use machine learning to test whether pairwise trophic interactions can be predicted with accuracy. Our models achieved a misclassification error of less than 5%, indicating that our approach results in a quantitative and reproducible trophic categorization scheme, as well as high-resolution probabilities of trophic interactions. By applying our framework to the most diverse vertebrate consumer group, we show that it can be applied to other organismal groups to advance reproducibility in trait-based ecology. Our work thus provides a viable approach to account for the complexity of predator–prey interactions in highly diverse ecosystems.</p> </span>
+	<a href="Papers/04.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/ 10.1101/2020.03.04.977116"><input type="button" class="favorite styled" value="Journal"></a>
+	<a href="https://github.com/valerianoparravicini/Trophic_Fish_2020"><input type="button" class="favorite styled" value="Code"></a> <br> <br>
+		
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_03_icn" src="Illustrations/03.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4"> Community composition predicts photogrammetry-based structural complexity on coral reefs </font> </strong> – <em> Coral Reefs </em> (2020) <br> 
+	<font size="2"><strong>Carlot, J.</strong>, Rovere, A., Casella, E., Harris, D., Grellet-Munoz, C., Chancerelle, Y., Dormy, E., Hedouin, L., Parravicini, V. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> The capacity of coral reefs to provide ecosystem services is directly related to their three-dimensional structural complexity. This parameter is also correlated with total fish biomass, reef resilience to external stresses and the dissipation of wave energy. However, information on structural complexity (i.e., reef rugosity) has not always been assessed in historical monitoring programs, and long-term trends are sometimes unavailable. In this study, we show that it is possible to predict and hindcast the three-dimensional complexity of coral reefs by combining photogrammetry, statistical modeling and historical benthic community data. We calibrated lasso generalized linear models and boosted regression trees to predict structural complexity from photogrammetry transects around Moorea (French Polynesia). Our models were able to predict structural complexity with high accuracy (cross-validated R2 ranges between 0.81 and 0.9). We then used our models to hindcast historical trends in 3D structural complexity using community composition data collected in Moorea from 2004 to 2017. The temporal analysis highlighted the severe impact of a crown-of-thorns (COTS) outbreak from 2006 to 2009 and Cyclone Oli in 2010. In conjunction, these two events reduce coral cover from ~ 50% to almost zero. While the collection of actual data is always to be preferred, our model captured these effects, confirming the capacity of this modeling technique to predict structural complexity on the basis of assemblage composition. </p> </span>
+	<a href="Papers/03.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.1007/s00338-020-01916-8"><input type="button" class="favorite styled" value="Journal"></a>
+	<a href="https://github.com/JayCrlt/Structural_Complexity"><input type="button" class="favorite styled" value="Code"></a> <br> <br>
+		
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_02_icn" src="Illustrations/02.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4"> Monitoring Litter Inputs from the Adour River (Southwest France) to the Marine Environment </font> </strong> – <em> Journal of Marine Science and Engineering </em> (2018) <br> 
+	<font size="2">Bruge, A., Barreau, C., <strong>Carlot, J.</strong>, Collin, H., Moreno, C., Maison, P. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> Rivers are major pathways for litter to enter the ocean, especially plastic debris. Yet, further research is needed to improve knowledge on rivers contribution, increase data availability, refine litter origins, and develop relevant solutions to limit riverine litter inputs. This study presents the results of three years of aquatic litter monitoring on the Adour river catchment (southwest of France). Litter monitoring consisted of collecting all litter stranded on river banks or stuck in the riparian vegetation in defined areas identified from cartographic and hydromorphological analyses, and with the support of local stakeholders. Litter samples were then sorted and counted according to a list of items containing 130 categories. Since 2014, 278 litter samplings were carried out, and 120,632 litter items were collected, sorted, and counted. 41% of litter could not be identified due to high degradation. Food and beverage packaging, smoking-related items, sewage related debris, fishery and mariculture gear, and common household items represented around 70% of identifiable items. Overall, the present study contributes to our knowledge of litter sources and pathways, with the target of reducing the amounts entering the ocean. The long-term application of this monitoring is a way forward to measure societal changes as well as assess effectiveness of measures.</p> </span>
+	<a href="Papers/02.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.3390/jmse6010024"><input type="button" class="favorite styled" value="Journal"></a> <br> <br>
+		
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_01_icn" src="Illustrations/01.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4"> Shore fishes of French Polynesia </font> </strong> – <em> Cybium </em> (2017) <br> 
+	<font size="2"> Siu, G., Bacchet, P., Bernardi, G., Brooks, A. J., <strong>Carlot, J.</strong>, Causse, R., Claudet, J., Clua, E., Delrieu-Trottin, E., Espiau, B., Harmelin-Vivien, M., Keith, P., Lecchini, D., Maddi-Moussa, R., Parravicini, V., Planes, S., Ponsonnet, C., Randall, J.E., Sasal, P., Taquet, M., Williams, J., Galzin, R.<br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> On the occasion of the 10th Indo-Pacific Fish Conference (http://ipfc10.criobe.pf/) to be held in Tahiti in October 2017, it seemed timely to update Randall’s 1985 list of the fishes known from French Polynesia. Many studies focusing on fishes in this area have been published since 1985, but Randall’s list remains the authoritative source. Herein we present an expanded species list of 1,301 fishes now known to occur in French Polynesia and we review the expeditions and information sources responsible for the over 60% increase in the number of known species since the publication of Randall’s checklist in 1985. Our list of the fishes known from French Polynesia includes only those species with a reliably verifiable presence in these waters. In cases where there was any doubt about the identity of a species, or of the reliability of a reported sighting, the species was not included in our list.</p> </span>
+	<a href="Papers/01.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://doi.org/10.26028/cybium/2017-413-003"><input type="button" class="favorite styled" value="Journal"></a> <br> <br> <br>
+		
+<font size="5"> <strong><u>NON–PEER–REVIEWED PUBLICATIONS</u></strong> <br> <br> </font>
+		
+	<div class="w3-col m3">
+	<p style="float:left"> <img alt = "Paper_00_icn" src="Illustrations/00.png" heigth = "175" width = "175"> </p> </div>
+	<strong> <font size="4">  
+	Étonnants récifs - Les écosystèmes coralliens | Les derniers gardiens de la côte </font> </strong> – <em> CNRS Éditions</em> (2022) <br>
+	<font size="2"> <strong>Carlot, J.</strong>, Rovere, A., Dormy, E., Biausque, M., Parravicini, V. <br> </font>
+	<span class="ellipse">
+	<p align="justify"> <u>Abstract:</u> The coral: stone, plant or animal? The question has greatly agitated naturalists. Today, we know that corals are animals that live in symbiosis with microscopic unicellular algae in their tissues and that build a limestone skeleton: they are therefore animals with very special relationships to the plant and mineral world. There are more than 800 species of reef-building corals in the world, offering a habitat to thousands of species. Because they create relief in the vastness of the sea, coral reefs are teeming with life: after the tropical forests, they are the largest reservoirs of biodiversity on the planet. Because they are home to a quarter of marine biodiversity, they provide many services on which more than half a billion people depend. Because they build considerable structures, they protect the shores of countless islands from wave erosion. Corals have been around for more than 200 ? million years and have successfully coped with major climate changes, but the current one seems too rapid to allow them to adapt. The rise in ocean temperature, in particular, leads to bleaching episodes and even mass mortalities, which can subsequently threaten the entire reef ecosystem. The Centre de recherches insulaires et observatoire de l'environnement (CRIOBE) of the CNRS has been studying coral reefs for 50 years, particularly those of French Polynesia, and has brought together here nearly 80 short, highly illustrated texts on these amazing species.</p> </span>
+	<a href="Papers/00.pdf"><input type="button" class="favorite styled" value="PDF"></a>
+	<a href="https://livre.fnac.com/a16111743/Laetitia-Hedouin-Etonnants-recifs-Les-ecosystemes-coralliens"><input type="button" class="favorite styled" value="Book"></a> <br> <br>
+	
+	</p> </div> </div>
 
 <!-- Third Parallax Image  -->
-<div class="bgimg-4 w3-display-container w3-opacity-min" > 
-	<div class="w3-display-middle"> 
-		<span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span> </div> </div>
+	<!-- Second Parallax Image -->
+<div class="bgimg-3 w3-display-container w3-opacity-min" id = "Contact">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span> </div> </div>
 <!-- Container (Contact Section) -->
 <div class="w3-content w3-container w3-padding-64" id="contact"> <div class="w3-col m6 w3-container"> </div>
     <div class="w3-col m8 w3-panel">
@@ -101,7 +210,7 @@ body, html {height: 100%;color: #777;line-height: 1.8;}
 	  <a href="https://www.researchgate.net/profile/Jeremy_Carlot"> <img border="0" alt="ResearchGate" src="Icons/Researchgate.png" width="30" height="30" class="button"></a>
 	  <a href="https://scholar.google.com/citations?user=Eotjew0AAAAJ&hl=en&oi=sra"> <img border="0" alt="ResearchGate" src="Icons/GoogleScholar.png" width="30" height="30" class="button"></a>
 	  <a href="http://orcid.org/0000-0003-0887-8005"> <img border="0" alt="ORCID" src="Icons/ORCID.png" width="30" height="30" class="button"> </a> </div> </footer>
-<script> 
+<script>
 // Modal Image Gallery
 function onClick(element) {
   document.getElementById("img01").src = element.src;

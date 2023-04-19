@@ -8,10 +8,12 @@ I plan in the future to build a new section about statictics / R analyses tutori
 
 ------------------------------------------------------------------------
 
-[Latest publications from 2023]{.underline}
+Latest publications from 2023
 
-- Crustose coralline algae can contribute more than corals to coral reef carbonate production -- *Communication Earth & Environment* (2023) \n 
-Cornwall, C. E., **Carlot, J.**, Branson, O., Courtney, T. A., Harvey, B. P., Perry, C. T., Andersson, A. J., Diaz- Pulido, G., Johnson, M. D., Kennedy, E., Krieger, E. C., Mallela, J., McCoy, S. J., Nugues, M. M., Quinter, E., Ross, C. L., Ryan, E., Saderne, V., Comeau, S.\n 
+- Crustose coralline algae can contribute more than corals to coral reef carbonate production -- *Communication Earth & Environment* (2023) 
+
+Cornwall, C. E., **Carlot, J.**, Branson, O., Courtney, T. A., Harvey, B. P., Perry, C. T., Andersson, A. J., Diaz- Pulido, G., Johnson, M. D., Kennedy, E., Krieger, E. C., Mallela, J., McCoy, S. J., Nugues, M. M., Quinter, E., Ross, C. L., Ryan, E., Saderne, V., Comeau, S.
+
 👉 [available here](https://jaycrlt.github.io/Papers/12.pdf)
 
 -   Using a multi-criteria decision-matrix framework to assess the recovery potential of coral reefs in the South Western Indian Ocean -- *Ecological Indicators* (2023) \n 

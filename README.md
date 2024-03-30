@@ -14,6 +14,12 @@ This repository is used to host my [`personal web page`](https://JayCrlt.github.
 
 Latest publications
 
+-   Restoring the reef: coral restoration yields rapid impacts on fish assemblages - *Estuarine, Coastal and Shelf Science* (2024)
+
+    Raick, X., Krimou, S., Mery, E., **Carlot, J.**, Carpentier, C., Sowinski, J., Sowinski, L., Minier, L., Roux, N., Maueau, T., Bertucci, F. & Lecchini, D. 
+
+👉 [available here](https://jaycrlt.github.io/Papers/14.pdf)
+
 -   Functional changes across marine habitats due to ocean acidification - *Global Change Biology* (2024)
 
     Teixidó, N., **Carlot, J.**, Alliouane, S., Ballesteros, E., Gambi, M C., Gattuso, J. P., Kroeker, K., Micheli, F., Mirasole, A., De Vittor, C., Parravacini, V. & Villéger, S. 

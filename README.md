@@ -8,32 +8,4 @@ This repository is used to host my [`personal web page`](https://JayCrlt.github.
 
 📸 You might also see some pictures from the different travels (personal or professional) I've been able to make. The closer the sea or ocean, the better I feel.
 
-🎥 I plan in the future to build a new section about statistics and how to proceed with R - Probably in 2024.
-
-------------------------------------------------------------------------
-
-Latest publications
-
--   Restoring the reef: coral restoration yields rapid impacts on fish assemblages - *Estuarine, Coastal and Shelf Science* (2024)
-
-    Raick, X., Krimou, S., Mery, E., **Carlot, J.**, Carpentier, C., Sowinski, J., Sowinski, L., Minier, L., Roux, N., Maueau, T., Bertucci, F. & Lecchini, D. 
-
-👉 [available here](https://jaycrlt.github.io/Papers/14.pdf)
-
--   Functional changes across marine habitats due to ocean acidification - *Global Change Biology* (2024)
-
-    Teixidó, N., **Carlot, J.**, Alliouane, S., Ballesteros, E., Gambi, M C., Gattuso, J. P., Kroeker, K., Micheli, F., Mirasole, A., De Vittor, C., Parravacini, V. & Villéger, S. 
-
-👉 [available here](https://jaycrlt.github.io/Papers/13.pdf)
-
--   Crustose coralline algae can contribute more than corals to coral reef carbonate production - *Communication Earth & Environment* (2023)
-
-    Cornwall, C. E., **Carlot, J.**, Branson, O., Courtney, T. A., Harvey, B. P., Perry, C. T., Andersson, A. J., Diaz- Pulido, G., Johnson, M. D., Kennedy, E., Krieger, E. C., Mallela, J., McCoy, S. J., Nugues, M. M., Quinter, E., Ross, C. L., Ryan, E., Saderne, V., Comeau, S.
-
-👉 [available here](https://jaycrlt.github.io/Papers/12.pdf)
-
--   Coral reef structural complexity loss exposes coastlines to waves - *Scientific Reports* (2023)
-
-    **Carlot, J.**, Vousdoukas, M., Karambas, T., Rovere, A., Lenihan, H. S., Kayal, M., Adjeroud, M., Perez-Rosales, G., Hedouin, L., Parravicini V.
-
-👉 [available here](https://jaycrlt.github.io/Papers/10.pdf)
+🎥 I plan in the future to build a new section about statistics and how to proceed with R - Probably in 2024/2025.

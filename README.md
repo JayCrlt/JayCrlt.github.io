@@ -8,4 +8,4 @@ This repository is used to host my [`personal web page`](https://JayCrlt.github.
 
 📸 You might also see some pictures from the different travels (personal or professional) I've been able to make. The closer the sea or ocean, the better I feel.
 
-🎥 I plan in the future to build a new section about statistics and how to proceed with R - Probably in 2024/2025.
+🎥 I plan in the future to build a new section about statistics and how to proceed with R - Probably late 2025.

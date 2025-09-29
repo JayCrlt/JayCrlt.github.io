@@ -11,14 +11,30 @@
   <style>
     body,h1,h2,h3,h4,h5,h6 {font-family: "Avenir Light";}
     body, html {height: 100%; color: #777; line-height: 1.8;}
-    .bgimg-2 {background-image: url("Pictures/My_pictures/GPS.jpeg"); min-height: 400px;}
-    .gallery {display: flex; flex-wrap: wrap; max-width: 2000px;}
-    .gallery-item {flex: 1 1 auto; flex-basis: 175px; margin: .5em; max-width: 200px; max-height: 150px; position: relative; cursor: pointer; overflow: hidden;}
-    .gallery-item::after {content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0; opacity: 0; background-color: rgba(0,0,0,0.4); transition: opacity 250ms;}
-    .gallery-item .caption {position: absolute; text-align: center; left: 0; right: 0; bottom: 0; padding: 1em 0; line-height: 1em; color: #fff; background-color: rgba(0,0,0,0.6); transform: translateY(4em); transition: transform 250ms;}
-    .gallery-item:hover::after {opacity: 1;}
+
+    /* Parallax / Header */
+    .bgimg-2 {background-image: url("Pictures/My_pictures/GPS.jpeg"); min-height: 400px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
+    .w3-display-middle {text-align:center;}
+    .w3-xxlarge {font-size: 3em;}
+
+    /* Gallery */
+    .gallery {display: flex; flex-wrap: wrap; justify-content: center; max-width: 2000px; margin: 0 auto;}
+    .gallery-item {position: relative; margin: 0.5em; overflow: hidden; cursor: pointer; flex: 0 0 250px; height: 150px;}
+    .gallery-item img {width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;}
+    .gallery-item:hover img {transform: scale(1.05);}
+    .caption {position: absolute; bottom: 0; width: 100%; text-align: center; background-color: rgba(0,0,0,0.6); color: #fff; padding: 0.5em; font-size: 0.9em; transform: translateY(100%); transition: transform 0.3s;}
     .gallery-item:hover .caption {transform: translateY(0);}
-    .gallery-item .thumb {display: inline-block; width: 100%; height: 100%; object-fit: cover;}
+
+    /* Buttons */
+    .button-container {display: flex; justify-content: space-between; max-width: 900px; margin: 1em auto;}
+    .button-container .w3-button {flex: 1; margin: 0 0.5em; text-align: center;}
+
+    /* Responsive */
+    @media(max-width: 600px) {
+      .gallery-item {flex: 0 0 45%; height: 120px;}
+      .button-container {flex-direction: column;}
+      .button-container .w3-button {margin: 0.5em 0;}
+    }
   </style>
 </head>
 <body>
@@ -197,18 +213,37 @@
             <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
 		</div> </font> </h6>
 		
-		<div class="more">Show more</div>
-		<div class="less">Show less</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"> </script>
-		<script src="./script.js"> </script>
-		
-		</p> </div> </div>
+  <!-- Show More / Show Less Buttons -->
+  <div class="button-container">
+    <button class="w3-button w3-black" id="showLess">Show less</button>
+    <button class="w3-button w3-black" id="showMore">Show more</button>
+  </div>
+</div>
 
 <!-- Back Button -->
 <div class="w3-center w3-padding-64">
   <a href="index.html" class="w3-button w3-black">Back to Home</a>
 </div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    const itemsToShow = 8; // number of items initially
+    const $galleryItems = $("#gallery .gallery-item");
+    $galleryItems.hide().slice(0, itemsToShow).show();
+
+    $("#showMore").click(function(){
+      const currentlyVisible = $galleryItems.filter(":visible").length;
+      $galleryItems.slice(currentlyVisible, currentlyVisible + itemsToShow).slideDown();
+    });
+
+    $("#showLess").click(function(){
+      $galleryItems.slice(itemsToShow).slideUp();
+      $('html, body').animate({scrollTop: $(".gallery").offset().top}, 500);
+    });
+  });
+</script>
 
 </body>
 </html>

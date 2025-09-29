@@ -9,237 +9,108 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Avenir Light";}
-    body, html {height: 100%; color: #777; line-height: 1.8;}
-
-    /* Parallax / Header */
-    .bgimg-2 {background-image: url("Pictures/My_pictures/GPS.jpeg"); min-height: 400px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;}
-    .w3-display-middle {text-align:center;}
-    .w3-xxlarge {font-size: 3em;}
-
-    /* Gallery */
-    .gallery {display: flex; flex-wrap: wrap; justify-content: center; max-width: 2000px; margin: 0 auto;}
-    .gallery-item {position: relative; margin: 0.5em; overflow: hidden; cursor: pointer; flex: 0 0 250px; height: 150px; display: flex; align-items: flex-end;}    .gallery-item img {width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;}
-    .gallery-item:hover img {transform: scale(1.05);}
-    .caption {position: absolute; bottom: 0; width: 100%; text-align: center; background-color: rgba(0,0,0,0.6); color: #fff; padding: 0.5em 0; font-size: 0.9em; transform: translateY(100%); transition: transform 0.3s;}
-    .gallery-item:hover .caption {transform: translateY(0);}
-
-    /* Buttons */
-    .button-container {display: flex; justify-content: space-between; max-width: 900px; margin: 1em auto;}
-    .button-container .w3-button {flex: 1; margin: 0 0.5em; text-align: center;}
-
-    /* Responsive */
-    @media(max-width: 600px) {
-      .gallery-item {flex: 0 0 45%; height: 120px;}
-      .button-container {flex-direction: column;}
-      .button-container .w3-button {margin: 0.5em 0;}
-    }
+    body,h1,h2,h3,h4,h5,h6{font-family:"Avenir Light";} body,html{height:100%;color:#777;line-height:1.8;}
+    .bgimg-2{background-image:url("Pictures/My_pictures/GPS.jpeg");min-height:400px;background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover;}
+    .w3-display-middle{text-align:center;} .w3-xxlarge{font-size:3em;}
+    .gallery{display:flex;flex-wrap:wrap;justify-content:center;max-width:2000px;margin:0 auto;}
+    .gallery-item{position:relative;margin:0.5em;overflow:hidden;cursor:pointer;flex:0 0 250px;height:150px;}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;}
+    .gallery-item:hover img{transform:scale(1.05);}
+    .caption{position:absolute;bottom:0;width:100%;text-align:center;background-color:rgba(0,0,0,0.6);color:#fff;padding:0.5em 0;font-size:0.9em;}
+    .button-container{display:flex;justify-content:space-between;max-width:900px;margin:1em auto;}
+    .button-container .w3-button{flex:1;margin:0 0.5em;text-align:center;}
+    @media(max-width:600px){.gallery-item{flex:0 0 45%;height:120px;}.button-container{flex-direction:column;}.button-container .w3-button{margin:0.5em 0;}}
   </style>
 </head>
 <body>
 
-<!-- Gallery -->
-<div class="bgimg-2 w3-display-container w3-opacity-min" id = "images">
-  <div class="w3-display-middle">
-    <span class="w3-xxlarge w3-text-white w3-wide">MY PICTURES</span> </div> </div>
-<div class="w3-row">
-    <div class="w3-col"></div>
-    <div class="w3-col w3-padding-large"> <p style: align="justify">	
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="images">
+  <div class="w3-display-middle"><span class="w3-xxlarge w3-text-white w3-wide">MY PICTURES</span></div>
+</div>
 
-	<h6 class="w3-center"> <font size="2">
-    <div class="gallery">
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Belvedere.jpg" alt="Belvedere">
-			<z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Biarritz.jpg" alt="Biarritz">
-            <z class="caption"><span>Biarritz (France)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Bike_Crohot.jpg" alt="Bike">
-            <z class="caption"><span>Lege Cap-Ferret (France)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Cactus.JPG" alt="Cactus">
-            <z class="caption"><span>Lanzarote (Canarias islands)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Casa.JPG" alt="House">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3"> 
-		      	<img class="thumb placeholder" src="Pictures/My_pictures/Cave.JPG" alt="Cave">
-            <z class="caption"><span>Mallorca (Balears islands)</span> </z> </z>
-        <z class="gallery-item item-4x3"> 
-		        <img class="thumb placeholder" src="Pictures/My_pictures/Ciel_Moorea.JPG" alt="Sky">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3"> 
-		        <img class="thumb placeholder" src="Pictures/My_pictures/Puffins.JPG" alt="puffins">
-            <z class="caption"><span>Dyrhólaey (Iceland)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-		      	<img class="thumb placeholder" src="Pictures/My_pictures/Collioure.jpg" alt="Collioure">
-            <z class="caption"><span>Collioure (France)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/DayOff.jpg" alt="Scooter">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3"> 
-		      	<img class="thumb placeholder" src="Pictures/My_pictures/Dance.jpeg" alt="Rolling">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/DiveDiploma.JPG" alt="CAH">
-            <z class="caption"><span>Marseille (France)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Ferry_MOZ.jpg" alt="Ferry">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Fieldwork_udw.JPG" alt="Panarea">
-            <z class="caption"><span>Panarea (Aeolian Islands)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Freedive.JPG" alt="Freedive">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/GPS.jpeg" alt="GPS">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Hossegor.JPG" alt="Hossegor">
-            <z class="caption"><span>Hossegor (France)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Isa.JPG" alt="Qualité">
-            <z class="caption"><span>Biarritz (France)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Jellyfish.JPG" alt="Jellies">
-            <z class="caption"><span>La Rochelle (France)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/LabStation.jpg" alt="MOZLab">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Lafitenia.JPG" alt="Lafit">
-            <z class="caption"><span>Saint Jean de Luz (France)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Laurie.jpg" alt="Lau">
-            <z class="caption"><span>Lege Cap-Ferret (France)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Ma'a.JPG" alt="Ma'a">
-            <z class="caption"><span>Tahiti (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Mahimahi.JPG" alt="Mahimahi">
-            <z class="caption"><span>Rangiroa (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Moro.JPG" alt="Moro">
-            <z class="caption"><span>Mallorca (Balears islands)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/MOZ_HEIC.jpg" alt="Morning">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Nacre.JPG" alt="Nacre">
-            <z class="caption"><span>Cabrera (Balears islands)</span> </z> </z>
-        <z class="gallery-item item-4x3"> 
-		      	<img class="thumb placeholder" src="Pictures/My_pictures/Geologic.jpeg" alt="Pilar">
-            <z class="caption"><span>Fljótsdalshérað (Iceland)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Nudi.JPG" alt="Nudi">
-            <z class="caption"><span>Villefranche sur mer (France)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Paddle.JPG" alt="Paddle">
-            <z class="caption"><span>Mallorca (Balears islands)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Palma.JPG" alt="Palma">
-            <z class="caption"><span>Mallorca (Balears islands)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Pano_Canarias.jpg" alt="Canabeach">
-            <z class="caption"><span>Lanzarote (Canary islands)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Pano_Mallorca.jpeg" alt="Formentor">
-            <z class="caption"><span>Mallorca (Balears islands)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Pano_Petit_Crohot.jpeg" alt="Dune">
-            <z class="caption"><span>Lege Cap-Ferret (France)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Ischia.jpeg" alt="incubations">
-            <z class="caption"><span>Ischia (Italy)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Papetoai_Boat.jpeg" alt="Boat">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Parapente.JPG" alt="Glide">
-            <z class="caption"><span>Tenerife (Canary islands)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Periph.jpg" alt="Snow">
-            <z class="caption"><span>Arcalis (Andorra)</span> </z> </z>
-        <z class="gallery-item item-4x3"> 
-		      	<img class="thumb placeholder"  src="Pictures/My_pictures/Pico.JPG" alt="Teide">
-            <z class="caption"><span>Tenerife (Canary islands)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Pier.JPG" alt="Pier">
-            <z class="caption"><span>Lege Cap-Ferret (France)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Ray_Feeding_Retouched.jpeg" alt="Ray">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Rainfall.JPG" alt="rainfall">
-            <z class="caption"><span>Hvammstangi (Iceland)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/RedCoral.JPG" alt="RedCoral">
-            <z class="caption"><span>Villefranche sur mer (France)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Reef_Crest.jpeg" alt="Crest">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Rolling.JPG" alt="Wave">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Staining.JPG" alt="Staining">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Sunset.jpg" alt="Sunset">
-            <z class="caption"><span>ile d'Oléron (France)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Swimming.jpg" alt="Swimming">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-	     	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Tenerife.JPG" alt="Tenerife">
-            <z class="caption"><span>Tenerife (Canary islands)</span> </z> </z>
-        <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Underwater.JPG" alt="Udw">
-            <z class="caption"><span>Ischia (Italy)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Tetiaroa.JPG" alt="Tetia">
-            <z class="caption"><span>Tetiaroa (French Polynesia)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Trail.jpg" alt="Trail">
-            <z class="caption"><span>Paulilles (France)</span> </z> </z>
-	    	<z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/Verdon.JPG" alt="Verdon">
-            <z class="caption"><span>Verdon (France)</span> </z> </z>
-	      <z class="gallery-item item-4x3">
-            <img class="thumb placeholder" src="Pictures/My_pictures/WorkNight.jpg" alt="Work">
-            <z class="caption"><span>Mo'orea (French Polynesia)</span> </z> </z>
-		</div> </font> </h6>
-		
-  <!-- Show More / Show Less Buttons -->
-  <div class="button-container">
-    <button class="w3-button w3-black" id="showLess">Show less</button>
-    <button class="w3-button w3-black" id="showMore">Show more</button>
+<div class="w3-row">
+  <div class="w3-col w3-padding-large">
+    <div class="gallery" id="gallery">
+      <div class="gallery-item"><img src="Pictures/My_pictures/Belvedere.jpg" alt="Belvedere"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Biarritz.jpg" alt="Biarritz"><div class="caption">Biarritz (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Bike_Crohot.jpg" alt="Bike"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Cactus.JPG" alt="Cactus"><div class="caption">Lanzarote (Canarias islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Casa.JPG" alt="House"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Cave.JPG" alt="Cave"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Ciel_Moorea.JPG" alt="Sky"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Puffins.JPG" alt="Puffins"><div class="caption">Dyrhólaey (Iceland)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Collioure.jpg" alt="Collioure"><div class="caption">Collioure (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/DayOff.jpg" alt="Scooter"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Dance.jpeg" alt="Rolling"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/DiveDiploma.JPG" alt="CAH"><div class="caption">Marseille (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Ferry_MOZ.jpg" alt="Ferry"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Fieldwork_udw.JPG" alt="Panarea"><div class="caption">Panarea (Aeolian Islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Freedive.JPG" alt="Freedive"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/GPS.jpeg" alt="GPS"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Hossegor.JPG" alt="Hossegor"><div class="caption">Hossegor (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Isa.JPG" alt="Qualité"><div class="caption">Biarritz (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Jellyfish.JPG" alt="Jellies"><div class="caption">La Rochelle (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/LabStation.jpg" alt="MOZLab"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Lafitenia.JPG" alt="Lafit"><div class="caption">Saint Jean de Luz (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Laurie.jpg" alt="Lau"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Ma'a.JPG" alt="Ma'a"><div class="caption">Tahiti (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Mahimahi.JPG" alt="Mahimahi"><div class="caption">Rangiroa (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Moro.JPG" alt="Moro"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/MOZ_HEIC.jpg" alt="Morning"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Nacre.JPG" alt="Nacre"><div class="caption">Cabrera (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Geologic.jpeg" alt="Pilar"><div class="caption">Fljótsdalshérað (Iceland)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Nudi.JPG" alt="Nudi"><div class="caption">Villefranche sur mer (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Paddle.JPG" alt="Paddle"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Palma.JPG" alt="Palma"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Pano_Canarias.jpg" alt="Canabeach"><div class="caption">Lanzarote (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Pano_Mallorca.jpeg" alt="Formentor"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Pano_Petit_Crohot.jpeg" alt="Dune"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Ischia.jpeg" alt="incubations"><div class="caption">Ischia (Italy)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Papetoai_Boat.jpeg" alt="Boat"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Parapente.JPG" alt="Glide"><div class="caption">Tenerife (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Periph.jpg" alt="Snow"><div class="caption">Arcalis (Andorra)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Pico.JPG" alt="Teide"><div class="caption">Tenerife (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Pier.JPG" alt="Pier"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Ray_Feeding_Retouched.jpeg" alt="Ray"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Rainfall.JPG" alt="Rainfall"><div class="caption">Hvammstangi (Iceland)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/RedCoral.JPG" alt="RedCoral"><div class="caption">Villefranche sur mer (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Reef_Crest.jpeg" alt="Crest"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Rolling.JPG" alt="Wave"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Staining.JPG" alt="Staining"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Sunset.jpg" alt="Sunset"><div class="caption">ile d'Oléron (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Swimming.jpg" alt="Swimming"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Tenerife.JPG" alt="Tenerife"><div class="caption">Tenerife (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Underwater.JPG" alt="Udw"><div class="caption">Ischia (Italy)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Tetiaroa.JPG" alt="Tetia"><div class="caption">Tetiaroa (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Trail.jpg" alt="Trail"><div class="caption">Paulilles (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/Verdon.JPG" alt="Verdon"><div class="caption">Verdon (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/My_pictures/WorkNight.jpg" alt="Work"><div class="caption">Mo'orea (French Polynesia)</div></div>
+    </div>
+
+    <div class="button-container">
+      <button class="w3-button w3-black" id="showLess">Show less</button>
+      <button class="w3-button w3-black" id="showMore">Show more</button>
+    </div>
   </div>
 </div>
 
-<!-- Back Button -->
 <div class="w3-center w3-padding-64">
   <a href="index.html" class="w3-button w3-black">Back to Home</a>
 </div>
 
-<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-  const itemsToShow = 10; // now 10 images initially
-  const $galleryItems = $("#gallery .gallery-item");
-  $galleryItems.hide().slice(0, itemsToShow).show();
-
+  const itemsToShow=10;
+  const $galleryItems=$("#gallery .gallery-item");
+  $galleryItems.hide().slice(0,itemsToShow).show();
   $("#showMore").click(function(){
-    const currentlyVisible = $galleryItems.filter(":visible").length;
-    $galleryItems.slice(currentlyVisible, currentlyVisible + itemsToShow).slideDown();
+    const currentlyVisible=$galleryItems.filter(":visible").length;
+    $galleryItems.slice(currentlyVisible,currentlyVisible+itemsToShow).slideDown();
   });
-
   $("#showLess").click(function(){
     $galleryItems.slice(itemsToShow).slideUp();
-    $('html, body').animate({scrollTop: $("#gallery").offset().top}, 500);
+    $('html, body').animate({scrollTop:$("#gallery").offset().top},500);
   });
 });
 </script>

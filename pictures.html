@@ -19,10 +19,9 @@
 
     /* Gallery */
     .gallery {display: flex; flex-wrap: wrap; justify-content: center; max-width: 2000px; margin: 0 auto;}
-    .gallery-item {position: relative; margin: 0.5em; overflow: hidden; cursor: pointer; flex: 0 0 250px; height: 150px;}
-    .gallery-item img {width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;}
+    .gallery-item {position: relative; margin: 0.5em; overflow: hidden; cursor: pointer; flex: 0 0 250px; height: 150px; display: flex; align-items: flex-end;}    .gallery-item img {width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s;}
     .gallery-item:hover img {transform: scale(1.05);}
-    .caption {position: absolute; bottom: 0; width: 100%; text-align: center; background-color: rgba(0,0,0,0.6); color: #fff; padding: 0.5em; font-size: 0.9em; transform: translateY(100%); transition: transform 0.3s;}
+    .caption {position: absolute; bottom: 0; width: 100%; text-align: center; background-color: rgba(0,0,0,0.6); color: #fff; padding: 0.5em 0; font-size: 0.9em; transform: translateY(100%); transition: transform 0.3s;}
     .gallery-item:hover .caption {transform: translateY(0);}
 
     /* Buttons */
@@ -228,21 +227,21 @@
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-  $(document).ready(function(){
-    const itemsToShow = 8; // number of items initially
-    const $galleryItems = $("#gallery .gallery-item");
-    $galleryItems.hide().slice(0, itemsToShow).show();
+$(document).ready(function(){
+  const itemsToShow = 10; // now 10 images initially
+  const $galleryItems = $("#gallery .gallery-item");
+  $galleryItems.hide().slice(0, itemsToShow).show();
 
-    $("#showMore").click(function(){
-      const currentlyVisible = $galleryItems.filter(":visible").length;
-      $galleryItems.slice(currentlyVisible, currentlyVisible + itemsToShow).slideDown();
-    });
-
-    $("#showLess").click(function(){
-      $galleryItems.slice(itemsToShow).slideUp();
-      $('html, body').animate({scrollTop: $(".gallery").offset().top}, 500);
-    });
+  $("#showMore").click(function(){
+    const currentlyVisible = $galleryItems.filter(":visible").length;
+    $galleryItems.slice(currentlyVisible, currentlyVisible + itemsToShow).slideDown();
   });
+
+  $("#showLess").click(function(){
+    $galleryItems.slice(itemsToShow).slideUp();
+    $('html, body').animate({scrollTop: $("#gallery").offset().top}, 500);
+  });
+});
 </script>
 
 </body>

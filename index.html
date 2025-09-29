@@ -40,28 +40,6 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 @media only screen and (max-device-width: 300px) {.gallery {min-width: 300px; min-height: 225px; max-width: 300px; max-height: 225px}}
 /* Create an ellipsis */
 .ellipse {display: -webkit-box; max-width: 2000px; height: 100px; 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis}
-/* Create an image gallery */
-.gallery {display: flex; flex-wrap: wrap; max-width: 2000px;}
-.gallery-item {flex: 1 1 auto; flex-basis: 175px; margin: .5em; max-width: 200px; max-height: 150px; position: relative; 
-  cursor: pointer;  overflow: hidden; min-width: 200px; min-height: 150px; margin-left:auto; margin-right:auto;}
-.gallery-item.item-1x1 {flex-basis: 175px;}
-.gallery-item.item-4x3 {flex-basis: calc(175px * 1.333);}
-.gallery-item.item-8x5 {flex-basis: calc(175px * 1.6);}
-.gallery-item::after {content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0; opacity: 0;  
-  background-color: rgba(0, 0, 0, 0.4); background-position: center; background-size: 1.85rem; background-repeat: no-repeat;
-  transition: opacity 250ms; z-index: 10;}
-.gallery-item .caption {position: absolute; text-align: center; left: 0; right: 0; bottom: 0; padding: 1em 0; line-height: 1em; 
-  color: #fff; background-color: rgba(0, 0, 0, 0.6);  transform: translateY(4em); transition: transform 250ms; z-index: 20;}
-.gallery-item .caption span {display: inline-block; max-width: calc(100% - 2em); text-overflow: ellipsis; overflow: hidden;
-  white-space: nowrap;}
-.gallery-item:hover .thumb {transform: scale(1.05);}
-@media (hover: hover) {.gallery-item:hover::after {opacity: 1;} .gallery-item:hover .caption {transform: translateY(0);}}
-.gallery-item .thumb {display: inline-block; width: 100%; height: 100%; object-fit: cover; min-height: unset; 
-	text-align: center; background-color: #333; transition: filter 500ms, transform 500ms;}
-.more, .less {background-color: #000; clear: both; color: #fff; cursor: pointer; display: block; font-size: 14px;
-  margin-top: 6px; ; padding: 6px 0; text-align: center; text-transform: uppercase; width: 200px; 
-  margin: .5em; flex-basis: 175px}
-.gallery-item:nth-child(n+5) {display: none;}
 </style>
 	
 <body>

@@ -24,6 +24,23 @@
 </head>
 <body>
 
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" 
+	   href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT ME</a>
+    <a href="index.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-book"></i> MY PUBLICATIONS</a> 
+    <a href="pictures.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera" aria-hidden="true"></i> MY PICTURES</a>  
+	<a href="index.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a> </div>
+<!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT ME</a>
+    <a href="index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">MY PUBLICATIONS</a>
+    <a href="pictures.html" class="w3-bar-item w3-button" onclick="toggleFunction()">MY PICTURES</a>
+	<a href="index.html" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a></div> </div>
+
 <div class="bgimg-2 w3-display-container w3-opacity-min" id="images">
   <div class="w3-display-middle"><span class="w3-xxlarge w3-text-white w3-wide">MY PICTURES</span></div>
 </div>
@@ -113,6 +130,16 @@ $(document).ready(function(){
     $('html, body').animate({scrollTop:$("#gallery").offset().top},500);
   });
 });
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else { navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");}}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {var x = document.getElementById("navDemo"); if (x.className.indexOf("w3-show") == -1) {x.className += " w3-show";
+    } else {x.className = x.className.replace(" w3-show", "");}}
 </script>
 
 </body>

@@ -24,22 +24,24 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Avenir Light";}
 body, html {height: 100%; color: #777;line-height: 1.8;}
 /* Create a Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3 {background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;}
-/* Second image (Portfolio) */
+.bgimg-2, .bgimg-3 {background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;}
+/* First image (Portfolio) */
 .bgimg-2 {background-image: url("Pictures/My_pictures/GPS.jpeg");min-height: 400px;}
-/* Third image (Contact) */
+/* Second image (Contact) */
 .bgimg-3 {background-image: url("Pictures/My_pictures/Rolling.JPG");min-height: 400px;}
-/* Fourth image (Contact) */
-.bgimg-4 {background-image: url("Pictures/My_pictures/DayOff.jpg");min-height: 400px;}
 .w3-wide {letter-spacing: 0px;}
 .w3-hover-opacity {cursor: pointer;}
 /* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1200px) {.bgimg-1, .bgimg-2, .bgimg-3 {background-attachment: scroll;min-height: 400px;}}
+@media only screen and (max-device-width: 1200px) {.bgimg-2, .bgimg-3 {background-attachment: scroll;min-height: 400px;}}
 @media only screen and (max-device-width: 300px) {.mobilemargin {margin-left: -100px;}}
 @media only screen and (max-width: 768px) {*, html, body, .row {margin-left:0 !important; margin-right:0 !important; padding-left:5 !important; padding-right:5 !important; }}
 @media only screen and (max-device-width: 300px) {.gallery {min-width: 300px; min-height: 225px; max-width: 300px; max-height: 225px}}
 /* Create an ellipsis */
-.ellipse {display: -webkit-box; max-width: 2000px; height: 100px; 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis}
+/*.ellipse {display: -webkit-box; max-width: 2000px; height: 500px; 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis}
+/* Abstract collapse */
+.abstract {font-size:14px; margin-top: 5px; text-align: justify; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden}
+.abstract.expanded {-webkit-line-clamp: unset}
+.readmore-link {font-size: 13px; color: #000000; cursor: pointer; text-decoration: underline; display: inline; margin: 0; padding: 0; line-height: 2; vertical-align: top}
 </style>
 	
 <body>
@@ -86,15 +88,32 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 
 <font size="5"> <strong> <u> PEER–REVIEWED PUBLICATIONS </u> </strong> <br> </font>
 
-	<div class="w3-col m2">
-	<p style="float:left"> <img alt = "Paper_18_icn" src="Illustrations/18.png" heigth = "175" width = "175"> </p> </div>
-	<div class="mobilemargin" style="margin-left: 290px">
-	<strong> <font size="4"> Ocean acidification influences strain selection and metabolism of the benthic diatom <em>Cocconeis neothumensis</em> var. <em>marina</em> </font> </strong> – <em>Ecosystems</em> (2025) <br>
-	<font size="2"> Somma, E., Zupo, V., Mutalipassi, M., Ruocco, N., Terlizzi, A., Iamunno, F., <strong>Carlot J.</strong>, & Costantini, M. <br> </font>
-	<span class="ellipse">
-	<p align="justify"> <u>Abstract:</u> The uptake of carbon dioxide (CO<sub>2</sub>) by oceans is dramatically altering the chemistry of seawater, leading to a continuous decrease of pH over the last century. This phenomenon, called ocean acidification (OA), has raised concerns due to its negative effects on marine biodiversity, including plankton communities and seagrass meadows. The most relevant seagrass in the Mediterranean is Posidonia oceanica, producing complex and stable benthic ecosystems. OA markedly affects the colonization and settlement patterns of epibionts within the leaf communities of P. oceanica. Epiphytic diatoms associated with P. oceanica are influenced by complex chemical and trophic interactions and play a fundamental role in the ecological successions characterizing the leaf stratum. In this study, we isolated two strains of Cocconeis neothumensis var. marina, one of the main epiphyte diatoms associated with P. oceanica, from two sites off the Island of Ischia (Italy) characterized by different pH conditions, <em>i.e.,</em> a naturally low pH site (pH 7.6) influenced by volcanic CO<sub>2</sub> emissions, and an adjacent location with ambient pH conditions (pH 8.1). We further cultured both strains of C. neothumensis under both pH conditions, resulting in four treatment conditions. Four significantly different growth curves were obtained, and metabolomic studies confirmed that the physiology of the strains differed according to pH conditions. Overall, this study demonstrated that OA is likely to trigger the selection of specific diatom strains, with possible consequences for trophic and chemical relationships among the associated consumers. </p> </span>
-	<a href="Papers/18.pdf"><input type="button" class="favorite styled" value="PDF"></a>
-	<a href="https://doi.org/10.1007/s10021-025-00995-4"><input type="button" class="favorite styled" value="Journal"></a> <br> <br> </div>	
+  <div class="paper-entry" data-doi="10.1007/s10021-025-00995-4" data-pubid="Eotjew0AAAAJ:4TOpqqG69KYC" data-altmetric="180489954" 
+       style="overflow: hidden; margin-bottom: 20px; position: relative;">
+  <img src="Illustrations/18.png" alt="Paper_18_icn" style="width: 150px; height: 150px; float: left; margin-right: 12px;">
+  <div style="margin-left: 162px;"> 
+  <div style="font-size: 16px"><strong>18.</strong> Somma E, Zupo V, Mutalipassi M, Ruocco N, Terlizzi A, Iamunno F, <span style="color:#000000;"><strong>Carlot J</strong></span>, & Costantini M (2025) 
+  <span style="color:#000000;">Ocean acidification influences strain selection and metabolism of the benthic diatom <em>Cocconeis neothumensis</em> var. <em>marina</em>.</span>
+  <u><em>Ecosystems</em></u> </div>
+  <div id="abs18" class="abstract" style="font-size: 12px; margin-top: 4px;">
+  <u>Abstract:</u> The uptake of carbon dioxide (CO<sub>2</sub>) by oceans is dramatically altering the chemistry of seawater, leading to a continuous decrease of pH over the last century. This phenomenon, called ocean acidification (OA), has raised concerns due to its negative effects on marine biodiversity, including plankton communities and seagrass meadows. The most relevant seagrass in the Mediterranean is Posidonia oceanica, producing complex and stable benthic ecosystems. OA markedly affects the colonization and settlement patterns of epibionts within the leaf communities of P. oceanica. Epiphytic diatoms associated with P. oceanica are influenced by complex chemical and trophic interactions and play a fundamental role in the ecological successions characterizing the leaf stratum. In this study, we isolated two strains of Cocconeis neothumensis var. marina, one of the main epiphyte diatoms associated with P. oceanica, from two sites off the Island of Ischia (Italy) characterized by different pH conditions, i.e., a naturally low pH site (pH 7.6) influenced by volcanic CO<sub>2</sub> emissions, and an adjacent location with ambient pH conditions (pH 8.1). We further cultured both strains of C. neothumensis under both pH conditions, resulting in four treatment conditions. Four significantly different growth curves were obtained, and metabolomic studies confirmed that the physiology of the strains differed according to pH conditions. Overall, this study demonstrated that OA is likely to trigger the selection of specific diatom strains, with possible consequences for trophic and chemical relationships among the associated consumers.</div>
+  <span class="readmore-link" onclick="toggleAbstract('abs18', this)">Read more...</span>
+  <div style="margin-top: 8px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+  <a href="Papers/18.pdf" style="display: flex; align-items: center; text-decoration: none; color: black;" title="Download PDF">
+  <img src="Icons/PDF.svg" alt="PDF" style="width:20px; height:20px; margin-right:4px;"><span><strong>PDF</strong></span></a>
+  <a class="journal-link" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Journal.svg" alt="PDF" style="width:20px; height:20px; margin-right:4px;"><span><strong>Journal</strong></span></a>
+  <a href="https://github.com/ManuSMM/Diatoms-collection" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Code.svg" alt="Code" style="width:20px; height:20px; margin-right:4px;"><span><strong>Code</strong></span></a>
+  <a href="https://github.com/ManuSMM/Diatoms-collection" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <a class="citations-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Citation.svg" alt="Citation" style="width:20px; height:20px; margin-right:4px;"><span><strong>Citations</strong></span></a>
+  <a class="altmetric-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Altmetric.svg" alt="Altmetric" style="width:20px; height:20px; margin-right:4px;"><span><strong>Altmetric</strong></span></a>
+  </div> </div> </div> </div>
+
+  
+  
 
 	<div class="w3-col m2">
 	<p style="float:left"> <img alt = "Paper_17_icn" src="Illustrations/17.png" heigth = "175" width = "175"> </p> </div>
@@ -365,6 +384,17 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 	  <h2><font size="1" color = "black">MARINE BENTHIC ECOLOGIST FELLOW</font></h2></p>
 	</div> </footer>
 <script>
+//Abstract
+function toggleAbstract(id, link) {
+  var abs = document.getElementById(id);
+  if (abs.classList.contains("expanded")) {
+    abs.classList.remove("expanded");
+    link.innerHTML = "Read more...";
+  } else {
+    abs.classList.add("expanded");
+    link.innerHTML = "Read less...";
+  }
+}
 // Modal Image Gallery
 function onClick(element) {
   document.getElementById("img01").src = element.src;
@@ -381,5 +411,40 @@ function myFunction() {var navbar = document.getElementById("myNavbar");
 // Used to toggle the menu on small screens when clicking on the menu button
 function toggleFunction() {var x = document.getElementById("navDemo"); if (x.className.indexOf("w3-show") == -1) {x.className += " w3-show";
     } else {x.className = x.className.replace(" w3-show", "");}}
-	
+
+// Load citation JSON
+fetch("citations.json")
+  .then(r => r.json())
+  .then(citeData => {
+    // Loop through every paper entry
+    document.querySelectorAll(".paper-entry").forEach(entry => {
+      const doi = entry.dataset.doi;
+      const pubid = entry.dataset.pubid;
+      const altId = entry.dataset.altmetric;
+      // --- Journal link ---
+      entry.querySelector(".journal-link").href = "https://doi.org/" + doi;
+      // --- Google Scholar citations ---
+      const pub = citeData.find(p => p.pubid === pubid);
+      if (pub) {
+        entry.querySelector(".citations-link span").innerHTML = `<strong>${pub.cites} Citations</strong>`;
+        entry.querySelector(".citations-link").href = 
+          `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;}
+      // --- Altmetric API ---
+      fetch("https://api.altmetric.com/v1/doi/" + doi)
+        .then(r => r.json())
+        .then(d => {
+          entry.querySelector(".altmetric-link span").innerHTML = `<strong>${Math.round(d.score)} Altmetric</strong>`;
+          entry.querySelector(".altmetric-link").href = "https://link.altmetric.com/details/" + altId;
+        })
+        .catch(err => console.log("Altmetric error for", doi, err));});});
+        
+// --- Google Scholar citations ---
+const pub = citeData.find(p => p.pubid === pubid);
+if (pub) {
+  const count = pub.cites;
+  const label = count === 1 ? "Citation" : "Citations"; // singular vs plural
+  entry.querySelector(".citations-link span").innerHTML = `<strong>${count} ${label}</strong>`;
+  entry.querySelector(".citations-link").href = 
+    `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;}
+    
 </script> </body> </html>

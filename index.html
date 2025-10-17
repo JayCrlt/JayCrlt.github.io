@@ -107,9 +107,30 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   <img src="Icons/Citation.svg" alt="Citation" style="width:20px; height:20px; margin-right:4px;"><span><strong>Citations</strong></span></a>
   <a class="altmetric-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
   <img src="Icons/Altmetric.svg" alt="Altmetric" style="width:20px; height:20px; margin-right:4px;"><span><strong>Altmetric</strong></span></a>
-  </div> </div> </div> </div>
+  </div> </div> </div>
 
-  
+  <div class="paper-entry" data-doi="10.1038/s41467-025-55949-0" data-pubid="Eotjew0AAAAJ:5nxA0vEk-isC" data-altmetric="180489954" 
+       style="overflow: hidden; margin-bottom: 20px; position: relative;">
+  <img src="Illustrations/17.png" alt="Paper_18_icn" style="width: 150px; height: 150px; float: left; margin-right: 12px;">
+  <div style="margin-left: 162px;"> 
+  <div style="font-size: 16px"><strong>17.</strong> <span style="color:#000000;"><strong>Carlot J</strong></span>, Galobart C, Gomez-Gras D, Santamaria J, Golo R, Sini M, Cebrian E, Gerovasileiou V, Ponti M, Turicchia E, Comeau S, Rilov G, Tamburello L, Pulido Mantas T, Cerrano C, Ledoux JB, Gattuso JP, Ramirez-Calero S, Millán Agudo L, Montefalcone M, Katsanevakis S, Garrabou J & Teixidó N (2025) 
+  <span style="color:#000000;">Vulnerability of benthic trait diversity across the Mediterranean Sea following Mass Mortality Events. </span>
+  <u><em>Nature Communications</em></u> </div>
+  <div id="abs17" class="abstract" style="font-size: 12px; margin-top: 4px;">
+  <u>Abstract:</u> Unraveling the functional future of marine ecosystems amid global change poses a pressing challenge. This is particularly critical in the Mediterranean Sea, which is highly impacted by global and local drivers. Utilizing extensive mass mortality events (MMEs) datasets spanning from 1986 to 2020 across the Mediterranean Sea, we investigated the trait vulnerability of benthic species that suffered from MMEs induced by nine distinct mortality drivers. By analyzing changes in ten ecological traits across 389 benthic species—constituting an extensive compendium of Mediterranean ecological traits to date—we identified 228 functional entities (FEs), defined as groups of species sharing the same trait values. Our findings indicate that of these, 55 FEs were impacted by MMEs, accentuating a heightened vulnerability within specific trait categories. Notably, more than half of the mortality records showed severe impacts on calcifying and larger species with slower growth which mostly account for tree-like and massive forms. Altogether, we highlight that 29 FEs suffered extreme mortality, leading to a maximum increase of 19.1% of the global trait volume vulnerability over 35 years. We also reveal that 10.8% of the trait volume may have been temporarily lost over the last five years, emphasizing the risk of a rapid ecological transformation in the Mediterranean Sea.</div>
+  <span class="readmore-link" onclick="toggleAbstract('abs17', this)">Read more...</span>
+  <div style="margin-top: 8px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+  <a href="Papers/17.pdf" style="display: flex; align-items: center; text-decoration: none; color: black;" title="Download PDF">
+  <img src="Icons/PDF.svg" alt="PDF" style="width:20px; height:20px; margin-right:4px;"><span><strong>PDF</strong></span></a>
+  <a class="journal-link" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Journal.svg" alt="PDF" style="width:20px; height:20px; margin-right:4px;"><span><strong>Journal</strong></span></a>
+  <a href="https://github.com/JayCrlt/MMEs_Mortality" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Code.svg" alt="Code" style="width:20px; height:20px; margin-right:4px;"><span><strong>Code</strong></span></a>
+  <a class="citations-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Citation.svg" alt="Citation" style="width:20px; height:20px; margin-right:4px;"><span><strong>Citations</strong></span></a>
+  <a class="altmetric-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
+  <img src="Icons/Altmetric.svg" alt="Altmetric" style="width:20px; height:20px; margin-right:4px;"><span><strong>Altmetric</strong></span></a>
+  </div> </div> </div> </div>
   
 
 	<div class="w3-col m2">
@@ -421,7 +442,7 @@ fetch("citations.json")
       // --- Journal link ---
       entry.querySelector(".journal-link").href = "https://doi.org/" + doi;
       // --- Google Scholar citations ---
-      const pub = citeData.find(p => p.pubid === pubid);
+      const pub = citeData.find(p => pubid.endsWith(p.pubid));
       const count = pub ? pub.cites : 0;               // 0 if not found
       const label = count <= 1 ? "Citation" : "Citations"; // singular for 0 or 1
       const citationsLink = entry.querySelector(".citations-link span");

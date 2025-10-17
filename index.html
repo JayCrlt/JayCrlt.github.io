@@ -36,8 +36,6 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 @media only screen and (max-device-width: 300px) {.mobilemargin {margin-left: -100px;}}
 @media only screen and (max-width: 768px) {*, html, body, .row {margin-left:0 !important; margin-right:0 !important; padding-left:5 !important; padding-right:5 !important; }}
 @media only screen and (max-device-width: 300px) {.gallery {min-width: 300px; min-height: 225px; max-width: 300px; max-height: 225px}}
-/* Create an ellipsis */
-/*.ellipse {display: -webkit-box; max-width: 2000px; height: 500px; 1; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis}
 /* Abstract collapse */
 .abstract {font-size:14px; margin-top: 5px; text-align: justify; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden}
 .abstract.expanded {-webkit-line-clamp: unset}
@@ -105,7 +103,6 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   <img src="Icons/Journal.svg" alt="PDF" style="width:20px; height:20px; margin-right:4px;"><span><strong>Journal</strong></span></a>
   <a href="https://github.com/ManuSMM/Diatoms-collection" style="display: flex; align-items: center; text-decoration: none; color: black">
   <img src="Icons/Code.svg" alt="Code" style="width:20px; height:20px; margin-right:4px;"><span><strong>Code</strong></span></a>
-  <a href="https://github.com/ManuSMM/Diatoms-collection" style="display: flex; align-items: center; text-decoration: none; color: black">
   <a class="citations-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
   <img src="Icons/Citation.svg" alt="Citation" style="width:20px; height:20px; margin-right:4px;"><span><strong>Citations</strong></span></a>
   <a class="altmetric-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
@@ -425,9 +422,12 @@ fetch("citations.json")
       entry.querySelector(".journal-link").href = "https://doi.org/" + doi;
       // --- Google Scholar citations ---
       const pub = citeData.find(p => p.pubid === pubid);
-      if (pub) {
-        entry.querySelector(".citations-link span").innerHTML = `<strong>${pub.cites} Citations</strong>`;
-        entry.querySelector(".citations-link").href = 
+      const count = pub ? pub.cites : 0;               // 0 if not found
+      const label = count <= 1 ? "Citation" : "Citations"; // singular for 0 or 1
+      const citationsLink = entry.querySelector(".citations-link span");
+      if (citationsLink) {
+        citationsLink.innerHTML = `<strong>${count} ${label}</strong>`;
+        entry.querySelector(".citations-link").href =
           `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;}
       // --- Altmetric API ---
       fetch("https://api.altmetric.com/v1/doi/" + doi)
@@ -437,14 +437,5 @@ fetch("citations.json")
           entry.querySelector(".altmetric-link").href = "https://link.altmetric.com/details/" + altId;
         })
         .catch(err => console.log("Altmetric error for", doi, err));});});
-        
-// --- Google Scholar citations ---
-const pub = citeData.find(p => p.pubid === pubid);
-if (pub) {
-  const count = pub.cites;
-  const label = count === 1 ? "Citation" : "Citations"; // singular vs plural
-  entry.querySelector(".citations-link span").innerHTML = `<strong>${count} ${label}</strong>`;
-  entry.querySelector(".citations-link").href = 
-    `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;}
-    
+
 </script> </body> </html>

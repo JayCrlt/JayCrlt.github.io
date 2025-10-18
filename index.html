@@ -50,8 +50,10 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   .paper-entry .paper-figure {float: none !important; display: block !important; margin: 0 auto 10px auto !important; width: 200px !important; height: auto !important}
   .paper-entry > div {margin-left: 0 !important}}
 /* Icons row (desktop + mobile) */
-.paper-icons {line-height: 1.2; row-gap: 4px; flex-wrap: wrap; align-items: center}
-/* On very small screens: reduce gap between icon groups */
+.paper-icons {margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; row-gap: 4px; line-height: 1.2}
+.paper-icons a {display: flex; align-items: center; text-decoration: none; color: black}
+.paper-icons img {width: 20px; height: 20px; margin-right: 4px}
+/* On small screens, shrink the gap even more */
 @media screen and (max-width: 768px) {.paper-icons {gap: 12px; row-gap: 2px}}
 </style>
 	
@@ -109,17 +111,12 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   <div id="abs18" class="abstract" style="font-size: 12px; margin-top: 4px;">
   <u>Abstract:</u> The uptake of carbon dioxide (CO<sub>2</sub>) by oceans is dramatically altering the chemistry of seawater, leading to a continuous decrease of pH over the last century. This phenomenon, called ocean acidification (OA), has raised concerns due to its negative effects on marine biodiversity, including plankton communities and seagrass meadows. The most relevant seagrass in the Mediterranean is Posidonia oceanica, producing complex and stable benthic ecosystems. OA markedly affects the colonization and settlement patterns of epibionts within the leaf communities of P. oceanica. Epiphytic diatoms associated with P. oceanica are influenced by complex chemical and trophic interactions and play a fundamental role in the ecological successions characterizing the leaf stratum. In this study, we isolated two strains of Cocconeis neothumensis var. marina, one of the main epiphyte diatoms associated with P. oceanica, from two sites off the Island of Ischia (Italy) characterized by different pH conditions, i.e., a naturally low pH site (pH 7.6) influenced by volcanic CO<sub>2</sub> emissions, and an adjacent location with ambient pH conditions (pH 8.1). We further cultured both strains of C. neothumensis under both pH conditions, resulting in four treatment conditions. Four significantly different growth curves were obtained, and metabolomic studies confirmed that the physiology of the strains differed according to pH conditions. Overall, this study demonstrated that OA is likely to trigger the selection of specific diatom strains, with possible consequences for trophic and chemical relationships among the associated consumers.</div>
   <span class="readmore-link" onclick="toggleAbstract('abs18', this)">Read more...</span>
-  <div class="paper-icons" style="margin-top: 8px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-  <a href="Papers/18.pdf" style="display: flex; align-items: center; text-decoration: none; color: black;" title="Download PDF">
-  <img src="Icons/PDF.svg" alt="PDF" style="width:20px; height:20px; margin-right:4px;"><span><strong>PDF</strong></span></a>
-  <a class="journal-link" style="display: flex; align-items: center; text-decoration: none; color: black">
-  <img src="Icons/Journal.svg" alt="PDF" style="width:20px; height:20px; margin-right:4px;"><span><strong>Journal</strong></span></a>
-  <a href="https://github.com/ManuSMM/Diatoms-collection" style="display: flex; align-items: center; text-decoration: none; color: black">
-  <img src="Icons/Code.svg" alt="Code" style="width:20px; height:20px; margin-right:4px;"><span><strong>Code</strong></span></a>
-  <a class="citations-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
-  <img src="Icons/Citation.svg" alt="Citation" style="width:20px; height:20px; margin-right:4px;"><span><strong>Citations</strong></span></a>
-  <a class="altmetric-link" href="#" style="display: flex; align-items: center; text-decoration: none; color: black">
-  <img src="Icons/Altmetric.svg" alt="Altmetric" style="width:20px; height:20px; margin-right:4px;"><span><strong>Altmetric</strong></span></a>
+  <div class="paper-icons">
+  <a href="Papers/18.pdf" title="Download PDF"> <img src="Icons/PDF.svg" alt="PDF"><span><strong>PDF</strong></span></a>
+  <a class="journal-link"> <img src="Icons/Journal.svg" alt="Journal"><span><strong>Journal</strong></span></a>
+  <a href="https://github.com/ManuSMM/Diatoms-collection"><img src="Icons/Code.svg" alt="Code"><span><strong>Code</strong></span></a>
+  <a class="citations-link" href="#"><img src="Icons/Citation.svg" alt="Citation"><span><strong>Citations</strong></span></a>
+  <a class="altmetric-link" href="#"><img src="Icons/Altmetric.svg" alt="Altmetric"><span><strong>Altmetric</strong></span></a>
   </div> </div> </div> 
 
   <div class="paper-entry" data-doi="10.1038/s41467-025-55949-0" data-pubid="Eotjew0AAAAJ:5nxA0vEk-isC" data-altmetric="174135131" 

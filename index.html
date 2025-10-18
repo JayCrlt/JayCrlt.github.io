@@ -42,6 +42,13 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 .abstract {font-size:14px; margin-top: 5px; text-align: justify; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden}
 .abstract.expanded {-webkit-line-clamp: unset}
 .readmore-link {font-size: 13px; color: #000000; cursor: pointer; text-decoration: underline; display: inline; margin: 0; padding: 0; line-height: 2; vertical-align: top}
+/* Default desktop layout */
+.paper-entry img {float: left; margin-right: 12px; width: 150px; height: 150px;}
+.paper-entry > div {margin-left: 162px;}
+/* Mobile layout: image on top, text below */
+@media screen and (max-width: 768px) {
+  .paper-entry img {float: none; display: block; margin: 0 auto 10px auto; width: 100px; height: auto}
+  .paper-entry > div {margin-left: 0}}
 </style>
 	
 <body>

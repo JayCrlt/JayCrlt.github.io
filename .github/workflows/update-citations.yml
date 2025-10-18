@@ -1,4 +1,4 @@
-name: Update Citations
+name: Update Citations and Deploy Site
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:      # allows manual trigger
 
 jobs:
-  update-citations:
+  update-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,15 +25,22 @@ jobs:
         run: |
           Rscript -e 'install.packages(c("scholar", "jsonlite", "dplyr"))'
 
-      # 4️⃣ Run your R script
+      # 4️⃣ Run your R script to update citations.json
       - name: Run citation update script
         run: Rscript update_citations.R
 
-      # 5️⃣ Commit only the updated JSON
-      - name: Commit and push citations.json
+      # 5️⃣ Commit any updated JSON
+      - name: Commit updated citations
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
           git add citations.json
           git diff --cached --quiet || git commit -m "Update citations.json [skip ci]"
           git push
+
+      # 6️⃣ Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site

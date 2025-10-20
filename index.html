@@ -582,8 +582,8 @@ fetch("citations.json")
       }
       // --- Google Scholar citations ---
       const pub = citeData.find(p => pubid.endsWith(p.pubid));
-      const count = pub ? pub.cites : 0;               // 0 if not found
-      const label = count <= 1 ? "Citation" : "Citations"; // singular for 0 or 1
+      const count = pub ? pub.cites : 0;
+      const label = count <= 1 ? "Citation" : "Citations"; 
       const citationsLink = entry.querySelector(".citations-link span");
       if (citationsLink) {
         citationsLink.innerHTML = `<strong>${count} ${label}</strong>`;
@@ -593,7 +593,7 @@ fetch("citations.json")
       fetch("https://api.altmetric.com/v1/doi/" + doi)
         .then(r => r.json())
         .then(d => {
-          entry.querySelector(".altmetric-link span").innerHTML = `<strong>${Math.round(d.score)} Altmetric</strong>`;
+          entry.querySelector(".altmetric-link span").innerHTML = `<strong>${Math.ceil(d.score)} Altmetric</strong>`;
           entry.querySelector(".altmetric-link").href = "https://link.altmetric.com/details/" + altId;
         })
         .catch(err => console.log("Altmetric error for", doi, err));});});

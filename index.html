@@ -581,7 +581,7 @@ fetch("citations.json")
         journalLink.innerHTML = `<img src="Icons/Journal.svg" alt="Web" style="width:20px; height:20px; margin-right:4px;"><span><strong>Web</strong></span>`;
       }
       // --- Google Scholar citations ---
-      const pub = citeData.find(p => pubid.endsWith(p.pubid));
+      const pub = pubid ? citeData.find(p => pubid.endsWith(p.pubid)) : null;
       const count = pub ? pub.cites : 0;
       const label = count <= 1 ? "Citation" : "Citations"; 
       const citationsLink = entry.querySelector(".citations-link span");

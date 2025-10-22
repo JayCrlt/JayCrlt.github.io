@@ -2,8 +2,8 @@ name: Update Citations
 
 on:
   schedule:
-    # Runs every day at midnight UTC
-    - cron: '0 0 * * *'
+    # Runs every day at 06:30 UTC
+    - cron: '30 6 * * *'
   workflow_dispatch: # allows manual trigger
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
 
       - name: Install required R packages
         run: |
-          R -e 'install.packages(c("jsonlite"))'
+          R -e 'install.packages(c("jsonlite", "scholar"), repos="https://cloud.r-project.org")'
 
       - name: Run R script to update citations
         run: |

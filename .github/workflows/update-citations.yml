@@ -2,11 +2,13 @@ name: Update Citations
 
 on:
   schedule:
-    - cron: '40 10 * * *'
+    - cron: '00 13 * * *'
   workflow_dispatch:
 
 jobs:
   update-citations:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +46,10 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add citations.json
-          git commit -m "Auto-update citations.json [ci skip]" || echo "No changes"
-          git push
+          git status
+          git diff --stat
+          git commit -m "Auto-update citations.json [ci skip]" || echo "No changes to commit"
+          git pull --rebase origin main || true
+          git push origin HEAD:main || echo "⚠️ Push failed (likely branch protection or token issue)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,7 +2,7 @@ name: Update Citations
 
 on:
   schedule:
-    - cron: '00 13 * * *'
+    - cron: '30 13 * * *'
   workflow_dispatch:
 
 jobs:

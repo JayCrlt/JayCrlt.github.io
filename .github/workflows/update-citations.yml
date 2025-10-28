@@ -5,7 +5,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '00 09 * * *' #(9:00 Palma Winter time)
+    - cron: '20 09 * * *' #(10:15 Palma Winter time)
   workflow_dispatch:
 
 jobs:

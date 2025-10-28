@@ -1,59 +1,42 @@
 # update_citations.R
 # Robust citation updater using SerpAPI
-
 library(httr)
 library(jsonlite)
 
-# Get SerpAPI key from environment
 api_key <- Sys.getenv("SERPAPI_KEY")
-if (api_key == "") stop("❌ SERPAPI_KEY not set in GitHub Secrets")
-
-# Your Google Scholar ID
+if (api_key == "") stop("SERPAPI_KEY not set")
 scholar_id <- "Eotjew0AAAAJ"
 
-# Safe fetch with retry and error handling
-safe_get_publications <- function(id, key, max_attempts = 3) {
-  attempt <- 1
-  while (attempt <= max_attempts) {
-    try({
-      url <- paste0(
-        "https://serpapi.com/search.json?",
-        "engine=google_scholar_author",
-        "&author_id=", id,
-        "&api_key=", key
-      )
-      res <- httr::GET(url)
-      if (res$status_code != 200) stop("SerpAPI request failed with status ", res$status_code)
-      data <- httr::content(res, as = "parsed", simplifyVector = TRUE)
-      pubs <- data$publications
-      if (is.null(pubs) || length(pubs) == 0) stop("No publications returned by SerpAPI")
-      
-      # Convert to simple list with title, pubid, cites
-      citations <- lapply(pubs, function(pub) {
-        list(
-          title = pub$title,
-          pubid = pub$pub_id,
-          cites = pub$cited_by$total
-        )
-      })
-      return(citations)
-    }, silent = TRUE)
-    
-    message("⚠️ Attempt ", attempt, " failed. Retrying in 5 seconds...")
-    Sys.sleep(5)
-    attempt <- attempt + 1
-  }
-  warning("❌ Could not fetch publications after ", max_attempts, " attempts")
-  return(NULL)
-}
+url <- paste0(
+  "https://serpapi.com/search.json?",
+  "engine=google_scholar_author",
+  "&author_id=", scholar_id,
+  "&api_key=", api_key
+)
 
-# Fetch publications
-citations <- safe_get_publications(scholar_id, api_key)
+res <- GET(url)
+stop_for_status(res)
 
-# Write JSON only if data was retrieved
-if (!is.null(citations)) {
-  jsonlite::write_json(citations, "citations.json", pretty = TRUE, auto_unbox = TRUE)
-  message("✅ Citations updated successfully via SerpAPI")
-} else {
-  message("⚠️ Citations not updated. Keeping existing file.")
-}
+# Parse JSON
+data <- content(res, as = "parsed", simplifyVector = FALSE)
+
+# Extract publications
+pubs <- data$articles
+
+# Check type
+str(pubs[[1]])  # Look at first entry to see its structure
+
+# Create compact citation format safely
+citation <- lapply(pubs, function(x) {
+  list(
+    title = x[["title"]],
+    pubid = x[["publication_id"]],
+    cites = ifelse(is.null(x[["cited_by"]]), 0, x[["cited_by"]])
+  )
+})
+
+# Convert to JSON
+json_output <- toJSON(citation, pretty = TRUE, auto_unbox = TRUE)
+
+# Save to file
+write(json_output, "citations.json")

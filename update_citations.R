@@ -8,6 +8,9 @@ for (pkg in packages) {
   }
 }
 
+# Get your API key from environment
+api_key <- Sys.getenv("SERPAPI_KEY")
+
 # Your Google Scholar ID
 scholar_id <- "Eotjew0AAAAJ"
 

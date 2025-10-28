@@ -19,32 +19,21 @@ stop_for_status(res)
 data <- content(res, as = "parsed", simplifyVector = FALSE)
 pubs <- data$articles
 
+# Create compact citation format
 citation <- lapply(pubs, function(x) {
-  # Extract cites
-  cites_value <- 0
-  if (!is.null(x$cited_by) && is.list(x$cited_by) && !is.null(x$cited_by$value)) {
-    cites_value <- as.integer(x$cited_by$value)
-  }
+  cites_value <- if (!is.null(x[["cited_by"]][["value"]])) as.integer(x[["cited_by"]][["value"]]) else 0
   
-  # Extract pubid from cited_by_link or fallback to hash
-  pubid_value <- ""
-  if (!is.null(x$cited_by_link)) {
-    m <- regmatches(x$cited_by_link, regexpr("cites=([a-zA-Z0-9_-]+)", x$cited_by_link))
-    if (length(m) > 0) {
-      pubid_value <- sub("cites=", "", m)
-    }
-  }
-  if (pubid_value == "") {
-    # fallback: generate stable hash from title
-    pubid_value <- substr(digest(x$title, algo = "md5"), 1, 12)
-  }
+  pubid_value <- if (!is.null(x[["citation_id"]])) x[["citation_id"]] else ""
   
   list(
-    title = x$title,
+    title = x[["title"]],
     pubid = pubid_value,
     cites = cites_value
   )
 })
 
+# Convert to JSON
 json_output <- toJSON(citation, pretty = TRUE, auto_unbox = TRUE)
+
+# Save to file
 write(json_output, "citations.json")

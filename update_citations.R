@@ -11,11 +11,9 @@ url <- paste0(
   "https://serpapi.com/search.json?",
   "engine=google_scholar_author",
   "&author_id=", scholar_id,
-  "&api_key=", api_key
-)
+  "&api_key=", api_key)
 
-res <- GET(url)
-stop_for_status(res)
+res  <- GET(url) ; stop_for_status(res)
 data <- content(res, as = "parsed", simplifyVector = FALSE)
 pubs <- data$articles
 
@@ -23,7 +21,6 @@ pubs <- data$articles
 citation <- lapply(pubs, function(x) {
   cites_value <- if (!is.null(x[["cited_by"]][["value"]])) as.integer(x[["cited_by"]][["value"]]) else 0
   pubid_value <- if (!is.null(x[["citation_id"]])) x[["citation_id"]] else ""
-  # Remove your Google Scholar ID prefix (everything before and including ':')
   pubid_clean <- sub("^Eotjew0AAAAJ:", "", pubid_value)
   list(title = x[["title"]], pubid = pubid_clean, cites = cites_value)})
 

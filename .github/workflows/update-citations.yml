@@ -38,6 +38,7 @@ jobs:
           packages: |
             jsonlite
             httr
+            digest
 
       - name: Run R script to update citations
         run: Rscript update_citations.R

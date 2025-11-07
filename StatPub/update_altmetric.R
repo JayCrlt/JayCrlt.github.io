@@ -4,6 +4,7 @@ library(digest)
 library(jsonlite)
 library(readxl)
 library(writexl)
+library(dplyr)
 
 # Load data
 stat_pub  <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text"))

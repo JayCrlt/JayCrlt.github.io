@@ -4,6 +4,7 @@ library(httr)
 library(digest)
 library(jsonlite)
 library(readxl)
+library(dplyr)
 
 AltMetric  <- read_excel("StatPub/AltMetric.xlsx")
 api_key    <- Sys.getenv("SERPAPI_KEY")

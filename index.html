@@ -563,55 +563,56 @@ function toggleFunction() {var x = document.getElementById("navDemo"); if (x.cla
     } else {x.className = x.className.replace(" w3-show", "");}}
 
 // Load citation JSON
-fetch("citations.json")
+// Load citation JSON (force refresh to avoid GitHub caching)
+fetch("citations.json?v=" + Date.now())
   .then(r => r.json())
   .then(citeData => {
-    // Loop through every paper entry
     document.querySelectorAll(".paper-entry").forEach(entry => {
       const doi   = entry.dataset.doi;
       const pubid = entry.dataset.pubid;
       const altId = entry.dataset.altmetric;
       const url   = entry.dataset.url;
-      // Find publication in JSON (only once)
-      const pubData = pubid ? citeData.find(p => pubid.endsWith(p.pubid)) : null;
-      // --------------------------------------------------------------------
-      // Journal / webpage link
-      // --------------------------------------------------------------------
+      //--------------------------------------------------------------------
+      // Journal link
+      //--------------------------------------------------------------------
       const journalLink = entry.querySelector(".journal-link, .url-link");
-      if (doi) {
-        journalLink.href = `https://doi.org/${doi}`;
-        journalLink.innerHTML = `
-          <img src="Icons/Journal.svg" alt="Journal"
-               style="width:20px; height:20px; margin-right:4px;">
-          <span><strong>Journal</strong></span>`;
-      } else if (url) {
-        journalLink.href = url;
-        journalLink.innerHTML = `
-          <img src="Icons/Journal.svg" alt="Web"
-               style="width:20px; height:20px; margin-right:4px;">
-          <span><strong>Web</strong></span>`;}
-      // --------------------------------------------------------------------
+      if (journalLink) {
+        if (doi) {
+          journalLink.href = `https://doi.org/${doi}`;
+          journalLink.innerHTML =
+            `<img src="Icons/Journal.svg" alt="Journal" style="width:20px; height:20px; margin-right:4px;"><span><strong>Journal</strong></span>`;
+        } else if (url) {
+          journalLink.href = url;
+          journalLink.innerHTML =
+            `<img src="Icons/Journal.svg" alt="Web" style="width:20px; height:20px; margin-right:4px;"><span><strong>Web</strong></span>`;}}
+      //--------------------------------------------------------------------
+      // Lookup data for this publication in citations.json
+      //--------------------------------------------------------------------
+      const pubData = pubid
+        ? citeData.find(p => pubid.endsWith(p.pubid))
+        : null;
+      //--------------------------------------------------------------------
       // Google Scholar citations
-      // --------------------------------------------------------------------
-      const count = pubData ? pubData.cites : 0;
-      const label = count <= 1 ? "Citation" : "Citations";
-      const citationsLink = entry.querySelector(".citations-link span");
-      if (citationsLink) {
-        citationsLink.innerHTML = `<strong>${count} ${label}</strong>`;
-        entry.querySelector(".citations-link").href =
-          `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;}
-      // --------------------------------------------------------------------
-      // Altmetric score (read from citations.json, no API call)
-      // --------------------------------------------------------------------
-      const altmetricSpan = entry.querySelector(".altmetric-link span");
-      if (altmetricSpan) {
+      //--------------------------------------------------------------------
+      const count   = pubData?.cites ?? 0;
+      const label   = count <= 1 ? "Citation" : "Citations";
+      const citeEl  = entry.querySelector(".citations-link");
+      if (citeEl) {
+        citeEl.href =
+          `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;
+        citeEl.querySelector("span").innerHTML =
+          `<strong>${count} ${label}</strong>`;}
+      //--------------------------------------------------------------------
+      // Altmetric score from JSON (no API call!)
+      //--------------------------------------------------------------------
+      const altEl = entry.querySelector(".altmetric-link");
+      if (altEl) {
+        const score = pubData?.AltmetricScore ?? "N/A";
         if (altId) {
-          const altScore = pubData && pubData.AltmetricScore !== null
-            ? pubData.AltmetricScore
-            : "N/A";
-          entry.querySelector(".altmetric-link").href =
-            `https://nature.altmetric.com/details/${altId}`;
-          altmetricSpan.innerHTML = `<strong>${altScore} Altmetric</strong>`;
-        } else {altmetricSpan.innerHTML = `<strong>N/A</strong>`;}}})});
+          altEl.href = `https://nature.altmetric.com/details/${altId}`;
+          altEl.querySelector("span").innerHTML =
+            `<strong>Altmetric: ${score}</strong>`;
+        } else {altEl.querySelector("span").innerHTML = `<strong>N/A</strong>`;}}});})
+  .catch(err => console.error("Error loading citations.json:", err));
 
 </script> </body> </html>

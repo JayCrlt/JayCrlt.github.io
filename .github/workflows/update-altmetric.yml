@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-citations:
+  update-altmetric:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,10 +42,10 @@ jobs:
             readxl
             dplyr
 
-      - name: Run R script to update citations
+      - name: Run R script to update altmetric
         run: Rscript StatPub/update_altmetric.R
 
-      - name: Commit and push updated citations
+      - name: Commit and push updated altmetric
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

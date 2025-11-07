@@ -564,7 +564,7 @@ function toggleFunction() {var x = document.getElementById("navDemo"); if (x.cla
 
 // Load citation JSON
 // Load citation JSON (force refresh to avoid GitHub caching)
-fetch("citations.json?v=" + Date.now())
+fetch("StatPub/citations.json?v=" + Date.now())
   .then(r => r.json())
   .then(citeData => {
     document.querySelectorAll(".paper-entry").forEach(entry => {

@@ -4,7 +4,7 @@ library(openxlsx)
 library(readxl)
 
 # Load data
-stat_pub  <- read_excel("StatPub/stat_pub.xlsx", col_types = c("text", "text", "text", "text"))
+stat_pub  <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text"))
 citations <- fromJSON("StatPub/citations.json", simplifyVector = TRUE)
 
 # Fetch data

@@ -611,7 +611,7 @@ fetch("citations.json?v=" + Date.now())
         if (altId) {
           altEl.href = `https://nature.altmetric.com/details/${altId}`;
           altEl.querySelector("span").innerHTML =
-            `<strong>Altmetric: ${score}</strong>`;
+            `<strong>${score} Altmetric</strong>`;
         } else {altEl.querySelector("span").innerHTML = `<strong>N/A</strong>`;}}});})
   .catch(err => console.error("Error loading citations.json:", err));
 

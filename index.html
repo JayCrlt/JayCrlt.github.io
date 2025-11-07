@@ -591,12 +591,13 @@ fetch("citations.json")
         entry.querySelector(".citations-link").href =
           `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;}
       // --- Altmetric API ---
-      fetch("https://api.altmetric.com/v1/doi/" + doi)
-        .then(r => r.json())
-        .then(d => {
-          entry.querySelector(".altmetric-link span").innerHTML = `<strong>${Math.ceil(d.score)} Altmetric</strong>`;
-          entry.querySelector(".altmetric-link").href = "https://link.altmetric.com/details/" + altId;
-        })
-        .catch(err => console.log("Altmetric error for", doi, err));});});
+      const altmetricLink = entry.querySelector(".altmetric-link span");
+      if (altId && altmetricLink) {
+        entry.querySelector(".altmetric-link").href =
+          "https://nature.altmetric.com/details/" + altId;
+        altmetricLink.innerHTML = `<strong>View Altmetric</strong>`;
+      } else if (altmetricLink) {
+        altmetricLink.innerHTML = `<strong>N/A</strong>`;}
+        });});
 
 </script> </body> </html>

@@ -1,13 +1,5 @@
 [
   {
-    "doi": "10.26028/cybium/2017-413-003",
-    "pubid": "u-x6o8ySG0sC",
-    "altid": "",
-    "AltmetricScore": 0,
-    "title": "Shore fishes of French polynesia",
-    "cites": 57
-  },
-  {
     "doi": "10.3390/jmse6010024",
     "pubid": "u5HHmVD_uO8C",
     "altid": "90861092",
@@ -16,12 +8,12 @@
     "cites": 110
   },
   {
-    "doi": "10.1007/s00338-020-01916-8",
-    "pubid": "9yKSN-GCB0IC",
-    "altid": "77314046",
-    "AltmetricScore": 14,
-    "title": "Community composition predicts photogrammetry-based structural complexity on coral reefs",
-    "cites": 49
+    "doi": "10.1038/s43247-023-00766-w",
+    "pubid": "eQOLeE2rZwMC",
+    "altid": "145131808",
+    "AltmetricScore": 94,
+    "title": "Crustose coralline algae can contribute more than corals to coral reef carbonate production",
+    "cites": 80
   },
   {
     "doi": "10.1371/journal.pbio.3000702",
@@ -32,12 +24,27 @@
     "cites": 79
   },
   {
-    "doi": "10.1038/s41597-020-00711-y",
-    "pubid": "2osOgNQ5qMEC",
-    "altid": "93205299",
-    "AltmetricScore": 3,
-    "title": "Individual back-calculated size-at-age based on otoliths from Pacific coral reef fish species",
-    "cites": 23
+    "doi": "10.26028/cybium/2017-413-003",
+    "pubid": "u-x6o8ySG0sC",
+    "AltmetricScore": 0,
+    "title": "Shore fishes of French polynesia",
+    "cites": 57
+  },
+  {
+    "doi": "10.1007/s00338-020-01916-8",
+    "pubid": "9yKSN-GCB0IC",
+    "altid": "77314046",
+    "AltmetricScore": 14,
+    "title": "Community composition predicts photogrammetry-based structural complexity on coral reefs",
+    "cites": 49
+  },
+  {
+    "doi": "10.1038/s41598-023-28945-x",
+    "pubid": "Y0pCki6q_DkC",
+    "altid": "141934419",
+    "AltmetricScore": 41,
+    "title": "Coral reef structural complexity loss exposes coastlines to waves",
+    "cites": 41
   },
   {
     "doi": "10.1111/gcb.15610",
@@ -48,20 +55,36 @@
     "cites": 31
   },
   {
-    "doi": "10.1002/ece3.8613",
-    "pubid": "IjCSPb-OGe4C",
-    "altid": "125050022",
-    "AltmetricScore": 8,
-    "title": "Scaling up calcification, respiration, and photosynthesis rates of six prominent coral taxa",
-    "cites": 18
-  },
-  {
     "doi": "10.1111/ddi.13549",
     "pubid": "zYLM7Y9cAGgC",
     "altid": "129013899",
     "AltmetricScore": 38,
     "title": "Mesophotic coral ecosystems of French Polynesia are hotspots of alpha and beta generic diversity for scleractinian assemblages",
     "cites": 23
+  },
+  {
+    "doi": "10.1038/s41597-020-00711-y",
+    "pubid": "2osOgNQ5qMEC",
+    "altid": "93205299",
+    "AltmetricScore": 3,
+    "title": "Individual back-calculated size-at-age based on otoliths from Pacific coral reef fish species",
+    "cites": 23
+  },
+  {
+    "doi": "10.1111/gcb.17105",
+    "pubid": "_FxGoFyzp5QC",
+    "altid": "158391407",
+    "AltmetricScore": 37,
+    "title": "Functional changes across marine habitats due to ocean acidification",
+    "cites": 19
+  },
+  {
+    "doi": "10.1002/ece3.8613",
+    "pubid": "IjCSPb-OGe4C",
+    "altid": "125050022",
+    "AltmetricScore": 8,
+    "title": "Scaling up calcification, respiration, and photosynthesis rates of six prominent coral taxa",
+    "cites": 18
   },
   {
     "doi": "10.1016/j.scitotenv.2022.157049",
@@ -80,28 +103,20 @@
     "cites": 9
   },
   {
-    "doi": "10.1038/s43247-023-00766-w",
-    "pubid": "eQOLeE2rZwMC",
-    "altid": "145131808",
-    "AltmetricScore": 94,
-    "title": "Crustose coralline algae can contribute more than corals to coral reef carbonate production",
-    "cites": 80
+    "doi": "10.1111/geb.13926",
+    "pubid": "0EnyYjriUFMC",
+    "altid": "169435683",
+    "AltmetricScore": 13,
+    "title": "Unifying coral reef states through space and time reveals a changing ecosystem",
+    "cites": 8
   },
   {
-    "doi": "10.1038/s41598-023-28945-x",
-    "pubid": "Y0pCki6q_DkC",
-    "altid": "141934419",
-    "AltmetricScore": 41,
-    "title": "Coral reef structural complexity loss exposes coastlines to waves",
-    "cites": 41
-  },
-  {
-    "doi": "10.1111/gcb.17105",
-    "pubid": "_FxGoFyzp5QC",
-    "altid": "158391407",
-    "AltmetricScore": 37,
-    "title": "Functional changes across marine habitats due to ocean acidification",
-    "cites": 18
+    "doi": "10.1038/s41467-025-55949-0",
+    "pubid": "5nxA0vEk-isC",
+    "altid": "174135131",
+    "AltmetricScore": 99,
+    "title": "Vulnerability of benthic trait diversity across the Mediterranean Sea following mass mortality events",
+    "cites": 7
   },
   {
     "doi": "10.1016/j.ecss.2024.108734",
@@ -120,22 +135,6 @@
     "cites": 2
   },
   {
-    "doi": "10.1111/geb.13926",
-    "pubid": "0EnyYjriUFMC",
-    "altid": "169435683",
-    "AltmetricScore": 13,
-    "title": "Unifying coral reef states through space and time reveals a changing ecosystem",
-    "cites": 8
-  },
-  {
-    "doi": "10.1038/s41467-025-55949-0",
-    "pubid": "5nxA0vEk-isC",
-    "altid": "174135131",
-    "AltmetricScore": 99,
-    "title": "Vulnerability of benthic trait diversity across the Mediterranean Sea following mass mortality events",
-    "cites": 7
-  },
-  {
     "doi": "10.1007/s10021-025-00995-4",
     "pubid": "4TOpqqG69KYC",
     "altid": "180489954",
@@ -144,19 +143,15 @@
     "cites": 0
   },
   {
-    "doi": "",
-    "pubid": "ULOm3_A8WrAC",
-    "altid": "",
+    "pubid": "Zph67rFs4hoC",
     "AltmetricScore": 0,
-    "title": "24 years tracking mass mortality events and marine heatwaves: when observations overcome the worst scenarios",
+    "title": "Restoring coastal resilience: The role of macroalgal forests in oxygen production and pH regulation",
     "cites": 0
   },
   {
-    "doi": "",
-    "pubid": "Zph67rFs4hoC",
-    "altid": "",
+    "pubid": "ULOm3_A8WrAC",
     "AltmetricScore": 0,
-    "title": "Restoring coastal resilience: The role of macroalgal forests in oxygen production and pH regulation",
+    "title": "24 years tracking mass mortality events and marine heatwaves: when observations overcome the worst scenarios",
     "cites": 0
   }
 ]

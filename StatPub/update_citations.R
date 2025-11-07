@@ -3,8 +3,10 @@
 library(httr)
 library(digest)
 library(jsonlite)
+library(readxl)
 
-api_key <- Sys.getenv("SERPAPI_KEY")
+AltMetric  <- read_excel("StatPub/AltMetric.xlsx")
+api_key    <- Sys.getenv("SERPAPI_KEY")
 scholar_id <- "Eotjew0AAAAJ"
 
 url <- paste0(
@@ -24,8 +26,12 @@ citation <- lapply(pubs, function(x) {
   pubid_clean <- sub("^Eotjew0AAAAJ:", "", pubid_value)
   list(title = x[["title"]], pubid = pubid_clean, cites = cites_value)})
 
-# Convert to JSON
-json_output <- toJSON(citation, pretty = TRUE, auto_unbox = TRUE)
+# Merge to citations
+AltMetric_df <- as_tibble(AltMetric)
+citation_df  <- bind_rows(citation) %>% left_join(AltMetric_df, by = "pubid") 
+citation_df$cites[is.na(citation_df$cites)] <- 0
+citation_df <- citation_df[,c(4,2,5,6,1,3)]
 
-# Save to file
-write(json_output, "citations.json")
+# convert final data frame back to JSON
+json_output <- toJSON(citation_df, pretty = TRUE, auto_unbox = TRUE)
+write(json_output, "StatPub/citations.json")

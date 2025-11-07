@@ -1,11 +1,11 @@
-name: Update Citations
+name: Update Altmetric
 
 permissions:
   contents: write
 
 on:
   schedule:
-    - cron: '00 11 * * *' # (12:00 Palma Winter time, 13:00 Palma Summer time)
+    - cron: '45 10 * * *' # (11:45 Palma Winter time, 12:45 Palma Summer time)
   workflow_dispatch:
 
 jobs:
@@ -43,9 +43,7 @@ jobs:
             dplyr
 
       - name: Run R script to update citations
-        run: Rscript StatPub/update_citations.R
-        env:
-          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+        run: Rscript StatPub/update_altmetric.R
 
       - name: Commit and push updated citations
         run: |

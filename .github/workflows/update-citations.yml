@@ -41,6 +41,7 @@ jobs:
             digest
             readxl
             dplyr
+            openxlsx
 
       - name: Run R script to update citations
         run: Rscript StatPub/update_citations.R

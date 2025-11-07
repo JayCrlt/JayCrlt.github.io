@@ -41,7 +41,7 @@ jobs:
             digest
 
       - name: Run R script to update citations
-        run: Rscript update_citations.R
+        run: Rscript StatPub/update_citations.R
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
 

@@ -41,6 +41,7 @@ jobs:
             digest
             readxl
             dplyr
+            openxlsx
 
       - name: Run R script to update altmetric
         run: Rscript StatPub/update_altmetric.R

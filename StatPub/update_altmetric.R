@@ -1,6 +1,7 @@
+# update_aktletric.R
 library(httr)
+library(digest)
 library(jsonlite)
-library(openxlsx)
 library(readxl)
 
 # Load data

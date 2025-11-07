@@ -20,14 +20,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            libxml2-dev \
-            libcurl4-openssl-dev \
-            libfontconfig1-dev \
-            libfreetype6-dev \
-            libpng-dev \
-            libtiff5-dev \
-            libjpeg-dev \
-            pkg-config
+          libxml2-dev \
+          libcurl4-openssl-dev \
+          libzip-dev \
+          libfontconfig1-dev \
+          libfreetype6-dev \
+          libpng-dev \
+          libtiff5-dev \
+          libjpeg-dev \
+          pkg-config
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2

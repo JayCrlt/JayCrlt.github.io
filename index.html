@@ -593,11 +593,14 @@ fetch("citations.json")
       // --- Altmetric API ---
       const altmetricLink = entry.querySelector(".altmetric-link span");
       if (altId && altmetricLink) {
-        entry.querySelector(".altmetric-link").href =
-          "https://nature.altmetric.com/details/" + altId;
-        altmetricLink.innerHTML = `<strong>View Altmetric</strong>`;
-      } else if (altmetricLink) {
-        altmetricLink.innerHTML = `<strong>N/A</strong>`;}
-        });});
+        fetch(`/.netlify/functions/altmetric-proxy?id=${altId}`)
+        .then(r => r.json())
+        .then(data => {
+      const score = data.score ? Math.round(data.score) : "N/A";
+      altmetricLink.innerHTML = `<strong>${score} Altmetric</strong>`;
+      entry.querySelector(".altmetric-link").href = `https://nature.altmetric.com/details/${altId}`;})
+      .catch(err => {
+      console.error("Proxy fetch failed:", err);
+      altmetricLink.innerHTML = `<strong>N/A</strong>`;});}
 
 </script> </body> </html>

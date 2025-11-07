@@ -1,8 +1,9 @@
-# update_aktletric.R
+# update_altmetric.R
 library(httr)
 library(digest)
 library(jsonlite)
 library(readxl)
+library(writexl)
 
 # Load data
 stat_pub  <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text"))
@@ -40,4 +41,4 @@ stat_pub_json <- toJSON(stat_pub_df, pretty = TRUE, auto_unbox = TRUE)
 write(stat_pub_json, "citations.json")
 
 # save data in xlsx
-write.xlsx(stat_pub_df[,c(2,1,3,4)], "StatPub/AltMetric.xlsx")
+write_xlsx(stat_pub_df[, c(2,1,3,4)], "StatPub/AltMetric.xlsx")

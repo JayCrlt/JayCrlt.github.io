@@ -4,7 +4,6 @@ library(digest)
 library(jsonlite)
 library(readxl)
 library(writexl)
-library(dplyr)
 
 # Load data
 stat_pub  <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text"))
@@ -33,8 +32,8 @@ stat_pub <- lapply(seq_len(nrow(stat_pub)), function(i) {
     AltmetricScore = ifelse(!is.na(row$AltmetricScore), row$AltmetricScore, 0))})
 
 # Merge to citations
-citations_df <- as_tibble(citations) %>% select(title, pubid, cites)
-stat_pub_df  <- bind_rows(stat_pub) %>% left_join(citations_df, by = "pubid") 
+stat_pub_df <- do.call(rbind, lapply(stat_pub, as.data.frame))
+stat_pub_df <- merge(stat_pub_df, citations_df, by = "pubid", all.x = TRUE)
 stat_pub_df$cites[is.na(stat_pub_df$cites)] <- 0
 
 # convert final data frame back to JSON

@@ -41,7 +41,6 @@ jobs:
             httr
             digest
             readxl
-            dplyr
             writexl
             
       - name: Run R script to update citations

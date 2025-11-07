@@ -568,36 +568,50 @@ fetch("citations.json")
   .then(citeData => {
     // Loop through every paper entry
     document.querySelectorAll(".paper-entry").forEach(entry => {
-      const doi = entry.dataset.doi;
+      const doi   = entry.dataset.doi;
       const pubid = entry.dataset.pubid;
       const altId = entry.dataset.altmetric;
-      const url = entry.dataset.url;
-      // --- Journal link ---
+      const url   = entry.dataset.url;
+      // Find publication in JSON (only once)
+      const pubData = pubid ? citeData.find(p => pubid.endsWith(p.pubid)) : null;
+      // --------------------------------------------------------------------
+      // Journal / webpage link
+      // --------------------------------------------------------------------
       const journalLink = entry.querySelector(".journal-link, .url-link");
       if (doi) {
-        journalLink.href = "https://doi.org/" + doi;
-        journalLink.innerHTML = `<img src="Icons/Journal.svg" alt="Journal" style="width:20px; height:20px; margin-right:4px;"><span><strong>Journal</strong></span>`;
+        journalLink.href = `https://doi.org/${doi}`;
+        journalLink.innerHTML = `
+          <img src="Icons/Journal.svg" alt="Journal"
+               style="width:20px; height:20px; margin-right:4px;">
+          <span><strong>Journal</strong></span>`;
       } else if (url) {
         journalLink.href = url;
-        journalLink.innerHTML = `<img src="Icons/Journal.svg" alt="Web" style="width:20px; height:20px; margin-right:4px;"><span><strong>Web</strong></span>`;
-      }
-      // --- Google Scholar citations ---
-      const pub = pubid ? citeData.find(p => pubid.endsWith(p.pubid)) : null;
-      const count = pub ? pub.cites : 0;
-      const label = count <= 1 ? "Citation" : "Citations"; 
+        journalLink.innerHTML = `
+          <img src="Icons/Journal.svg" alt="Web"
+               style="width:20px; height:20px; margin-right:4px;">
+          <span><strong>Web</strong></span>`;}
+      // --------------------------------------------------------------------
+      // Google Scholar citations
+      // --------------------------------------------------------------------
+      const count = pubData ? pubData.cites : 0;
+      const label = count <= 1 ? "Citation" : "Citations";
       const citationsLink = entry.querySelector(".citations-link span");
       if (citationsLink) {
         citationsLink.innerHTML = `<strong>${count} ${label}</strong>`;
         entry.querySelector(".citations-link").href =
           `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;}
-      // --- Altmetric API ---
-      const altmetricLink = entry.querySelector(".altmetric-link span");
-      if (altId && altmetricLink) {
-        entry.querySelector(".altmetric-link").href =
-          "https://nature.altmetric.com/details/" + altId;
-        altmetricLink.innerHTML = `<strong>View Altmetric</strong>`;
-      } else if (altmetricLink) {
-        altmetricLink.innerHTML = `<strong>N/A</strong>`;}
-        });});
+      // --------------------------------------------------------------------
+      // Altmetric score (read from citations.json, no API call)
+      // --------------------------------------------------------------------
+      const altmetricSpan = entry.querySelector(".altmetric-link span");
+      if (altmetricSpan) {
+        if (altId) {
+          const altScore = pubData && pubData.AltmetricScore !== null
+            ? pubData.AltmetricScore
+            : "N/A";
+          entry.querySelector(".altmetric-link").href =
+            `https://nature.altmetric.com/details/${altId}`;
+          altmetricSpan.innerHTML = `<strong>${altScore} Altmetric</strong>`;
+        } else {altmetricSpan.innerHTML = `<strong>N/A</strong>`;}}})});
 
 </script> </body> </html>

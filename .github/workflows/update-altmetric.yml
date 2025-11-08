@@ -50,7 +50,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add citations.json
+          git add StatPub/citations.json
           git status
           git diff --stat
           git commit -m "Auto-update citations.json [ci skip]" || echo "No changes to commit"

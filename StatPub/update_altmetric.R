@@ -8,6 +8,7 @@ library(writexl)
 # Load data
 stat_pub  <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text"))
 citations <- fromJSON("StatPub/citations.json", simplifyVector = TRUE)
+citations <- citations[, c("title", "pubid", "cites")]
 
 # Fetch data
 url_api <- paste0("https://api.altmetric.com/v1/id/", stat_pub$altid)
@@ -33,12 +34,12 @@ stat_pub <- lapply(seq_len(nrow(stat_pub)), function(i) {
 
 # Merge to citations
 stat_pub_df <- do.call(rbind, lapply(stat_pub, as.data.frame))
-stat_pub_df <- merge(stat_pub_df, citations_df, by = "pubid", all.x = TRUE)
+stat_pub_df <- merge(stat_pub_df, citations, by = "pubid", all.x = TRUE)
 stat_pub_df$cites[is.na(stat_pub_df$cites)] <- 0
 
 # convert final data frame back to JSON
 stat_pub_json <- toJSON(stat_pub_df, pretty = TRUE, auto_unbox = TRUE)
-write(stat_pub_json, "citations.json")
+write(stat_pub_json, "StatPub/citations.json")
 
 # save data in xlsx
 write_xlsx(stat_pub_df[, c(2,1,3,4)], "StatPub/AltMetric.xlsx")

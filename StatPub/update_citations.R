@@ -31,7 +31,6 @@ citation_df <- do.call(rbind, lapply(citation, as.data.frame, stringsAsFactors =
 AltMetric_df <- AltMetric[, c("pubid", "AltmetricScore")]
 citation_df <- merge(citation_df, AltMetric_df, by = "pubid", all.x = TRUE)
 citation_df$cites[is.na(citation_df$cites)] <- 0
-citation_df <- citation_df[, c(4,2,5,6,1,3)] # adjust as needed
 
 # convert final data frame back to JSON
 json_output <- toJSON(citation_df, pretty = TRUE, auto_unbox = TRUE)

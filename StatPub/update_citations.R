@@ -7,7 +7,7 @@ library(readxl)
 
 AltMetric  <- read_excel("StatPub/AltMetric.xlsx")
 init       <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text")) 
-#api_key    <- Sys.getenv("SERPAPI_KEY")
+api_key    <- Sys.getenv("SERPAPI_KEY")
 scholar_id <- "Eotjew0AAAAJ"
 
 url <- paste0(

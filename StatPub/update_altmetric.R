@@ -7,11 +7,14 @@ library(writexl)
 
 # Load data
 stat_pub  <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text"))
+init      <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text")) 
+init      <- init[,c(1,2)]
 citations <- fromJSON("StatPub/citations.json", simplifyVector = TRUE)
 citations <- citations[, c("title", "pubid", "cites")]
+api_key   <- Sys.getenv("ALTMETRIC_KEY")
 
 # Fetch data
-url_api <- paste0("https://api.altmetric.com/v1/id/", stat_pub$altid)
+url_api <- paste0("https://api.altmetric.com/v1/id/", stat_pub$altid, "?key=", api_key)
 resp <- vector("list", length(url_api))
 data <- vector("list", length(url_api))
 score <- numeric(length(url_api))
@@ -38,6 +41,10 @@ stat_pub_df <- merge(stat_pub_df, citations, by = "pubid", all.x = TRUE)
 stat_pub_df$cites[is.na(stat_pub_df$cites)] <- 0
 
 # convert final data frame back to JSON
+stat_pub_df = merge(init, stat_pub_df, by = "doi")
+stat_pub_df = stat_pub_df[,c(2,1,3:4,6,5,7)]
+stat_pub_df <- stat_pub_df[order(as.numeric(stat_pub_df$id)), ]
+stat_pub_df = stat_pub_df[,-1]
 stat_pub_json <- toJSON(stat_pub_df, pretty = TRUE, auto_unbox = TRUE)
 write(stat_pub_json, "StatPub/citations.json")
 

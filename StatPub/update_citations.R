@@ -6,7 +6,9 @@ library(jsonlite)
 library(readxl)
 
 AltMetric  <- read_excel("StatPub/AltMetric.xlsx")
-api_key    <- Sys.getenv("SERPAPI_KEY")
+init       <- read_excel("StatPub/SummaryPub.xlsx", col_types = c("text", "text", "text", "text")) 
+#api_key    <- Sys.getenv("SERPAPI_KEY")
+api_key = "da124d4977aeba1debe550ddd1f99daaeb56ddd9075ec2ab8941ff0aff1b3dba"
 scholar_id <- "Eotjew0AAAAJ"
 
 url <- paste0(
@@ -31,6 +33,13 @@ citation_df <- do.call(rbind, lapply(citation, as.data.frame, stringsAsFactors =
 AltMetric_df <- AltMetric[, c("pubid", "AltmetricScore")]
 citation_df <- merge(citation_df, AltMetric_df, by = "pubid", all.x = TRUE)
 citation_df$cites[is.na(citation_df$cites)] <- 0
+
+citation_df = merge(init, citation_df, by = "pubid")
+citation_df = citation_df[,c(2,3,1,4,5,7,6)]
+citation_df$id <- suppressWarnings(as.numeric(citation_df$id))
+citation_df    <- citation_df[!is.na(citation_df$id), ]
+citation_df    <- citation_df[order(citation_df$id), ]
+citation_df$id <- NULL
 
 # convert final data frame back to JSON
 json_output <- toJSON(citation_df, pretty = TRUE, auto_unbox = TRUE)

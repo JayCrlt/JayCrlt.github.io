@@ -1,162 +1,122 @@
 [
   {
     "pubid": "_FxGoFyzp5QC",
-    "doi": "10.1111/gcb.17105",
-    "altid": "158391407",
-    "AltmetricScore": 0,
     "title": "Functional changes across marine habitats due to ocean acidification",
-    "cites": 19
+    "cites": 19,
+    "AltmetricScore": 37
   },
   {
     "pubid": "0EnyYjriUFMC",
-    "doi": "10.1111/geb.13926",
-    "altid": "169435683",
-    "AltmetricScore": 0,
     "title": "Unifying coral reef states through space and time reveals a changing ecosystem",
-    "cites": 8
+    "cites": 8,
+    "AltmetricScore": 13
   },
   {
     "pubid": "2osOgNQ5qMEC",
-    "doi": "10.1038/s41597-020-00711-y",
-    "altid": "93205299",
-    "AltmetricScore": 0,
     "title": "Individual back-calculated size-at-age based on otoliths from Pacific coral reef fish species",
-    "cites": 25
+    "cites": 25,
+    "AltmetricScore": 3
   },
   {
     "pubid": "4TOpqqG69KYC",
-    "doi": "10.1007/s10021-025-00995-4",
-    "altid": "180489954",
-    "AltmetricScore": 0,
     "title": "Ocean Acidification Influences Strain Selection and Metabolism of the Benthic Diatom Cocconeis neothumensis var. marina E. Somma and others",
-    "cites": 0
+    "cites": 0,
+    "AltmetricScore": 5
   },
   {
     "pubid": "5nxA0vEk-isC",
-    "doi": "10.1038/s41467-025-55949-0",
-    "altid": "174135131",
-    "AltmetricScore": 0,
     "title": "Vulnerability of benthic trait diversity across the Mediterranean Sea following mass mortality events",
-    "cites": 7
+    "cites": 7,
+    "AltmetricScore": 99
   },
   {
     "pubid": "9yKSN-GCB0IC",
-    "doi": "10.1007/s00338-020-01916-8",
-    "altid": "77314046",
-    "AltmetricScore": 0,
     "title": "Community composition predicts photogrammetry-based structural complexity on coral reefs",
-    "cites": 49
+    "cites": 49,
+    "AltmetricScore": 14
   },
   {
     "pubid": "eQOLeE2rZwMC",
-    "doi": "10.1038/s43247-023-00766-w",
-    "altid": "145131808",
-    "AltmetricScore": 0,
     "title": "Crustose coralline algae can contribute more than corals to coral reef carbonate production",
-    "cites": 81
+    "cites": 81,
+    "AltmetricScore": 94
   },
   {
     "pubid": "IjCSPb-OGe4C",
-    "doi": "10.1002/ece3.8613",
-    "altid": "125050022",
-    "AltmetricScore": 0,
     "title": "Scaling up calcification, respiration, and photosynthesis rates of six prominent coral taxa",
-    "cites": 18
+    "cites": 18,
+    "AltmetricScore": 8
   },
   {
     "pubid": "LkGwnXOMwfcC",
-    "doi": "10.1016/j.ecss.2024.108734",
-    "altid": "170240233",
-    "AltmetricScore": 0,
     "title": "Restoring the reef: Coral restoration yields rapid impacts on certain fish assemblages",
-    "cites": 7
+    "cites": 7,
+    "AltmetricScore": 3
   },
   {
     "pubid": "qjMakFHDy7sC",
-    "doi": "10.1371/journal.pbio.3000702",
-    "altid": "96796121",
-    "AltmetricScore": 0,
     "title": "Delineating reef fish trophic guilds with global gut content data synthesis and phylogeny",
-    "cites": 79
+    "cites": 79,
+    "AltmetricScore": 47
   },
   {
     "pubid": "Tyk-4Ss8FVUC",
-    "doi": "10.1016/j.scitotenv.2022.157049",
-    "altid": "130854736",
-    "AltmetricScore": 0,
     "title": "Mesophotic depths hide high coral cover communities in French Polynesia",
-    "cites": 10
+    "cites": 10,
+    "AltmetricScore": 31
   },
   {
     "pubid": "u-x6o8ySG0sC",
-    "doi": "10.26028/cybium/2017-413-003",
-    "altid": "",
-    "AltmetricScore": 0,
     "title": "Shore fishes of French polynesia",
-    "cites": 57
+    "cites": 57,
+    "AltmetricScore": 0
   },
   {
     "pubid": "u5HHmVD_uO8C",
-    "doi": "10.3390/jmse6010024",
-    "altid": "90861092",
-    "AltmetricScore": 0,
     "title": "Monitoring litter inputs from the Adour River (Southwest France) to the marine environment",
-    "cites": 110
+    "cites": 110,
+    "AltmetricScore": 1
   },
   {
     "pubid": "UebtZRa9Y70C",
-    "doi": "10.1007/s00338-024-02544-2",
-    "altid": "166701640",
-    "AltmetricScore": 0,
     "title": "Differential strategies developed by two light-dependent scleractinian corals to extend their vertical range to mesophotic depths",
-    "cites": 2
+    "cites": 2,
+    "AltmetricScore": 11
   },
   {
     "pubid": "UeHWp8X0CEIC",
-    "doi": "10.1111/gcb.15610",
-    "altid": "102574363",
-    "AltmetricScore": 0,
     "title": "Juvenile corals underpin coral reef carbonate production after disturbance",
-    "cites": 31
+    "cites": 31,
+    "AltmetricScore": 19
   },
   {
     "pubid": "ULOm3_A8WrAC",
-    "doi": "",
-    "altid": "",
-    "AltmetricScore": 0,
     "title": "24 years tracking mass mortality events and marine heatwaves: when observations overcome the worst scenarios",
-    "cites": 0
+    "cites": 0,
+    "AltmetricScore": 0
   },
   {
     "pubid": "Y0pCki6q_DkC",
-    "doi": "10.1038/s41598-023-28945-x",
-    "altid": "141934419",
-    "AltmetricScore": 0,
     "title": "Coral reef structural complexity loss exposes coastlines to waves",
-    "cites": 43
+    "cites": 43,
+    "AltmetricScore": 41
   },
   {
     "pubid": "YsMSGLbcyi4C",
-    "doi": "10.1016/j.ecolind.2023.109952",
-    "altid": "142625778",
-    "AltmetricScore": 0,
     "title": "Using a multi-criteria decision-matrix framework to assess the recovery potential of coral reefs in the South Western Indian Ocean",
-    "cites": 9
+    "cites": 9,
+    "AltmetricScore": 6
   },
   {
     "pubid": "Zph67rFs4hoC",
-    "doi": "",
-    "altid": "",
-    "AltmetricScore": 0,
     "title": "Restoring coastal resilience: The role of macroalgal forests in oxygen production and pH regulation",
-    "cites": 0
+    "cites": 0,
+    "AltmetricScore": 0
   },
   {
     "pubid": "zYLM7Y9cAGgC",
-    "doi": "10.1111/ddi.13549",
-    "altid": "129013899",
-    "AltmetricScore": 0,
     "title": "Mesophotic coral ecosystems of French Polynesia are hotspots of alpha and beta generic diversity for scleractinian assemblages",
-    "cites": 23
+    "cites": 23,
+    "AltmetricScore": 38
   }
 ]

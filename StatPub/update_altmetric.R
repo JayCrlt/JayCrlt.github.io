@@ -42,6 +42,7 @@ stat_pub_df$cites[is.na(stat_pub_df$cites)] <- 0
 
 # convert final data frame back to JSON
 stat_pub_df = merge(init, stat_pub_df, by = "doi")
+stat_pub_df$altid[stat_pub_df$altid == ""] <- NA
 stat_pub_df = stat_pub_df[,c(2,1,3:4,6,5,7)]
 stat_pub_df <- stat_pub_df[order(as.numeric(stat_pub_df$id)), ]
 stat_pub_df = stat_pub_df[,-1]

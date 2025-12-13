@@ -56,7 +56,7 @@ jobs:
           git add StatPub/AltMetric.xlsx
           git status
           git diff --stat
-          git commit -m "Auto-update altmetric [ci skip]" || echo "No changes to commit"
+          git commit -m "Auto-update altmetric" || echo "No changes to commit"
           git pull --rebase origin main || true
           git push origin HEAD:main || echo "⚠️ Push failed (likely branch protection or token issue)"
         env:

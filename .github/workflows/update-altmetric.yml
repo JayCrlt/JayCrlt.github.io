@@ -53,6 +53,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add StatPub/citations.json
+          git add StatPub/AltMetric.xlsx
           git status
           git diff --stat
           git commit -m "Auto-update altmetric [ci skip]" || echo "No changes to commit"

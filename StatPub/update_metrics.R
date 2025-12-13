@@ -1,5 +1,6 @@
-# update_metrics.R
-# Unified citation + altmetric updater
+# ============================================================
+# Unified citation + Altmetric updater for GitHub webpage
+# ============================================================
 
 library(httr)
 library(jsonlite)
@@ -7,85 +8,129 @@ library(readxl)
 library(writexl)
 library(digest)
 
-# ---- CONFIG ----
-scholar_id <- "Eotjew0AAAAJ"
-serp_key   <- Sys.getenv("SERPAPI_KEY")
-alt_key    <- Sys.getenv("ALTMETRIC_KEY")
+`%||%` <- function(a, b) if (!is.null(a)) a else b
 
-# ---- LOAD BASE DATA ----
+# ----------------------------
+# CONFIG
+# ----------------------------
+scholar_id <- "Eotjew0AAAAJ"
+SERPAPI_KEY <- Sys.getenv("SERPAPI_KEY")
+ALTMETRIC_KEY <- Sys.getenv("ALTMETRIC_KEY")
+
+if (SERPAPI_KEY == "" || ALTMETRIC_KEY == "") {
+  stop("Missing SERPAPI_KEY or ALTMETRIC_KEY environment variable")
+}
+
+# ----------------------------
+# LOAD BASE DATA
+# ----------------------------
 summary_pub <- read_excel(
   "StatPub/SummaryPub.xlsx",
   col_types = c("text", "text", "text", "text")
 )
 
-init <- summary_pub[, c("id", "title", "doi", "pubid")]
+# Safety check
+required_cols <- c("id", "doi", "pubid", "altid")
+missing_cols <- setdiff(required_cols, colnames(summary_pub))
+if (length(missing_cols) > 0) {
+  stop("Missing columns in SummaryPub.xlsx: ",
+       paste(missing_cols, collapse = ", "))
+}
 
-# ==========================
-# 1. GOOGLE SCHOLAR CITATIONS
-# ==========================
-url <- paste0(
+init <- summary_pub[, c("id", "doi", "pubid")]
+
+# ============================================================
+# 1. GOOGLE SCHOLAR — CITATIONS + TITLES
+# ============================================================
+message("Fetching Google Scholar citations...")
+
+scholar_url <- paste0(
   "https://serpapi.com/search.json?",
   "engine=google_scholar_author",
   "&author_id=", scholar_id,
-  "&api_key=", serp_key
+  "&api_key=", SERPAPI_KEY
 )
 
-res <- GET(url)
+res <- GET(scholar_url)
 stop_for_status(res)
 
 data <- content(res, as = "parsed", simplifyVector = FALSE)
-pubs <- data$articles
+articles <- data$articles
 
-citation <- lapply(pubs, function(x) {
+citation_list <- lapply(articles, function(x) {
   list(
-    title = x$title,
+    title = x$title %||% "",
     pubid = sub("^Eotjew0AAAAJ:", "", x$citation_id %||% ""),
     cites = as.integer(x$cited_by$value %||% 0)
   )
 })
 
-citation_df <- do.call(rbind, lapply(citation, as.data.frame))
-
-# ==========================
-# 2. ALTMETRIC
-# ==========================
-url_api <- paste0(
-  "https://api.altmetric.com/v1/id/",
-  summary_pub$altid,
-  "?key=", alt_key
+citation_df <- do.call(
+  rbind,
+  lapply(citation_list, as.data.frame, stringsAsFactors = FALSE)
 )
 
-score <- numeric(length(url_api))
+# ============================================================
+# 2. ALTMETRIC SCORES
+# ============================================================
+message("Fetching Altmetric scores...")
 
-for (i in seq_along(url_api)) {
+altmetric_urls <- paste0(
+  "https://api.altmetric.com/v1/id/",
+  summary_pub$altid,
+  "?key=", ALTMETRIC_KEY
+)
+
+alt_scores <- numeric(length(altmetric_urls))
+
+for (i in seq_along(altmetric_urls)) {
   try({
-    r <- GET(url_api[i], user_agent("Mozilla/5.0"))
+    r <- GET(altmetric_urls[i], user_agent("Mozilla/5.0"))
     if (status_code(r) == 200) {
       d <- fromJSON(content(r, "text", encoding = "UTF-8"))
-      score[i] <- ceiling(d$score %||% 0)
+      alt_scores[i] <- ceiling(d$score %||% 0)
+    } else {
+      alt_scores[i] <- 0
     }
   }, silent = TRUE)
 }
 
 altmetric_df <- summary_pub[, c("doi", "pubid", "altid")]
-altmetric_df$AltmetricScore <- score
+altmetric_df$AltmetricScore <- alt_scores
 
-# ==========================
+# ============================================================
 # 3. MERGE EVERYTHING
-# ==========================
+# ============================================================
+message("Merging datasets...")
+
 final_df <- init |>
   merge(citation_df, by = "pubid", all.x = TRUE) |>
   merge(altmetric_df, by = c("doi", "pubid"), all.x = TRUE)
 
+# Replace missing values
 final_df$cites[is.na(final_df$cites)] <- 0
 final_df$AltmetricScore[is.na(final_df$AltmetricScore)] <- 0
+final_df$title[is.na(final_df$title)] <- ""
 
+# Restore original order
 final_df <- final_df[order(as.numeric(final_df$id)), ]
 final_df$id <- NULL
 
-# ==========================
-# 4. OUTPUTS
-# ==========================
+# Final column order (matches your website expectations)
+final_df <- final_df[, c(
+  "title",
+  "doi",
+  "pubid",
+  "altid",
+  "cites",
+  "AltmetricScore"
+)]
+
+# ============================================================
+# 4. OUTPUT FILES
+# ============================================================
+message("Writing outputs...")
+
 write(
   toJSON(final_df, pretty = TRUE, auto_unbox = TRUE),
   "StatPub/citations.json"
@@ -95,3 +140,5 @@ write_xlsx(
   final_df[, c("doi", "pubid", "altid", "AltmetricScore")],
   "StatPub/AltMetric.xlsx"
 )
+
+message("✅ Update completed successfully")

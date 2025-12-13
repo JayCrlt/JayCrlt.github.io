@@ -56,7 +56,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add StatPub/citations.json StatPub/AltMetric.xlsx
+          git add StatPub/citations.json
           git commit -m "Auto-update citations & altmetric" || echo "No changes"
           git pull --rebase origin main || true
           git push origin HEAD:main || echo "Push failed"

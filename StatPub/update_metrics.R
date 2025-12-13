@@ -136,9 +136,4 @@ write(
   "StatPub/citations.json"
 )
 
-write_xlsx(
-  final_df[, c("doi", "pubid", "altid", "AltmetricScore")],
-  "StatPub/AltMetric.xlsx"
-)
-
 message("✅ Update completed successfully")

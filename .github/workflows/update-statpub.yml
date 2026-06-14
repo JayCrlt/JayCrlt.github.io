@@ -13,12 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
       ALTMETRIC_KEY: ${{ secrets.ALTMETRIC_KEY }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Install system dependencies
         run: |
@@ -44,7 +45,6 @@ jobs:
           r-version: '4.5.2'
 
       - name: Install R packages
-        uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
             any::jsonlite

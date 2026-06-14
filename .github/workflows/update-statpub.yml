@@ -40,14 +40,15 @@ jobs:
           r-version: '4.5.3'
 
       - name: Install R packages
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            jsonlite
-            httr
-            readxl
-            writexl
-            digest
+        run: |
+        options(repos = c(CRAN = "https://cloud.r-project.org"))
+        install.packages(c(
+            "jsonlite"
+            "httr"
+            "readxl"
+            "writexl"
+            "digest"))
+        shell: Rscript {0}
 
       - name: Run unified updater
         run: Rscript StatPub/update_metrics.R

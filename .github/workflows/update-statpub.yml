@@ -32,7 +32,11 @@ jobs:
             libpng-dev \
             libtiff5-dev \
             libjpeg-dev \
-            pkg-config
+            pkg-config  \
+            build-essential \
+            gfortran \
+            libopenblas-dev \
+            liblapack-dev
 
       - name: Set up R
         uses: r-lib/actions/setup-r@v2

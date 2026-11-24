@@ -220,7 +220,11 @@ build_map_geometry <- function(mask) {
   cen <- st_centroid(hex)
   nn  <- st_nearest_feature(cen, pix)
   dst <- as.numeric(st_distance(cen, pix[nn, ], by_element = TRUE))
-  keep <- lengths(st_intersects(cen, land_u)) == 0 & dst <= HEX_KM * 1000
+  # keep every hexagon that is not entirely on land (coastal ones included;
+  # the land drawn on top hides their part over land), as long as a
+  # Mediterranean SST pixel is close enough to give it a value
+  on_land <- lengths(st_within(hex, land_u)) > 0
+  keep <- !on_land & dst <= 1.5 * HEX_KM * 1000
   cen <- cen[keep]; nn <- nn[keep]
 
   # Screen coordinates: 1000 units wide, y pointing down

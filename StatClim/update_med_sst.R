@@ -26,6 +26,8 @@ suppressPackageStartupMessages({
 # CONFIG
 # ----------------------------
 ERDDAP     <- "https://coastwatch.pfeg.noaa.gov/erddap/griddap/"
+NCEI       <- "https://www.ncei.noaa.gov/data/sea-surface-temperature-optimum-interpolation/v2.1/access/avhrr/"
+set_config(user_agent("Mediterranean-SST-website-updater (R httr)"))
 DS_FINAL   <- "ncdcOisst21Agg_LonPM180"
 DS_NRT     <- "ncdcOisst21NrtAgg_LonPM180"
 LAT        <- c(30.125, 45.875)     # bounding box of the Mediterranean
@@ -78,13 +80,60 @@ get_block <- function(ds, d0, d1, tries = 4) {
     Sys.sleep(30 * k)
   }
   nc <- nc_open(f); on.exit({nc_close(nc); unlink(f)})
-  lon  <- ncvar_get(nc, "longitude")
-  lat  <- ncvar_get(nc, "latitude")
-  tim  <- as.Date(as.POSIXct(ncvar_get(nc, "time"), origin = "1970-01-01", tz = "UTC"))
+  lon  <- as.vector(ncvar_get(nc, "longitude"))   # plain vectors: 1-d arrays break m * w later
+  lat  <- as.vector(ncvar_get(nc, "latitude"))
+  tim  <- as.Date(as.POSIXct(as.vector(ncvar_get(nc, "time")), origin = "1970-01-01", tz = "UTC"))
   sst  <- ncvar_get(nc, "sst", collapse_degen = FALSE)  # lon x lat x zlev x time
   dim(sst) <- c(length(lon) * length(lat), length(tim)) # pixels x days
   keep <- drop_feb29(tim)
   list(dates = tim[keep], lon = lon, lat = lat, sst = sst[, keep, drop = FALSE])
+}
+
+# ---- Fallback: NCEI daily files (used when ERDDAP refuses the request) ----
+# One global file per day (~1.6 MB); final files first, preliminary otherwise.
+# Longitudes are 0-360 there, so the box is read in two pieces and joined
+# to match the ERDDAP grid exactly (lon -5.875 -> 36.125, lat 30.125 -> 45.875).
+ncei_url <- function(d, prelim = FALSE)
+  paste0(NCEI, format(d, "%Y%m"), "/oisst-avhrr-v02r01.", format(d, "%Y%m%d"), if (prelim) "_preliminary", ".nc")
+
+ncei_day <- function(d) {
+  f <- tempfile(fileext = ".nc")
+  for (pre in c(FALSE, TRUE)) {
+    r <- try(GET(ncei_url(d, pre), write_disk(f, overwrite = TRUE), timeout(300)), silent = TRUE)
+    if (!inherits(r, "try-error") && status_code(r) == 200) {
+      nc <- nc_open(f); on.exit({nc_close(nc); unlink(f)})
+      lat_i <- 481; n_lat <- 64                                                                  # 30.125 -> 45.875
+      west <- ncvar_get(nc, "sst", start = c(1417, lat_i, 1, 1), count = c(24, n_lat, 1, 1))   # 354.125 -> 359.875
+      east <- ncvar_get(nc, "sst", start = c(1, lat_i, 1, 1),    count = c(145, n_lat, 1, 1))  #   0.125 ->  36.125
+      return(list(v = as.vector(rbind(west, east)), src = if (pre) "nrt" else "final"))
+    }
+  }
+  NULL
+}
+
+get_range_ncei <- function(d0, d1) {
+  days <- seq(d0, d1, by = "day"); days <- days[drop_feb29(days)]
+  vals <- list(); keep <- c(); src <- c()
+  for (k in seq_along(days)) {
+    x <- ncei_day(days[k]); if (is.null(x)) next
+    vals[[length(vals) + 1]] <- x$v; keep <- c(keep, k); src <- c(src, x$src)
+  }
+  if (!length(vals)) stop("No NCEI files found between ", d0, " and ", d1)
+  list(dates = days[keep], src = src,
+       lon = seq(-5.875, 36.125, by = 0.25), lat = seq(30.125, 45.875, by = 0.25),
+       sst = do.call(cbind, vals))
+}
+
+# Latest day available on NCEI (searching back from today)
+ncei_last <- function() {
+  for (k in 0:10) {
+    d <- Sys.Date() - k
+    for (pre in c(FALSE, TRUE)) {
+      r <- try(HEAD(ncei_url(d, pre), timeout(60)), silent = TRUE)
+      if (!inherits(r, "try-error") && status_code(r) == 200) return(d)
+    }
+  }
+  stop("No recent NCEI file found")
 }
 
 # Fetch a date range using the final product where available, NRT after that
@@ -110,7 +159,7 @@ make_mask <- function(lon, lat, sst) {
          (g$lon < 0   & g$lat > 41) |           # Bay of Biscay
          (g$lon > 26.5 & g$lat > 40.2) |        # Dardanelles, Marmara, Black Sea
          (g$lon > 32  & g$lat < 30.9)           # Gulf of Suez
-  list(idx = which(ocean & !out), w = cos(g$lat[ocean & !out] * pi / 180))
+  list(idx = which(ocean & !out), w = as.vector(cos(g$lat[ocean & !out] * pi / 180)))
 }
 
 # Area-weighted basin mean for each day (columns)
@@ -146,8 +195,14 @@ build_threshold <- function(base, base_doy) {
 build_map_geometry <- function(mask) {
   suppressPackageStartupMessages({library(sf); library(rnaturalearth)})
   sf_use_s2(FALSE)
-  box   <- st_as_sfc(st_bbox(c(xmin = MAP_BOX[1], ymin = MAP_BOX[2], xmax = MAP_BOX[3], ymax = MAP_BOX[4]), crs = 4326))
-  box_p <- st_transform(st_segmentize(box, 0.25), MAP_CRS)
+  # Map frame: the lon/lat box with a point every 0.25 deg, so its edges follow
+  # the projection (built by hand: st_segmentize() would need lwgeom)
+  edge <- rbind(cbind(seq(MAP_BOX[1], MAP_BOX[3], by = 0.25), MAP_BOX[2]),
+                cbind(MAP_BOX[3], seq(MAP_BOX[2], MAP_BOX[4], by = 0.25))[-1, ],
+                cbind(seq(MAP_BOX[3], MAP_BOX[1], by = -0.25), MAP_BOX[4])[-1, ],
+                cbind(MAP_BOX[1], seq(MAP_BOX[4], MAP_BOX[2], by = -0.25))[-1, ])
+  box   <- st_sfc(st_polygon(list(edge)), crs = 4326)
+  box_p <- st_transform(box, MAP_CRS)
 
   # Countries (Natural Earth 1:50m), cropped around the basin and lightly simplified
   land <- ne_countries(scale = "medium", returnclass = "sf") |> st_geometry() |> st_make_valid()
@@ -209,11 +264,21 @@ mhw_share <- function(m, doys, thresh, w, prev = NULL) {
 # ============================================================
 # 1. FIRST RUN: BUILD THE CACHE (1982 -> today)
 # ============================================================
-final_end <- last_time(DS_FINAL)
-nrt_end   <- last_time(DS_NRT)
-message("Final product until ", final_end, " | near real time until ", nrt_end)
+use_erddap <- tryCatch({
+  final_end <- last_time(DS_FINAL)
+  nrt_end   <- last_time(DS_NRT)
+  TRUE
+}, error = function(e) {message("ERDDAP not reachable (", conditionMessage(e), "): switching to NCEI daily files"); FALSE})
+if (use_erddap) {
+  message("Final product until ", final_end, " | near real time until ", nrt_end)
+} else {
+  nrt_end <- ncei_last(); final_end <- nrt_end
+  message("NCEI files available until ", nrt_end)
+}
 
 if (!file.exists(F_DAILY) || !file.exists(F_THRESH)) {
+  if (!use_erddap) stop("The first build (1982 -> today) needs NOAA ERDDAP, which refused this connection. ",
+                        "Run this script once from your own computer, then commit and push the StatClim folder.")
   message("No cache found: building it from ", FIRST_YEAR, " (this takes a while)...")
   tmp <- tempfile("medsst_"); dir.create(tmp)
   mask <- NULL; base <- list(); base_doy <- NULL; daily <- NULL
@@ -263,7 +328,24 @@ if (is.null(th$clim) || is.null(mask$lon)) stop("Old cache format: delete StatCl
 
 d0 <- max(daily$date) - REFRESH
 message("Refreshing ", d0, " -> ", nrt_end)
-b <- get_range(d0 - (MHW_MINDUR - 1), nrt_end, final_end)        # 4 extra days of look-back
+b <- if (use_erddap) get_range(d0 - (MHW_MINDUR - 1), nrt_end, final_end) else
+     get_range_ncei(d0 - (MHW_MINDUR - 1), nrt_end)                # 4 extra days of look-back
+
+# ERDDAP copies NOAA's files with a delay of several days: top up the most
+# recent days straight from NCEI, where preliminary files appear after ~1 day
+if (use_erddap && nrt_end < Sys.Date() - 1) {
+  extra <- tryCatch(get_range_ncei(nrt_end + 1, Sys.Date() - 1),
+                    error = function(e) {message("NCEI top-up skipped: ", conditionMessage(e)); NULL})
+  same_grid <- !is.null(extra) && isTRUE(all.equal(as.numeric(b$lat), extra$lat)) &&
+               isTRUE(all.equal(as.numeric(b$lon), extra$lon))
+  if (!is.null(extra) && !same_grid) message("NCEI grid differs from ERDDAP grid: recent days skipped")
+  if (same_grid) {
+    message("Added ", length(extra$dates), " recent day(s) from NCEI, up to ", max(extra$dates))
+    b$dates <- c(b$dates, extra$dates)
+    b$sst   <- cbind(b$sst, extra$sst)
+    b$src   <- c(b$src, extra$src)
+  }
+}
 m <- b$sst[mask$idx, , drop = FALSE]
 r <- mhw_share(m, doy365(b$dates), thresh, mask$w)
 new <- data.frame(date = b$dates, sst = round(basin_mean(m, mask$w), 3),
@@ -306,7 +388,7 @@ out <- list(
   sample   = FALSE,
   updated  = format(today$date),
   source   = paste0("NOAA OISST v2.1 (", ifelse(today$src == "nrt", "preliminary", "final"),
-                    "), via NOAA CoastWatch ERDDAP"),
+                    "), via ", if (use_erddap) "NOAA CoastWatch ERDDAP" else "NOAA NCEI"),
   baseline = "1982-2011",
   today    = list(date = format(today$date), sst = round(today$sst, 2),
                   anomaly = round(today$sst - clim[today$doy], 2),

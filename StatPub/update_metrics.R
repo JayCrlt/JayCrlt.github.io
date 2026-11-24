@@ -44,18 +44,33 @@ init <- summary_pub[, c("id", "doi", "pubid")]
 # ============================================================
 message("Fetching Google Scholar citations...")
 
-scholar_url <- paste0(
-  "https://serpapi.com/search.json?",
-  "engine=google_scholar_author",
-  "&author_id=", scholar_id,
-  "&api_key=", SERPAPI_KEY
-)
-
-res <- GET(scholar_url)
-stop_for_status(res)
-
-data <- content(res, as = "parsed", simplifyVector = FALSE)
-articles <- data$articles
+# SerpAPI returns only 20 articles per request by default.
+# Ask for 100 per page and loop until every article is retrieved,
+# otherwise low-cited (often recent) papers are silently dropped.
+articles <- list()
+start <- 0
+repeat {
+  res <- GET(
+    "https://serpapi.com/search.json",
+    query = list(
+      engine    = "google_scholar_author",
+      author_id = scholar_id,
+      api_key   = SERPAPI_KEY,
+      num       = 100,     # max page size (default is only 20)
+      start     = start
+    )
+  )
+  stop_for_status(res)
+  
+  data <- content(res, as = "parsed", simplifyVector = FALSE)
+  page <- data$articles
+  if (length(page) == 0) break
+  
+  articles <- c(articles, page)
+  if (length(page) < 100) break   # last page reached
+  start <- start + 100
+}
+message("Fetched ", length(articles), " articles from Google Scholar")
 
 citation_list <- lapply(articles, function(x) {
   list(
@@ -106,6 +121,13 @@ message("Merging datasets...")
 final_df <- init |>
   merge(citation_df, by = "pubid", all.x = TRUE) |>
   merge(altmetric_df, by = c("doi", "pubid"), all.x = TRUE)
+
+# Flag publications that were not found on Google Scholar
+not_found <- final_df$pubid[is.na(final_df$title)]
+if (length(not_found) > 0) {
+  warning("Not found on Google Scholar (check pubid): ",
+          paste(not_found, collapse = ", "))
+}
 
 # Replace missing values
 final_df$cites[is.na(final_df$cites)] <- 0

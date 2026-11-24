@@ -220,11 +220,17 @@ build_map_geometry <- function(mask) {
   cen <- st_centroid(hex)
   nn  <- st_nearest_feature(cen, pix)
   dst <- as.numeric(st_distance(cen, pix[nn, ], by_element = TRUE))
-  # keep every hexagon that is not entirely on land (coastal ones included;
-  # the land drawn on top hides their part over land), as long as a
-  # Mediterranean SST pixel is close enough to give it a value
+  # Keep every hexagon that is not entirely on land, so the colours reach the
+  # coastline (the land drawn on top hides their part over land). Each one
+  # takes the value of its nearest Mediterranean SST pixel, even when OISST's
+  # coarser coastline leaves that pixel a little further away.
+  # Hexagons in the Atlantic, Bay of Biscay, Marmara/Black Sea or Gulf of Suez
+  # are dropped with the same lon/lat rules as the SST mask.
   on_land <- lengths(st_within(hex, land_u)) > 0
-  keep <- !on_land & dst <= 1.5 * HEX_KM * 1000
+  ll      <- st_coordinates(st_transform(cen, 4326))
+  outside <- (ll[, 1] < -5.5) | (ll[, 1] < 0 & ll[, 2] > 41) |
+             (ll[, 1] > 26.6 & ll[, 2] > 40.25) | (ll[, 1] > 32 & ll[, 2] < 30.9)
+  keep <- !on_land & !outside & dst <= 3 * HEX_KM * 1000
   cen <- cen[keep]; nn <- nn[keep]
 
   # Screen coordinates: 1000 units wide, y pointing down

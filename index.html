@@ -98,12 +98,18 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 #sstMap {width: 100%; height: auto; display: block; margin-top: 6px}
 #sstMap path.hex {stroke: #fff; stroke-width: 0.5}
 #sstMap path.hex:hover {stroke: #0b0b0b; stroke-width: 1.2}
-.map-legend {margin: 6px 0 2px 0; font-size: 12px; color: #52514e}
+.map-legend {margin: 6px 0 2px 0; font-size: 12px; color: #52514e; width: 100%; max-width: 520px}
 .map-legend .lg-row {display: flex; align-items: center}
-.map-legend .lg-row div {flex: 0 0 34px}
+.map-legend .lg-row div {flex: 1 1 0; min-width: 0}
 .map-legend i {display: block; height: 10px; margin-right: 2px}
 .map-legend .tk {color: #898781; transform: translateX(-50%); text-align: center; line-height: 1.6}
 .map-legend .ends {flex: 0 0 64px; text-align: right; padding-right: 8px; line-height: 10px}
+@media screen and (max-width: 600px) {
+  .map-legend {font-size: 10px}
+  .map-legend .ends {flex-basis: 44px; padding-right: 4px}
+  .map-legend .lg-row .ends:last-child {padding-left: 4px}
+  .chart-card {padding: 14px 12px 8px 12px}
+}
 .map-legend .lg-row .ends:last-child {text-align: left; padding: 0 0 0 6px}
 /* ---------- Latest publications cards ---------- */
 .latest-grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px}
@@ -115,7 +121,7 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 .lc-title {font-size: 16px; line-height: 1.4; color: #0b0b0b; margin: 6px 0 8px 0}
 .lc-auth {font-size: 13px; color: #898781; margin-top: auto}
 /* ---------- Separator between About me and Latest publications ---------- */
-.section-divider {height: 3px; background: #444; border-radius: 2px; margin: 0 0 28px 0}
+.section-divider {width: 33%; height: 3px; background: #777; border-radius: 2px; margin: 0 auto 28px auto}
 </style>
 
 <body>
@@ -389,7 +395,8 @@ function drawSST(d) {
   lo = Math.floor(lo) - 1; hi = Math.ceil(hi) + 1;
   const x = i => m.l + i / 365 * (W - m.l - m.r);
   const y = v => m.t + (hi - v) / (hi - lo) * (H - m.t - m.b);
-  const path = arr => {let s = "", pen = false; arr.forEach((v, i) => {if (v === null) {pen = false; return;} s += (pen ? "L" : "M") + x(i).toFixed(1) + "," + y(v).toFixed(1); pen = true;}); return s;};
+  // missing days are bridged: the line continues straight to the next available day
+  const path = arr => {let s = "", pen = false; arr.forEach((v, i) => {if (v === null || v === undefined) return; s += (pen ? "L" : "M") + x(i).toFixed(1) + "," + y(v).toFixed(1); pen = true;}); return s;};
 
   // grid + y labels
   for (let v = Math.ceil(lo / 2) * 2; v <= hi; v += 2) {

@@ -48,6 +48,7 @@ message("Fetching Google Scholar citations...")
 # Ask for 100 per page and loop until every article is retrieved,
 # otherwise low-cited (often recent) papers are silently dropped.
 articles <- list()
+profile  <- NULL      # profile totals (citations, h-index, i10-index) from the first page
 start <- 0
 repeat {
   res <- GET(
@@ -63,6 +64,7 @@ repeat {
   stop_for_status(res)
   
   data <- content(res, as = "parsed", simplifyVector = FALSE)
+  if (is.null(profile)) profile <- data$cited_by$table
   page <- data$articles
   if (length(page) == 0) break
   
@@ -157,5 +159,18 @@ write(
   toJSON(final_df, pretty = TRUE, auto_unbox = TRUE),
   "StatPub/citations.json"
 )
+
+# Google Scholar profile totals, exactly as shown on the profile page
+pick <- function(key) {
+  for (x in profile) if (!is.null(x[[key]])) return(as.integer(x[[key]]$all %||% NA))
+  NA_integer_
+}
+write(
+  toJSON(list(citations = pick("citations"), h_index = pick("h_index"),
+              i10_index = pick("i10_index"), updated = format(Sys.Date())),
+         pretty = TRUE, auto_unbox = TRUE),
+  "StatPub/scholar_profile.json"
+)
+message("Scholar profile: ", pick("citations"), " citations, h-index ", pick("h_index"))
 
 message("✅ Update completed successfully")

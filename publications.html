@@ -98,12 +98,18 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 #sstMap {width: 100%; height: auto; display: block; margin-top: 6px}
 #sstMap path.hex {stroke: #fff; stroke-width: 0.5}
 #sstMap path.hex:hover {stroke: #0b0b0b; stroke-width: 1.2}
-.map-legend {margin: 6px 0 2px 0; font-size: 12px; color: #52514e}
+.map-legend {margin: 6px 0 2px 0; font-size: 12px; color: #52514e; width: 100%; max-width: 520px}
 .map-legend .lg-row {display: flex; align-items: center}
-.map-legend .lg-row div {flex: 0 0 34px}
+.map-legend .lg-row div {flex: 1 1 0; min-width: 0}
 .map-legend i {display: block; height: 10px; margin-right: 2px}
 .map-legend .tk {color: #898781; transform: translateX(-50%); text-align: center; line-height: 1.6}
 .map-legend .ends {flex: 0 0 64px; text-align: right; padding-right: 8px; line-height: 10px}
+@media screen and (max-width: 600px) {
+  .map-legend {font-size: 10px}
+  .map-legend .ends {flex-basis: 44px; padding-right: 4px}
+  .map-legend .lg-row .ends:last-child {padding-left: 4px}
+  .chart-card {padding: 14px 12px 8px 12px}
+}
 .map-legend .lg-row .ends:last-child {text-align: left; padding: 0 0 0 6px}
 /* ---------- Latest publications cards ---------- */
 .latest-grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px}
@@ -114,6 +120,8 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 .lc-meta {font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #2a78d6}
 .lc-title {font-size: 16px; line-height: 1.4; color: #0b0b0b; margin: 6px 0 8px 0}
 .lc-auth {font-size: 13px; color: #898781; margin-top: auto}
+/* ---------- Separator between About me and Latest publications ---------- */
+.section-divider {width: 67%; height: 3px; background: #777; border-radius: 2px; margin: 0 auto 28px auto}
 </style>
 
 <body>
@@ -742,13 +750,20 @@ fetch("StatPub/citations.json?v=" + Date.now())
 // Publication stats (peer-reviewed count, total citations, h-index)
 fetch("StatPub/citations.json?v=" + Date.now()).then(r => r.json()).then(cd => {
   const n = document.querySelectorAll("#peer-reviewed ~ .paper-entry, .peer .paper-entry").length;
-  const cites = cd.map(p => p.cites || 0).sort((a, b) => b - a);
-  const total = cites.reduce((a, b) => a + b, 0);
-  let h = 0; while (h < cites.length && cites[h] >= h + 1) h++;
   document.getElementById("sPapers").textContent = n;
   document.getElementById("nPapers").textContent = n;
-  document.getElementById("sCites").textContent = total.toLocaleString("en-US");
-  document.getElementById("sH").textContent = h;
+  // Citations and h-index: Google Scholar's own profile totals (StatPub/scholar_profile.json).
+  // If that file is missing, fall back to the sum over the listed papers.
+  const cites = cd.map(p => p.cites || 0).sort((a, b) => b - a);
+  let total = cites.reduce((a, b) => a + b, 0), h = 0;
+  while (h < cites.length && cites[h] >= h + 1) h++;
+  fetch("StatPub/scholar_profile.json?v=" + Date.now()).then(r => r.json()).then(sp => {
+    if (sp.citations) total = sp.citations;
+    if (sp.h_index) h = sp.h_index;
+  }).catch(() => {}).finally(() => {
+    document.getElementById("sCites").textContent = total.toLocaleString("en-US");
+    document.getElementById("sH").textContent = h;
+  });
 }).catch(err => console.error(err));
 
 </script> </body> </html>

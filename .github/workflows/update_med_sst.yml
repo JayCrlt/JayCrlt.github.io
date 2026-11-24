@@ -1,0 +1,42 @@
+name: Update Mediterranean SST
+
+on:
+  schedule:
+  - cron: "00 6 * * *"      # every day at 06:00 UTC
+workflow_dispatch:          # lets you run it by hand from the Actions tab
+  
+  permissions:
+  contents: write
+
+concurrency:
+  group: website-data
+cancel-in-progress: false
+
+jobs:
+  update:
+  runs-on: ubuntu-latest
+timeout-minutes: 120
+steps:
+  - uses: actions/checkout@v4
+
+- name: System libraries for netCDF
+run: sudo apt-get update && sudo apt-get install -y libnetcdf-dev libcurl4-openssl-dev libgdal-dev libgeos-dev libproj-dev libudunits2-dev
+
+- uses: r-lib/actions/setup-r@v2
+with:
+  use-public-rspm: true
+
+- name: Install R packages
+run: Rscript -e 'install.packages(c("httr", "ncdf4", "jsonlite", "matrixStats", "sf", "rnaturalearth", "rnaturalearthdata"))'
+
+- name: Update Mediterranean SST
+run: Rscript StatClim/update_med_sst.R
+
+- name: Commit and push
+run: |
+  git config user.name  "github-actions[bot]"
+git config user.email "github-actions[bot]@users.noreply.github.com"
+git add StatClim/med_sst.json StatClim/med_daily.csv StatClim/med_thresh.rds StatClim/med_map_geom.json StatClim/med_map_index.rds
+git diff --staged --quiet || git commit -m "Update Mediterranean SST data"
+git pull --rebase origin ${{ github.ref_name }}   # in case the citations routine pushed meanwhile
+git push

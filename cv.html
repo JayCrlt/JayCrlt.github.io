@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html>
+	
+<title>Jeremy Carlot</title>
+<meta name="Description" content="Jeremy Carlot website to release papers, up-to-date resume, and news about projects ongoing,
+								  Jeremy Carlot, Jérémy Carlot, Jeremy T. Carlot, Jérémy T. Carlot, Jeremy, 
+								  Jérémy, Carlot, Jeremy Carlot website, Jérémy Carlot website,
+								  Postdoctoral fellow, Functional benthic ecology, Functional ecology, 
+								  Benthic ecology, juvenile, scaling-up, structural complexity, 
+								  CCA, Corals, Benthos, Global change">
+<meta name="Author" content="Jeremy Carlot">
+<meta name="Reply-To" content="jay.crlt02@gmail.com">
+<meta name="Robots" content="index, follow">
+<meta name="Rating" content="general">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="Icons/sea.ico">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Avenir Light";}
+body, html {height: 100%; color: #777;line-height: 1.8;}
+/* Create a Parallax Effect */
+.bgimg-2, .bgimg-3 {background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;}
+/* First image (Portfolio) */
+.bgimg-2 {background-image: url("Pictures/My_pictures/GPS.jpeg");min-height: 400px;}
+/* Second image (Contact) */
+.bgimg-3 {background-image: url("Pictures/My_pictures/Rolling.JPG");min-height: 400px;}
+.w3-wide {letter-spacing: 0px;}
+.w3-hover-opacity {cursor: pointer;}
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1200px) {.bgimg-2, .bgimg-3 {background-attachment: scroll;min-height: 400px;}}
+@media only screen and (max-device-width: 300px) {.mobilemargin {margin-left: -100px;}}
+@media only screen and (max-width: 768px) {*, html, body, .row {margin-left:0 !important; margin-right:0 !important; padding-left:5 !important; padding-right:5 !important; }}
+@media only screen and (max-device-width: 300px) {.gallery {min-width: 300px; min-height: 225px; max-width: 300px; max-height: 225px}}
+/* subsection */
+.section-title {font-size: 25px; color: #000000; font-weight: bold; text-decoration: underline; margin-top: 30px; margin-bottom: 20px}
+/* Abstract collapse */
+.abstract {font-size:14px; margin-top: 5px; text-align: justify; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden}
+.abstract.expanded {-webkit-line-clamp: unset}
+.readmore-link {font-size: 13px; color: #000000; cursor: pointer; text-decoration: underline; display: inline; margin: 0; padding: 0; line-height: 2; vertical-align: top}
+/* Default desktop layout */
+.paper-entry .paper-figure {float: left; margin-right: 12px; width: 150px; height: 150px;}
+.paper-entry > div {margin-left: 162px;}
+/* Mobile layout: image on top, text below */
+@media screen and (max-width: 768px) {
+  .paper-entry .paper-figure {float: none !important; display: block !important; margin: 0 auto 10px auto !important; width: 200px !important; height: auto !important}
+  .paper-entry > div {margin-left: 0 !important}}
+/* Icons row (desktop + mobile) */
+.paper-icons {margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; row-gap: 6px; line-height: 1.2}
+.paper-icons a {display: flex; align-items: center; text-decoration: none; color: black}
+.paper-icons img {width: 20px; height: 20px; margin-right: 4px}
+/* On small screens, shrink the gap even more */
+@media screen and (max-width: 400px) {.paper-icons {gap: 12px; row-gap: 4px}}
+/* Justify the citation format */
+.pub-info {font-size: 16px; text-align: justify}
+@media screen and (max-width: 768px) {.pub-info {text-align: justify}}
+/* ---------- Section intros ---------- */
+.intro {max-width: 760px; margin: 0 auto 36px auto; text-align: center; font-size: 17px; line-height: 1.7; color: #555}
+.intro .kicker {display: block; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #2a78d6; margin-bottom: 8px}
+.intro strong {color: #222}
+/* ---------- Climate tiles ---------- */
+.sample-flag {max-width: 760px; margin: 0 auto 20px auto; padding: 8px 14px; border: 1px dashed #c98a00; background: #fff8e6; color: #7a5600; font-size: 13px; text-align: center; border-radius: 6px}
+.tiles {display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px}
+@media screen and (max-width: 768px) {.tiles {grid-template-columns: 1fr}}
+.tile {border: 1px solid #e6e5e0; border-radius: 10px; padding: 18px 20px; background: #fff}
+.tile .t-label {font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #898781}
+.tile .t-value {font-size: 40px; line-height: 1.15; color: #0b0b0b; margin: 6px 0 2px 0; font-variant-numeric: tabular-nums}
+.tile .t-sub {font-size: 14px; color: #52514e; line-height: 1.4}
+.tile .t-anom {color: #c0392b; font-weight: bold}
+/* ---------- Chart ---------- */
+.chart-card {border: 1px solid #e6e5e0; border-radius: 10px; padding: 18px 20px 10px 20px; background: #fff; position: relative}
+.chart-title {font-size: 18px; color: #0b0b0b; margin: 0}
+.chart-sub {font-size: 14px; color: #52514e; margin: 0 0 8px 0; line-height: 1.4}
+.legend {display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; color: #52514e; margin-bottom: 4px}
+.legend span {display: inline-flex; align-items: center; gap: 6px}
+.legend i {display: inline-block; width: 18px; height: 0; border-top-width: 3px; border-top-style: solid}
+#sstChart {width: 100%; height: auto; display: block}
+#sstChart text {font-family: "Avenir Light", Lato, sans-serif; font-size: 12px; fill: #898781}
+.chart-tip {position: absolute; pointer-events: none; background: #fff; border: 1px solid #e6e5e0; border-radius: 6px; padding: 6px 10px; font-size: 13px; line-height: 1.5; color: #0b0b0b; box-shadow: 0 2px 8px rgba(0,0,0,.08); display: none; white-space: nowrap}
+.chart-tip .sw {display: inline-block; width: 10px; height: 3px; margin-right: 6px; vertical-align: middle}
+.chart-foot {display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; color: #898781; margin-top: 6px}
+.chart-foot a {color: #52514e; cursor: pointer; text-decoration: underline}
+#sstTable {display: none; width: 100%; font-size: 13px; margin-top: 10px; border-collapse: collapse}
+#sstTable th, #sstTable td {padding: 4px 8px; border-bottom: 1px solid #eee; text-align: right}
+#sstTable th:first-child, #sstTable td:first-child {text-align: left}
+/* ---------- Latest publications / buttons ---------- */
+.see-all {display: inline-block; margin-top: 6px; padding: 8px 18px; border: 1px solid #222; color: #222; text-decoration: none; letter-spacing: 1px; font-size: 14px}
+.see-all:hover {background: #222; color: #fff}
+.pub-stats {display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 0 0 10px 0}
+.pub-stats div {text-align: center}
+.pub-stats b {display: block; font-size: 34px; color: #0b0b0b; font-weight: normal; line-height: 1.2}
+.pub-stats span {font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #898781}
+/* ---------- Anomaly map ---------- */
+#sstMap {width: 100%; height: auto; display: block; margin-top: 6px}
+#sstMap path.hex {stroke: #fff; stroke-width: 0.5}
+#sstMap path.hex:hover {stroke: #0b0b0b; stroke-width: 1.2}
+.map-legend {margin: 6px 0 2px 0; font-size: 12px; color: #52514e}
+.map-legend .lg-row {display: flex; align-items: center}
+.map-legend .lg-row div {flex: 0 0 34px}
+.map-legend i {display: block; height: 10px; margin-right: 2px}
+.map-legend .tk {color: #898781; transform: translateX(-50%); text-align: center; line-height: 1.6}
+.map-legend .ends {flex: 0 0 64px; text-align: right; padding-right: 8px; line-height: 10px}
+.map-legend .lg-row .ends:last-child {text-align: left; padding: 0 0 0 6px}
+/* ---------- Latest publications cards ---------- */
+.latest-grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px}
+@media screen and (max-width: 768px) {.latest-grid {grid-template-columns: 1fr}}
+.latest-card {display: flex; flex-direction: column; border: 1px solid #e6e5e0; border-radius: 10px; padding: 16px; text-decoration: none; color: #52514e; background: #fff; transition: box-shadow .15s}
+.latest-card:hover {box-shadow: 0 4px 14px rgba(0,0,0,.08)}
+.latest-card img {width: 100%; height: 150px; object-fit: contain; margin-bottom: 12px}
+.lc-meta {font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #2a78d6}
+.lc-title {font-size: 16px; line-height: 1.4; color: #0b0b0b; margin: 6px 0 8px 0}
+.lc-auth {font-size: 13px; color: #898781; margin-top: auto}
+</style>
+
+<body>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+	   href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i></a>
+    <a href="index.html#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT ME</a>
+    <a href="index.html#climate" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-thermometer-half"></i> CLIMATE DATA</a>
+    <a href="publications.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-book"></i> MY PUBLICATIONS</a>
+    <a href="cv.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-id-card-o"></i> MY CV</a>
+    <a href="pictures.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-camera" aria-hidden="true"></i> MY PICTURES</a>
+	<a href="index.html#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a> </div>
+<!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="index.html#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT ME</a>
+    <a href="index.html#climate" class="w3-bar-item w3-button" onclick="toggleFunction()">CLIMATE DATA</a>
+    <a href="publications.html" class="w3-bar-item w3-button" onclick="toggleFunction()">MY PUBLICATIONS</a>
+    <a href="cv.html" class="w3-bar-item w3-button" onclick="toggleFunction()">MY CV</a>
+    <a href="pictures.html" class="w3-bar-item w3-button" onclick="toggleFunction()">MY PICTURES</a>
+	<a href="index.html#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a></div> </div>
+
+<style>
+.cv {max-width: 860px; margin: 0 auto}
+.cv h4 {font-size: 15px; letter-spacing: 2px; color: #0b0b0b; border-bottom: 1px solid #222; padding-bottom: 4px; margin: 44px 0 14px 0}
+.cv h4 .n {float: right; font-size: 13px; letter-spacing: 1px; color: #898781}
+.cv h5 {font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #52514e; margin: 18px 0 6px 0}
+.cv-row {display: grid; grid-template-columns: 90px 1fr; gap: 14px; margin-bottom: 10px; line-height: 1.5; font-size: 15px}
+.cv-row .yr {color: #898781; font-variant-numeric: tabular-nums}
+.cv-row .role {color: #0b0b0b; text-transform: uppercase; font-size: 14px; letter-spacing: .5px}
+.cv-row .place {color: #52514e}
+.cv-row .note {font-size: 13px; color: #898781}
+.cv-row a {color: #2a78d6; text-decoration: none}
+.cv-grid {display: grid; grid-template-columns: 1fr 1fr; gap: 6px 28px; font-size: 15px}
+@media screen and (max-width: 768px) {.cv-row {grid-template-columns: 1fr; gap: 0} .cv-grid {grid-template-columns: 1fr}}
+.cv-top {display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; border: 1px solid #e6e5e0; border-radius: 10px; padding: 18px 22px}
+.cv-top .figs {display: flex; gap: 32px; flex-wrap: wrap}
+.cv-top .figs div {text-align: center}
+.cv-top .figs b {display: block; font-size: 28px; font-weight: normal; color: #0b0b0b; line-height: 1.2}
+.cv-top .figs span {font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #898781}
+</style>
+
+<!-- Parallax: CV -->
+<div class="bgimg-2 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">CURRICULUM VITAE</span> </div> </div>
+
+<div class="w3-content w3-container w3-padding-64 cv" id="cv">
+
+  <div class="cv-top">
+    <div class="figs">
+      <div><b>22</b><span>Peer-reviewed papers</span></div>
+      <div><b>~376k€</b><span>Funding secured</span></div>
+      <div><b>6</b><span>Students supervised</span></div>
+      <div><b>~900</b><span>Scientific dives</span></div>
+    </div>
+    <a href="Papers/CARLOT_CV.pdf" class="see-all"><i class="fa fa-download"></i> DOWNLOAD PDF</a>
+  </div>
+
+  <h4>PROFILE</h4>
+  <p style="text-align: justify; font-size: 15px">Born on the French west coast, I grew up close to the ocean. During my bachelor's degree I visited reef island ecosystems and saw how vulnerable they are to climate change, which led me to a Ph.D. on coastal protection in French Polynesia, focused on benthic communities and how they function. Today I quantify shifts in ecosystem functioning under global change, combining fieldwork, experiments and advanced statistical modelling across spatial scales. I also love data analysis and visualisation, and using them to communicate complex findings clearly.</p>
+
+  <h4>CURRENT POSITION</h4>
+  <div class="cv-row"><div class="yr">2026 &ndash; now</div><div><span class="role">Marie Skłodowska-Curie Postdoctoral Fellow</span><br>
+    <span class="place">Mediterranean shifts in seaweed and seagrass functioning &middot; Institut de Ciències del Mar (ICM&ndash;CSIC), Barcelona, Spain</span></div></div>
+
+  <h4>PROFESSIONAL EXPERIENCE</h4>
+  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Postdoctoral Fellow</span><br>
+    <span class="place">Marine ecosystem functions and cumulative impact assessment across European seas &middot; Spanish Institute of Oceanography, Centre Oceanogràfic de les Balears (IEO&ndash;COB), Spain</span></div></div>
+  <div class="cv-row"><div class="yr">2022</div><div><span class="role">Postdoctoral Fellow</span><br>
+    <span class="place">Marine functional diversity in the face of global changes &middot; Laboratoire d'Océanographie de Villefranche (LOV), France &amp; Stazione Zoologica di Napoli (SZN), Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2021</div><div><span class="role">Research Fellow</span><br>
+    <span class="place">Spatio-temporal variability of coral reefs at the global scale &middot; Fondation pour la Recherche sur la Biodiversité (FRB), France</span></div></div>
+  <div class="cv-row"><div class="yr">2017</div><div><span class="role">Investigator</span><br>
+    <span class="place">Marine litter quantification and water quality &middot; Surfrider Foundation Europe (SFE), France</span></div></div>
+
+  <h4>EDUCATION</h4>
+  <div class="cv-row"><div class="yr">2021</div><div><span class="role">Ph.D.</span> &middot; Coral reef accretion, sea-level rise and wave energy in the face of global changes<br>
+    <span class="place">Paris Sciences et Lettres (PSL) University, hosted at CRIOBE, French Polynesia &amp; France</span></div></div>
+  <div class="cv-row"><div class="yr">2016</div><div><span class="role">MSc.</span> &middot; Biodiversity, management and environment on coral reefs <span class="note">(great honours, rank 6/17)</span><br>
+    <span class="place">École Pratique des Hautes Études (EPHE), Paris, France</span></div></div>
+  <div class="cv-row"><div class="yr">2015</div><div><span class="role">MSc.</span> &middot; Ecosystem approach in fisheries <span class="note">(great honours, rank 5/23)</span><br>
+    <span class="place">Agrocampus-Ouest, Rennes, France</span></div></div>
+  <h5>Additional training</h5>
+  <div class="cv-row"><div class="yr">2024</div><div>Functional trait diversity: calculating and interpreting a key component of biodiversity <span class="note">(16 h)</span><br><span class="place">Transmitting Science, remote</span></div></div>
+  <div class="cv-row"><div class="yr">2022</div><div>Biodiversity knowledge synthesis: meta-analyses and systematic reviews <span class="note">(35 h)</span><br><span class="place">CESAB, Montpellier, France</span></div></div>
+
+  <h4>FUNDING &amp; AWARDS <span class="n">TOTAL ~376,590€</span></h4>
+  <h5>Fellowships &amp; grants</h5>
+  <div class="cv-row"><div class="yr">2026</div><div><span class="role">Marie Skłodowska-Curie Postdoctoral Fellowship</span> <span class="note">[~209,915€]</span><br>
+    <span class="place">HORIZON-MSCA-2025-PF &middot; Proposal 101266997, Mediterranean shifts in seaweed and seagrass functioning</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Beatriu de Pinós Postdoctoral Fellowship</span> <span class="note">[~161,500€]</span><br>
+    <span class="place">Proposal 2024BP00106, Mediterranean shifts in macrophyte functioning</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Vicenç Mut Postdoctoral Fellowship</span> <span class="note">[~137,950€, renounced]</span><br>
+    <span class="place">Proposal 2024_44, Unraveling functioning shifts in rhodolith beds under global change</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div><span class="role">EMBRC Italy Grant, Excellent Research Project</span> <span class="note">[~3,675€]</span><br>
+    <span class="place">Proposal 30720, Synergies of benthic communities to ocean acidification</span></div></div>
+  <h5>Scholarships &amp; prizes</h5>
+  <div class="cv-row"><div class="yr">2024</div><div><span class="role">Institut de Ciències del Mar Award</span> <span class="note">[1,000€]</span><br>
+    <span class="place">Top 5 highest-quality Expressions of Interest, MSCA &amp; UN Ocean Decade training, Barcelona</span></div></div>
+  <div class="cv-row"><div class="yr">2016</div><div><span class="role">Société Française d'Ichtyologie scholarship</span> <span class="note">[500€]</span><br>
+    <span class="place">Top 5 best student abstract, fish distribution in French Polynesia, Marseille</span></div></div>
+
+  <h4>RESEARCH PROJECTS <span class="n">6 PROJECTS &middot; 2 AS LEADER</span></h4>
+  <h5>As principal investigator</h5>
+  <div class="cv-row"><div class="yr">2026</div><div><span class="role">MEDSHIFTS</span> &middot; Mediterranean shifts in macrophyte functioning <span class="note">(~371,415€)</span><br><span class="place">PIs: J. Carlot &amp; J. Garrabou</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div><span class="role">MEDSYNERGIES</span> &middot; Synergies of benthic communities to ocean acidification <span class="note">(~3,675€)</span><br><span class="place">PIs: J. Carlot &amp; N. Teixidó</span></div></div>
+  <h5>As scientific collaborator</h5>
+  <div class="cv-row"><div class="yr">2024</div><div><span class="role">B-USEFUL</span> &middot; User-oriented solutions for improved monitoring &amp; management of biodiversity and ecosystem services in vulnerable European seas <span class="note">(~4.6M€)</span><br><span class="place">PI: M. Lindegren</span></div></div>
+  <div class="cv-row"><div class="yr">2021</div><div><span class="role">4OCEANS</span> &middot; Predicting future oceans under climate change <span class="note">(~745,000€)</span><br><span class="place">PI: N. Teixidó</span></div></div>
+  <div class="cv-row"><div class="yr">2020</div><div><span class="role">SCORE-REEF</span> &middot; Spatio-temporal variability of coral reefs at the global scale <span class="note">(~220,000€)</span><br><span class="place">PIs: M. Adjeroud &amp; V. Parravicini</span></div></div>
+  <div class="cv-row"><div class="yr">2018</div><div><span class="role">REEF SERVICES</span> &middot; Consequences of global warming on coral reefs and the services they provide <span class="note">(~800,000€)</span><br><span class="place">PI: V. Parravicini</span></div></div>
+
+  <h4>TEACHING <span class="n">52 HOURS</span></h4>
+  <h5>Temperate marine benthic ecology (SZN)</h5>
+  <div class="cv-row"><div class="yr">2025</div><div>Benthic physiology &amp; processes: from field to data analysis <span class="note">(8 h, summer school)</span></div></div>
+  <h5>Reproducible science &amp; statistics (CNRS &middot; CESAB &middot; CSIC &middot; SZN)</h5>
+  <div class="cv-row"><div class="yr">2025</div><div>GitHub &amp; Markdown: core tools for your research workflow <span class="note">(4 h, summer school)</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div>Integrate Zotero with Obsidian <span class="note">(1 h, lab on-demand)</span></div></div>
+  <div class="cv-row"><div class="yr">2023, 2025</div><div>How to do reproducible science? The GitHub endeavour <span class="note">(4 h, lab on-demand)</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>The use of Bayesian statistics in ecology <span class="note">(1 h, lab on-demand)</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div>A fully reproducible workflow for meta-analyses in R <span class="note">(4 h, lab on-demand)</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div>Preliminary results from a meta-analysis using natural analogs <span class="note">(1 h, CESAB)</span></div></div>
+  <h5>Coral reefs, MSc courses (EPHE)</h5>
+  <div class="cv-row"><div class="yr">2021 &ndash; 2025</div><div>Coastal protection and reef functioning <span class="note">(MOOC, 45 min)</span></div></div>
+  <div class="cv-row"><div class="yr">2020 &ndash; 2021</div><div>Functional ecology in coral reefs <span class="note">(4 h)</span></div></div>
+  <div class="cv-row"><div class="yr">2020 &ndash; 2021</div><div>Coral growth and coastal protection in coral reefs <span class="note">(4 h)</span></div></div>
+  <div class="cv-row"><div class="yr">2019</div><div>Diversity&ndash;habitat relationship in coral reefs <span class="note">(8 h)</span></div></div>
+  <div class="cv-row"><div class="yr">2016 &ndash; 2025</div><div>Fish distribution in French Polynesia <span class="note">(MOOC, 15 min)</span></div></div>
+
+  <h4>SUPERVISION <span class="n">6 STUDENTS</span></h4>
+  <h5>Ph.D.</h5>
+  <div class="cv-row"><div class="yr">2024</div><div><span class="role">Gaia Grasso</span> &middot; Marine biodiversity and ecosystem function of benthic habitats in a changing ocean using novel underwater imaging<br><span class="place">Supervisors: N. Teixidó, S. Comeau &amp; U. Cardini; J. Carlot (advisor)</span></div></div>
+  <h5>MSc.</h5>
+  <div class="cv-row"><div class="yr">2024</div><div><span class="role">Karla Abril Hernández Ramírez</span> &middot; Understanding ocean acidification effects on coastal marine ecosystems</div></div>
+  <div class="cv-row"><div class="yr">2023</div><div><span class="role">Romane Torchy</span> &middot; Benthic functioning in the face of global change, a meta-analysis</div></div>
+  <div class="cv-row"><div class="yr">2021</div><div><span class="role">Cyril Hautecoeur</span> &middot; Lack of vertical accretion capacity to keep up with future sea-level rise</div></div>
+  <div class="cv-row"><div class="yr">2019</div><div><span class="role">Martin Alessandrini &amp; Hmeniko Tourancheau</span> &middot; Growth of 3 coral species (<em>A. hyacinthus</em>, <em>P. verrucosa</em>, <em>P. lutea</em>) under climate change</div></div>
+
+  <h4>TALKS <span class="n">14 CONTRIBUTED &middot; 5 INVITED</span></h4>
+  <h5>Invited talks</h5>
+  <div class="cv-row"><div class="yr">2025</div><div>Functional shifts in Mediterranean fish communities over the past two decades<br><span class="place">IEO Baleares, Palma, Spain</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Ecological trait erosion in the Mediterranean Sea due to mass mortality events<br><span class="place">LOV, Villefranche-sur-Mer, France</span></div></div>
+  <div class="cv-row"><div class="yr">2022</div><div>Benthic functioning in the face of global changes<br><span class="place">MEDAS Center, Ischia, Italy &middot; CRIOBE, Perpignan, France</span></div></div>
+  <div class="cv-row"><div class="yr">2020</div><div>Coastal protection: how to define scenarios of coastal protection for a reef island<br><span class="place">IEO Baleares, Palma, Spain</span></div></div>
+  <h5>Contributed talks</h5>
+  <div class="cv-row"><div class="yr">2026</div><div>Shifts in benthic trait diversity and ecosystem functioning at natural CO<sub>2</sub> vents <span class="note">(Teixidó N. et al.)</span><br><span class="place">6th International Symposium on the Ocean in a High-CO<sub>2</sub> World, Wellington, New Zealand</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div>Two decades of fish community change reshape biogeochemical functioning <span class="note">(Carlot J. et al.)</span><br><span class="place">World Conference on Marine Biodiversity, Bruges, Belgium</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div>Context-dependent biodiversity change&ndash;pressure relationships across European seas <span class="note">(Gran A. et al., presented as first author)</span><br><span class="place">World Conference on Marine Biodiversity, Bruges, Belgium</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div>A collaborative database of coralligenous community species <span class="note">(Campanini C. et al.)</span><br><span class="place">World Conference on Marine Biodiversity, Bruges, Belgium</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Species trait impairment in the Mediterranean Sea following mortality events <span class="note">(Carlot J. et al.)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Shallow temperate reefs <span class="note">(Carlot J. et al., session co-chair)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Coral populations naturally occur in high pCO<sub>2</sub> environments on the coast of Ischia <span class="note">(Teixidó N. et al.)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Crustose coralline algae contribution to coral reef carbonate production <span class="note">(Comeau S. et al.)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>T-MEDNet: a collaborative network to track mass mortality events in the Mediterranean Sea <span class="note">(Ponti M. et al.)</span><br><span class="place">8th European Conference on Scientific Diving, Heraklion, Greece</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>A window to the future: field research at unique CO<sub>2</sub> vents along the coast of Ischia <span class="note">(Teixidó N. et al.)</span><br><span class="place">8th European Conference on Scientific Diving, Heraklion, Greece</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div>Exploring the mechanisms of emergent community shifts along a CO<sub>2</sub> gradient <span class="note">(Palmisciano M. et al.)</span><br><span class="place">Western Society of Naturalists, Monterey, California</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div>From macrophyte collapses to global environmental change mitigation agents <span class="note">(Boada J. et al.)</span><br><span class="place">International Temperate Reefs Symposium, Hobart, Tasmania</span></div></div>
+  <div class="cv-row"><div class="yr">2022</div><div>Coral structural complexity loss highly threatens the coastline <span class="note">(Carlot J. et al.)</span><br><span class="place">International Coral Reef Symposium, Bremen, Germany</span></div></div>
+  <div class="cv-row"><div class="yr">2021</div><div>Coral carbonate production from juveniles assists coral reef recovery <span class="note">(Carlot J. et al.)</span><br><span class="place">International Coral Reef Symposium, Bremen, Germany</span></div></div>
+
+  <h4>PUBLICATIONS <span class="n">22 PEER-REVIEWED</span></h4>
+  <p style="font-size: 15px">The full list, with PDFs, code and live citation counts, is on the <a href="publications.html" style="color:#2a78d6; text-decoration:none">publications page</a>.</p>
+  <h5>Manuscripts in review</h5>
+  <div class="cv-row"><div class="yr">Submitted</div><div>Graf I. et al. Community responses outweigh species-level plasticity in shaping future Mediterranean marine forests <span class="note">(New Phytologist)</span></div></div>
+  <div class="cv-row"><div class="yr">Submitted</div><div>Garrabou J. et al. Accelerating marine mass mortality events in a global change hotspot <span class="note">(One Earth)</span></div></div>
+  <div class="cv-row"><div class="yr">Submitted</div><div><b>Carlot J.</b> et al. Two decades of fish community change reshape biogeochemical functioning in the Mediterranean Sea <span class="note">(Global Ecology and Biogeography)</span></div></div>
+  <div class="cv-row"><div class="yr">Submitted</div><div>Hudson C. J. et al. Temperature structures sea urchin responses to ocean acidification across global CO<sub>2</sub> seeps <span class="note">(Global Change Biology)</span></div></div>
+  <div class="cv-row"><div class="yr">Submitted</div><div>Palmisciano M. et al. Exploring the mechanisms of emergent community shifts along a natural carbon dioxide gradient <span class="note">(Marine Ecology Progress Series)</span></div></div>
+  <div class="cv-row"><div class="yr">Submitted</div><div>Cardesse O. et al. Habitat-scale coral reef roughness over large scales <span class="note">(Coral Reefs)</span></div></div>
+  <div class="cv-row"><div class="yr">Submitted</div><div>Marie-Luce L. et al. Toward robust benchmarks for reef fish biomass: dual baselines and uncertainty-aware indices <span class="note">(Journal of Applied Ecology)</span></div></div>
+  <div class="cv-row"><div class="yr">Submitted</div><div>Parravicini V. et al. Coral reef ecosystem functions in a human-dominated world <span class="note">(Nature Communications)</span></div></div>
+
+  <h4>OUTREACH <span class="n">9 CONTENTS</span></h4>
+  <h5>Radio, podcasts &amp; videos</h5>
+  <div class="cv-row"><div class="yr">2026</div><div><a href="https://open.spotify.com/episode/6XPArtG7Cgv1EWEPrgT0n7">Observadores del Mar, Radio Calvià</a> &middot; Climate change and its consequences <span class="note">(Spanish)</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><a href="https://b-useful.eu/meetthescientist-jeremy-carlot-joins-b-useful-as-postdoctoral-researcher/">B-USEFUL, Meet the Scientist</a> <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2018</div><div><a href="https://www.youtube.com/watch?v=Pr39lnkdqn0">Reef Services, System Factory</a> <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2015</div><div><a href="https://www.youtube.com/watch?v=as0Y-c3f9gA">Riverine Input, Surfrider Foundation Europe</a> <span class="note">(French voice-over)</span></div></div>
+  <h5>Press, newsletters &amp; blogs</h5>
+  <div class="cv-row"><div class="yr">2026</div><div><a href="https://www.icm.csic.es/en/news/ocean-acidification-simplifies-biodiversity">ICM Newsletter</a> &middot; Ocean acidification simplifies biodiversity in Mediterranean coastal ecosystems <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div><a href="https://industriaspesqueras.com/noticia-89244">Industrias Pesqueras</a> &middot; Acidification is reducing biodiversity in the Mediterranean <span class="note">(Spanish)</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><a href="https://go.nature.com/4b7CYAq">Springer Research Communities, Behind the Paper</a> &middot; Vulnerability of benthic trait diversity following mass mortality events <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div><a href="https://www.ird.fr/recifs-coralliens-en-bonne-sante-de-veritables-brise-lames-naturels">IRD Newsletter</a> &middot; Healthy coral reefs as natural breakwaters <span class="note">(French)</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div><a href="https://boukan.press/polynesie-francaise-des-recifs-bien-portants-plus-efficaces">Boukan</a> &middot; French Polynesia: healthier reefs protect coasts better <span class="note">(French)</span></div></div>
+
+  <h4>EDITORIAL &amp; REVIEWING <span class="n">46 REVIEWS</span></h4>
+  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Guest editor</span>, Frontiers in Marine Science &middot; Research Topic "Adaptation and Evolution in Marine Extreme Environments"</div></div>
+  <div class="cv-row"><div class="yr">Reviewer</div><div style="font-size:14px; color:#52514e">Nature (1), Nature Ecology &amp; Evolution (1), npj Ocean Sustainability (1), Global Change Biology (6), Communications Earth &amp; Environment (1), Functional Ecology (5), Coral Reefs (8), Scientific Reports (2), PeerJ (1), Ecological Indicators (1), Marine Ecology Progress Series (2), EGUsphere (2), Marine Biology (5), Royal Society Open Science (2), Biology Letters (1), JEMBE (1), Hydrobiologia (1), Restoration Ecology (2), Journal of Phycology (1), Journal of Animal Ecology (1), Ecography (1)</div></div>
+
+  <h4>SKILLS</h4>
+  <div class="cv-grid">
+    <div><h5>Field &amp; laboratory</h5>
+      Coral growth (in situ staining, alkalinity anomaly)<br>Benthic complexity (chain-tape, photogrammetry)<br>Underwater ID of corals and reef fishes<br>Benthic metabolism incubations<br>Reef fish capture</div>
+    <div><h5>Statistics (R)</h5>
+      Bayesian, frequentist &amp; descriptive statistics<br>GLM, GAM, mixed models<br>Multivariate analysis (NMDS, PCA, PCoA, RDA&hellip;)<br>Large databases, GitHub &amp; GitLab reproducibility</div>
+    <div><h5>GIS &amp; image analysis</h5>
+      ArcGIS &amp; QGIS: spatial analysis, cumulative impacts<br>Agisoft Metashape &amp; ImageJ: photogrammetry, length, surface &amp; volume</div>
+    <div><h5>Languages &amp; diving</h5>
+      French (native), English &amp; Spanish (fluent), Catalan &amp; Italian (basic)<br>Professional diver CAH1B, N3 FFESSM (CMAS***), ~900 dives<br>Driving &amp; boating licences</div>
+  </div>
+
+  <h4>MAIN COLLABORATORS <span class="n">18</span></h4>
+  <div class="cv-grid" style="font-size:14px; color:#52514e">
+    <div><b>Valeriano Parravicini</b> &middot; CRIOBE, France</div>
+    <div><b>Núria Teixidó</b> &middot; SZN, Italy</div>
+    <div><b>Joaquim Garrabou</b> &middot; ICM&ndash;CSIC, Spain</div>
+    <div><b>Steeve Comeau</b> &middot; LOV, France</div>
+    <div><b>José Manuel Hidalgo</b> &middot; IEO, Spain</div>
+    <div><b>Jean-Pierre Gattuso</b> &middot; LOV, France</div>
+    <div><b>Catriona L. Hurd</b> &middot; IMAS, Australia</div>
+    <div><b>Mehdi Adjeroud</b> &middot; IRD, France</div>
+    <div><b>Ulisse Cardini</b> &middot; SZN, Italy</div>
+    <div><b>Hunter S. Lenihan</b> &middot; UCSB, USA</div>
+    <div><b>Alessio Rovere</b> &middot; Ca' Foscari University, Italy</div>
+    <div><b>Simon J. Brandl</b> &middot; UTMSI, USA</div>
+    <div><b>Jordan M. Casey</b> &middot; UTMSI, USA</div>
+    <div><b>Héloïse Rouzé</b> &middot; University of Guam, USA</div>
+    <div><b>Mohsen Kayal</b> &middot; IRD, New Caledonia</div>
+    <div><b>Laetitia Hédouin</b> &middot; CRIOBE, French Polynesia</div>
+    <div><b>Nicolas Casajus</b> &middot; CESAB, France</div>
+    <div><b>Diego R. Barneche</b> &middot; AIMS, Australia</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+
+  <a href="#" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+	  <a href="https://bsky.app/profile/jerem-carlot.bsky.social"> <img border="0" alt="Bluesky" src="Icons/bluesky.png" width="30" height="30" class="button"></a>
+	  <a href="https://github.com/JayCrlt"> <img border="0" alt="Github" src="Icons/GitHub.png" width="30" height="30" class="button"></a>
+	  <a href="https://www.researchgate.net/profile/Jeremy_Carlot"> <img border="0" alt="ResearchGate" src="Icons/Researchgate.png" width="30" height="30" class="button"></a>
+	  <a href="https://scholar.google.com/citations?user=Eotjew0AAAAJ&hl=en&oi=sra"> <img border="0" alt="ResearchGate" src="Icons/GoogleScholar.png" width="30" height="30" class="button"></a>
+	  <a href="http://orcid.org/0000-0003-0887-8005"> <img border="0" alt="ORCID" src="Icons/ORCID.png" width="30" height="30" class="button"> </a> 
+	  <p style: align="center" style="line-height:.2"><font size="1" color = "black"><h1>JÉRÉMY CARLOT</h1></font>
+	  <h2><font size="1" color = "black">MARINE BENTHIC ECOLOGIST FELLOW</font></h2></p>
+	</div> </footer>
+<script>
+//Abstract
+function toggleAbstract(id, link) {
+  var abs = document.getElementById(id);
+  if (abs.classList.contains("expanded")) {
+    abs.classList.remove("expanded");
+    link.innerHTML = "Read more...";
+  } else {
+    abs.classList.add("expanded");
+    link.innerHTML = "Read less...";
+  }
+}
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;}
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else { navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");}}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {var x = document.getElementById("navDemo"); if (x.className.indexOf("w3-show") == -1) {x.className += " w3-show";
+    } else {x.className = x.className.replace(" w3-show", "");}}
+
+// Load citation JSON
+// Load citation JSON (force refresh to avoid GitHub caching)
+fetch("StatPub/citations.json?v=" + Date.now())
+  .then(r => r.json())
+  .then(citeData => {
+    document.querySelectorAll(".paper-entry").forEach(entry => {
+      const doi   = entry.dataset.doi;
+      const pubid = entry.dataset.pubid;
+      const altId = entry.dataset.altmetric;
+      const url   = entry.dataset.url;
+      //--------------------------------------------------------------------
+      // Journal link
+      //--------------------------------------------------------------------
+      const journalLink = entry.querySelector(".journal-link, .url-link");
+      if (journalLink) {
+        if (doi) {
+          journalLink.href = `https://doi.org/${doi}`;
+          journalLink.innerHTML =
+            `<img src="Icons/Journal.svg" alt="Journal" style="width:20px; height:20px; margin-right:4px;"><span><strong>Journal</strong></span>`;
+        } else if (url) {
+          journalLink.href = url;
+          journalLink.innerHTML =
+            `<img src="Icons/Journal.svg" alt="Web" style="width:20px; height:20px; margin-right:4px;"><span><strong>Web</strong></span>`;}}
+      //--------------------------------------------------------------------
+      // Lookup data for this publication in citations.json
+      //--------------------------------------------------------------------
+      const pubData = pubid
+        ? citeData.find(p => pubid.endsWith(p.pubid))
+        : null;
+      //--------------------------------------------------------------------
+      // Google Scholar citations
+      //--------------------------------------------------------------------
+      const count   = pubData?.cites ?? 0;
+      const label   = count <= 1 ? "Citation" : "Citations";
+      const citeEl  = entry.querySelector(".citations-link");
+      if (citeEl) {
+        citeEl.href =
+          `https://scholar.google.com/citations?view_op=view_citation&hl=en&user=Eotjew0AAAAJ&citation_for_view=${pubid}`;
+        citeEl.querySelector("span").innerHTML =
+          `<strong>${count} ${label}</strong>`;}
+      //--------------------------------------------------------------------
+      // Altmetric score from JSON (no API call!)
+      //--------------------------------------------------------------------
+      const altEl = entry.querySelector(".altmetric-link");
+      if (altEl) {
+        const score = pubData?.AltmetricScore ?? "N/A";
+        if (altId) {
+          altEl.href = `https://nature.altmetric.com/details/${altId}`;
+          altEl.querySelector("span").innerHTML =
+            `<strong>${score} Altmetric</strong>`;
+        } else {altEl.querySelector("span").innerHTML = `<strong>N/A</strong>`;}}});})
+  .catch(err => console.error("Error loading citations.json:", err));
+</script> </body> </html>

@@ -98,12 +98,18 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 #sstMap {width: 100%; height: auto; display: block; margin-top: 6px}
 #sstMap path.hex {stroke: #fff; stroke-width: 0.5}
 #sstMap path.hex:hover {stroke: #0b0b0b; stroke-width: 1.2}
-.map-legend {margin: 6px 0 2px 0; font-size: 12px; color: #52514e}
+.map-legend {margin: 6px 0 2px 0; font-size: 12px; color: #52514e; width: 100%; max-width: 520px}
 .map-legend .lg-row {display: flex; align-items: center}
-.map-legend .lg-row div {flex: 0 0 34px}
+.map-legend .lg-row div {flex: 1 1 0; min-width: 0}
 .map-legend i {display: block; height: 10px; margin-right: 2px}
 .map-legend .tk {color: #898781; transform: translateX(-50%); text-align: center; line-height: 1.6}
 .map-legend .ends {flex: 0 0 64px; text-align: right; padding-right: 8px; line-height: 10px}
+@media screen and (max-width: 600px) {
+  .map-legend {font-size: 10px}
+  .map-legend .ends {flex-basis: 44px; padding-right: 4px}
+  .map-legend .lg-row .ends:last-child {padding-left: 4px}
+  .chart-card {padding: 14px 12px 8px 12px}
+}
 .map-legend .lg-row .ends:last-child {text-align: left; padding: 0 0 0 6px}
 /* ---------- Latest publications cards ---------- */
 .latest-grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px}
@@ -114,6 +120,8 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 .lc-meta {font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #2a78d6}
 .lc-title {font-size: 16px; line-height: 1.4; color: #0b0b0b; margin: 6px 0 8px 0}
 .lc-auth {font-size: 13px; color: #898781; margin-top: auto}
+/* ---------- Separator between About me and Latest publications ---------- */
+.section-divider {width: 67%; height: 3px; background: #777; border-radius: 2px; margin: 0 auto 28px auto}
 </style>
 
 <body>
@@ -145,11 +153,13 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 .cv h5 {font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #52514e; margin: 18px 0 6px 0}
 .cv-row {display: grid; grid-template-columns: 90px 1fr; gap: 14px; margin-bottom: 10px; line-height: 1.5; font-size: 15px}
 .cv-row .yr {color: #898781; font-variant-numeric: tabular-nums}
-.cv-row .role {color: #0b0b0b; text-transform: uppercase; font-size: 14px; letter-spacing: .5px}
+.cv-row b, .cv p b {color: #0b0b0b}
 .cv-row .place {color: #52514e}
 .cv-row .note {font-size: 13px; color: #898781}
-.cv-row a {color: #2a78d6; text-decoration: none}
+.cv a {color: #2a78d6; text-decoration: none}
+.cv a:hover {text-decoration: underline}
 .cv-grid {display: grid; grid-template-columns: 1fr 1fr; gap: 6px 28px; font-size: 15px}
+.cv-list {font-size: 15px; line-height: 1.7; color: #52514e}
 @media screen and (max-width: 768px) {.cv-row {grid-template-columns: 1fr; gap: 0} .cv-grid {grid-template-columns: 1fr}}
 .cv-top {display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; border: 1px solid #e6e5e0; border-radius: 10px; padding: 18px 22px}
 .cv-top .figs {display: flex; gap: 32px; flex-wrap: wrap}
@@ -163,163 +173,188 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   <div class="w3-display-middle">
     <span class="w3-xxlarge w3-text-white w3-wide">CURRICULUM VITAE</span> </div> </div>
 
+<!--
+  HOW THIS PAGE STAYS UP TO DATE
+  - Paper count, citations and h-index come live from StatPub/citations.json and StatPub/scholar_profile.json.
+  - Every number in a section title (students, talks, projects, journals...) is counted automatically
+    from the rows below it: add or remove a row and the number follows.
+  - Funding total = sum of the data-eur values on the funding rows (leave data-eur out for renounced grants).
+-->
+
 <div class="w3-content w3-container w3-padding-64 cv" id="cv">
 
   <div class="cv-top">
     <div class="figs">
-      <div><b>22</b><span>Peer-reviewed papers</span></div>
-      <div><b>~376k€</b><span>Funding secured</span></div>
-      <div><b>6</b><span>Students supervised</span></div>
-      <div><b>~900</b><span>Scientific dives</span></div>
+      <div><b id="cvPapers">&ndash;</b><span>Peer-reviewed papers</span></div>
+      <div><b id="cvCites">&ndash;</b><span>Citations</span></div>
+      <div><b id="cvFunding">&ndash;</b><span>Funding secured</span></div>
+      <div><b id="cvStudents">&ndash;</b><span>Students supervised</span></div>
     </div>
     <a href="Papers/CARLOT_CV.pdf" class="see-all"><i class="fa fa-download"></i> DOWNLOAD PDF</a>
   </div>
 
   <h4>PROFILE</h4>
-  <p style="text-align: justify; font-size: 15px">Born on the French west coast, I grew up close to the ocean. During my bachelor's degree I visited reef island ecosystems and saw how vulnerable they are to climate change, which led me to a Ph.D. on coastal protection in French Polynesia, focused on benthic communities and how they function. Today I quantify shifts in ecosystem functioning under global change, combining fieldwork, experiments and advanced statistical modelling across spatial scales. I also love data analysis and visualisation, and using them to communicate complex findings clearly.</p>
-
-  <h4>CURRENT POSITION</h4>
-  <div class="cv-row"><div class="yr">2026 &ndash; now</div><div><span class="role">Marie Skłodowska-Curie Postdoctoral Fellow</span><br>
-    <span class="place">Mediterranean shifts in seaweed and seagrass functioning &middot; Institut de Ciències del Mar (ICM&ndash;CSIC), Barcelona, Spain</span></div></div>
+  <p style="text-align: justify; font-size: 15px">Born on the French west coast, my childhood connection to the ocean fuelled my dedication to marine environments. During my bachelor's degree, I had the opportunity to visit reef island ecosystems, where I sadly witnessed their vulnerability to climate change. I then pursued a Ph.D. on coastal protection in French Polynesia, focusing on benthic functionality and communities. My main interest lies in quantifying shifts in ecosystem functioning due to global change, through a combination of fieldwork, experiments and advanced statistical modelling across multiple spatial scales. I also enjoy data analysis and visualisation, aiming to communicate complex findings in clear and accessible ways.</p>
 
   <h4>PROFESSIONAL EXPERIENCE</h4>
-  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Postdoctoral Fellow</span><br>
-    <span class="place">Marine ecosystem functions and cumulative impact assessment across European seas &middot; Spanish Institute of Oceanography, Centre Oceanogràfic de les Balears (IEO&ndash;COB), Spain</span></div></div>
-  <div class="cv-row"><div class="yr">2022</div><div><span class="role">Postdoctoral Fellow</span><br>
-    <span class="place">Marine functional diversity in the face of global changes &middot; Laboratoire d'Océanographie de Villefranche (LOV), France &amp; Stazione Zoologica di Napoli (SZN), Italy</span></div></div>
-  <div class="cv-row"><div class="yr">2021</div><div><span class="role">Research Fellow</span><br>
-    <span class="place">Spatio-temporal variability of coral reefs at the global scale &middot; Fondation pour la Recherche sur la Biodiversité (FRB), France</span></div></div>
-  <div class="cv-row"><div class="yr">2017</div><div><span class="role">Investigator</span><br>
-    <span class="place">Marine litter quantification and water quality &middot; Surfrider Foundation Europe (SFE), France</span></div></div>
+  <div class="cv-row"><div class="yr">2026 &ndash; now</div><div><b>Postdoctoral Fellow</b> in Mediterranean shifts in seaweed and seagrass functioning<br>
+    <span class="place">Institut de Ciències del Mar &ndash; Consejo Superior de Investigaciones Científicas (ICM&ndash;CSIC), Spain</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><b>Postdoctoral Fellow</b> in Marine ecosystem functions and cumulative impact assessment across European seas<br>
+    <span class="place">Spanish Institute of Oceanography &ndash; Centre Oceanogràfic de les Balears (IEO&ndash;COB), Spain</span></div></div>
+  <div class="cv-row"><div class="yr">2022</div><div><b>Postdoctoral Fellow</b> in Marine functional diversity in the face of global changes<br>
+    <span class="place">Laboratoire d'Océanographie de Villefranche (LOV) &amp; Stazione Zoologica di Napoli (SZN), France &amp; Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2021</div><div><b>Research Fellow</b> in Spatio-temporal variability of coral reefs at the global scale: causalities, idiosyncrasies and implications for ecological indicators<br>
+    <span class="place">Fondation pour la Recherche sur la Biodiversité (FRB), France</span></div></div>
+  <div class="cv-row"><div class="yr">2017</div><div><b>Investigator</b> in Marine litter quantification and water quality<br>
+    <span class="place">Surfrider Foundation Europe (SFE), France</span></div></div>
 
   <h4>EDUCATION</h4>
-  <div class="cv-row"><div class="yr">2021</div><div><span class="role">Ph.D.</span> &middot; Coral reef accretion, sea-level rise and wave energy in the face of global changes<br>
-    <span class="place">Paris Sciences et Lettres (PSL) University, hosted at CRIOBE, French Polynesia &amp; France</span></div></div>
-  <div class="cv-row"><div class="yr">2016</div><div><span class="role">MSc.</span> &middot; Biodiversity, management and environment on coral reefs <span class="note">(great honours, rank 6/17)</span><br>
-    <span class="place">École Pratique des Hautes Études (EPHE), Paris, France</span></div></div>
-  <div class="cv-row"><div class="yr">2015</div><div><span class="role">MSc.</span> &middot; Ecosystem approach in fisheries <span class="note">(great honours, rank 5/23)</span><br>
-    <span class="place">Agrocampus-Ouest, Rennes, France</span></div></div>
+  <div class="cv-row"><div class="yr">2021</div><div><b>Ph.D. on Coral reef accretion, sea-level rise and wave energy in the face of global changes</b><br>
+    <span class="place">Paris Sciences et Lettres (PSL) University, hosted at the Centre de Recherches Insulaires et Observatoire de l'Environnement (CRIOBE), French Polynesia &amp; France</span></div></div>
+  <div class="cv-row"><div class="yr">2016</div><div><b>MSc. in Biodiversity, management and environment on coral reefs</b> <span class="note">(great honours, rank 6/17)</span><br>
+    <span class="place">École Pratique des Hautes Études (EPHE), Paris, France</span><br>
+    <span class="note">Coral reef biodiversity, evolution of biodiversity, fishery &amp; coral reef management</span></div></div>
+  <div class="cv-row"><div class="yr">2015</div><div><b>MSc. in Ecosystem approach in fisheries</b> <span class="note">(great honours, rank 5/23)</span><br>
+    <span class="place">École Nationale Supérieure d'Agrocampus-Ouest, Rennes, France</span><br>
+    <span class="note">Marine biology, fisheries management, Bayesian statistics</span></div></div>
   <h5>Additional training</h5>
   <div class="cv-row"><div class="yr">2024</div><div>Functional trait diversity: calculating and interpreting a key component of biodiversity <span class="note">(16 h)</span><br><span class="place">Transmitting Science, remote</span></div></div>
-  <div class="cv-row"><div class="yr">2022</div><div>Biodiversity knowledge synthesis: meta-analyses and systematic reviews <span class="note">(35 h)</span><br><span class="place">CESAB, Montpellier, France</span></div></div>
+  <div class="cv-row"><div class="yr">2022</div><div>Biodiversity knowledge synthesis: an introduction to meta-analyses and systematic reviews <span class="note">(35 h)</span><br><span class="place">Centre for Biodiversity Synthesis and Analysis (CESAB), Montpellier, France</span></div></div>
 
-  <h4>FUNDING &amp; AWARDS <span class="n">TOTAL ~376,590€</span></h4>
+  <h4>FUNDING &amp; AWARDS <span class="n" id="nFunding"></span></h4>
+  <div id="fundingRows">
   <h5>Fellowships &amp; grants</h5>
-  <div class="cv-row"><div class="yr">2026</div><div><span class="role">Marie Skłodowska-Curie Postdoctoral Fellowship</span> <span class="note">[~209,915€]</span><br>
-    <span class="place">HORIZON-MSCA-2025-PF &middot; Proposal 101266997, Mediterranean shifts in seaweed and seagrass functioning</span></div></div>
-  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Beatriu de Pinós Postdoctoral Fellowship</span> <span class="note">[~161,500€]</span><br>
-    <span class="place">Proposal 2024BP00106, Mediterranean shifts in macrophyte functioning</span></div></div>
-  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Vicenç Mut Postdoctoral Fellowship</span> <span class="note">[~137,950€, renounced]</span><br>
-    <span class="place">Proposal 2024_44, Unraveling functioning shifts in rhodolith beds under global change</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div><span class="role">EMBRC Italy Grant, Excellent Research Project</span> <span class="note">[~3,675€]</span><br>
-    <span class="place">Proposal 30720, Synergies of benthic communities to ocean acidification</span></div></div>
+  <div class="cv-row" data-eur="209915"><div class="yr">2026</div><div><b>Marie Skłodowska-Curie</b> Postdoctoral Fellowship (HORIZON-MSCA-2025-PF) &middot; <b>~209,915 €</b><br>
+    <span class="place"><a href="https://e.pcloud.link/publink/show?code=XZd0X3ZYvnnjJOPjDJN3VKejDt86QKfCggk">Proposal 101266997</a> &ndash; Mediterranean shifts in seaweed and seagrass functioning</span></div></div>
+  <div class="cv-row" data-eur="161500"><div class="yr">2025</div><div><b>Beatriu de Pinós</b> Postdoctoral Fellowship 2024 &middot; <b>~161,500 €</b><br>
+    <span class="place"><a href="https://e.pcloud.link/publink/show?code=XZgRK6ZrtpGCPjXLVpPhW7zi242jmYwf3a7">Proposal 2024BP00106</a> &ndash; Mediterranean shifts in macrophyte functioning</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><b>Vicenç Mut</b> Postdoctoral Fellowship 2024 &middot; <b>~137,950 € &ndash; renounced</b><br>
+    <span class="place"><a href="https://e.pcloud.link/publink/show?code=XZILVEZiBHRf7l3HLYxIVmOeGa087JBo5Rk">Proposal 2024_44</a> &ndash; Unraveling functioning shifts in rhodolith beds under global change</span></div></div>
+  <div class="cv-row" data-eur="3675"><div class="yr">2024</div><div><b>European Marine Biological Resource Centre, Italy</b> Grant &middot; <b>~3,675 €</b> &ndash; Excellent Research Project<br>
+    <span class="place"><a href="https://e.pcloud.link/publink/show?code=XZCRqtZ14I2w0flrcVgd2Qb8nNQ642HYarX">Proposal 30720</a> &ndash; Synergies of benthic communities to ocean acidification</span></div></div>
   <h5>Scholarships &amp; prizes</h5>
-  <div class="cv-row"><div class="yr">2024</div><div><span class="role">Institut de Ciències del Mar Award</span> <span class="note">[1,000€]</span><br>
-    <span class="place">Top 5 highest-quality Expressions of Interest, MSCA &amp; UN Ocean Decade training, Barcelona</span></div></div>
-  <div class="cv-row"><div class="yr">2016</div><div><span class="role">Société Française d'Ichtyologie scholarship</span> <span class="note">[500€]</span><br>
-    <span class="place">Top 5 best student abstract, fish distribution in French Polynesia, Marseille</span></div></div>
+  <div class="cv-row" data-eur="1000"><div class="yr">2024</div><div><a href="https://e.pcloud.link/publink/show?code=XZRRqtZaCpjQlSLN5434V4LwQL6sHTPLouk">Institut de Ciències del Mar Award</a> &middot; <b>1,000 €</b> &ndash; Top 5 highest-quality Expressions of Interest<br>
+    <span class="place">Training to write an MSCA proposal &amp; UN Ocean Decade, Barcelona, Spain</span></div></div>
+  <div class="cv-row" data-eur="500"><div class="yr">2016</div><div><a href="https://e.pcloud.link/publink/show?code=XZw1EtZ6M7weSK86eYYyIkiYNThN8AVWlly">Société Française d'Ichtyologie scholarship</a> &middot; <b>500 €</b> &ndash; Top 5 best student abstract<br>
+    <span class="place">Study of the fish distribution in French Polynesia, Marseille, France</span></div></div>
+  </div>
 
-  <h4>RESEARCH PROJECTS <span class="n">6 PROJECTS &middot; 2 AS LEADER</span></h4>
+  <h4>RESEARCH PROJECTS <span class="n" id="nProjects"></span></h4>
   <h5>As principal investigator</h5>
-  <div class="cv-row"><div class="yr">2026</div><div><span class="role">MEDSHIFTS</span> &middot; Mediterranean shifts in macrophyte functioning <span class="note">(~371,415€)</span><br><span class="place">PIs: J. Carlot &amp; J. Garrabou</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div><span class="role">MEDSYNERGIES</span> &middot; Synergies of benthic communities to ocean acidification <span class="note">(~3,675€)</span><br><span class="place">PIs: J. Carlot &amp; N. Teixidó</span></div></div>
+  <div id="projLead">
+  <div class="cv-row"><div class="yr">2026</div><div><a href="https://cordis.europa.eu/project/id/101266997"><b>MEDSHIFTS</b></a> &ndash; Mediterranean shifts in macrophyte functioning <span class="note">(~161,500 € + ~209,915 €)</span><br>
+    <span class="place">PIs: <b>J. Carlot</b> &amp; J. Garrabou</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div><a href="https://e.pcloud.link/publink/show?code=XZCRqtZ14I2w0flrcVgd2Qb8nNQ642HYarX"><b>MEDSYNERGIES</b></a> &ndash; Synergies of benthic communities to ocean acidification <span class="note">(~3,675 €)</span><br>
+    <span class="place">PIs: <b>J. Carlot</b> &amp; N. Teixidó</span></div></div>
+  </div>
   <h5>As scientific collaborator</h5>
-  <div class="cv-row"><div class="yr">2024</div><div><span class="role">B-USEFUL</span> &middot; User-oriented solutions for improved monitoring &amp; management of biodiversity and ecosystem services in vulnerable European seas <span class="note">(~4.6M€)</span><br><span class="place">PI: M. Lindegren</span></div></div>
-  <div class="cv-row"><div class="yr">2021</div><div><span class="role">4OCEANS</span> &middot; Predicting future oceans under climate change <span class="note">(~745,000€)</span><br><span class="place">PI: N. Teixidó</span></div></div>
-  <div class="cv-row"><div class="yr">2020</div><div><span class="role">SCORE-REEF</span> &middot; Spatio-temporal variability of coral reefs at the global scale <span class="note">(~220,000€)</span><br><span class="place">PIs: M. Adjeroud &amp; V. Parravicini</span></div></div>
-  <div class="cv-row"><div class="yr">2018</div><div><span class="role">REEF SERVICES</span> &middot; Consequences of global warming on coral reefs and the services they provide <span class="note">(~800,000€)</span><br><span class="place">PI: V. Parravicini</span></div></div>
+  <div id="projCollab">
+  <div class="cv-row"><div class="yr">2024</div><div><a href="https://cordis.europa.eu/project/id/101059823/results"><b>B-USEFUL</b></a> &ndash; User-oriented solutions for improved monitoring &amp; management of biodiversity &amp; ecosystem services in vulnerable European seas <span class="note">(~4,607,000 €)</span><br>
+    <span class="place">PI: M. Lindegren</span></div></div>
+  <div class="cv-row"><div class="yr">2021</div><div><a href="https://www.enseignementsup-recherche.gouv.fr/en/make-our-planet-great-again-presentation-18-first-researchers-47180"><b>4OCEANS</b></a> &ndash; Predicting future oceans under climate change <span class="note">(~745,000 €)</span><br>
+    <span class="place">PI: N. Teixidó</span></div></div>
+  <div class="cv-row"><div class="yr">2020</div><div><a href="https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/score-reef/"><b>SCORE-REEF</b></a> &ndash; Spatio-temporal variability of coral reefs at the global scale: causalities, idiosyncrasies and implications for ecological indicators <span class="note">(~220,000 €)</span><br>
+    <span class="place">PIs: M. Adjeroud &amp; V. Parravicini</span></div></div>
+  <div class="cv-row"><div class="yr">2018</div><div><a href="https://fondation.bnpparibas/en/environment/programme/climate-biodiversity-initiative/the-laureate-projects/"><b>REEF SERVICES</b></a> &ndash; Measuring and predicting the consequences of global warming on coral reefs and the services they provide <span class="note">(~800,000 €)</span><br>
+    <span class="place">PI: V. Parravicini</span></div></div>
+  </div>
 
-  <h4>TEACHING <span class="n">52 HOURS</span></h4>
-  <h5>Temperate marine benthic ecology (SZN)</h5>
+  <h4>PUBLICATIONS <span class="n">GOOGLE SCHOLAR, UPDATED DAILY</span></h4>
+  <p style="font-size: 15px"><b id="cvPapers2">&ndash;</b> peer-reviewed papers &middot; <b id="cvCites2">&ndash;</b> citations &middot; h-index <b id="cvH">&ndash;</b>
+    &middot; <a href="https://scholar.google.com/citations?user=Eotjew0AAAAJ&amp;hl=en">Google Scholar profile</a><br>
+    The full list, with PDFs, code and live citation and Altmetric counts, is on the <a href="publications.html">publications page</a>.</p>
+  <div class="cv-row"><div class="yr">2026</div><div><b>Journal cover</b> &ndash; <em>Ecology Letters</em> (Volume 29, Issue 4), for <a href="https://doi.org/10.1111/ele.70376">Unravelling marine benthic functioning shifts under ocean acidification</a> &middot; <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/ele.70371">see the cover</a></div></div>
+
+  <h4>TEACHING <span class="n" id="nCourses"></span></h4>
+  <div id="courses">
+  <h5><b>Course lecturer</b> &middot; Temperate marine benthic ecology (SZN)</h5>
   <div class="cv-row"><div class="yr">2025</div><div>Benthic physiology &amp; processes: from field to data analysis <span class="note">(8 h, summer school)</span></div></div>
-  <h5>Reproducible science &amp; statistics (CNRS &middot; CESAB &middot; CSIC &middot; SZN)</h5>
-  <div class="cv-row"><div class="yr">2025</div><div>GitHub &amp; Markdown: core tools for your research workflow <span class="note">(4 h, summer school)</span></div></div>
+  <h5><b>Course lecturer</b> &middot; Reproducible science &amp; statistics (CNRS &middot; CESAB &middot; CSIC &middot; SZN)</h5>
   <div class="cv-row"><div class="yr">2025</div><div>Integrate Zotero with Obsidian <span class="note">(1 h, lab on-demand)</span></div></div>
-  <div class="cv-row"><div class="yr">2023, 2025</div><div>How to do reproducible science? The GitHub endeavour <span class="note">(4 h, lab on-demand)</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div>GitHub &amp; Markdown: core tools for your research workflow <span class="note">(4 h, summer school)</span></div></div>
   <div class="cv-row"><div class="yr">2024</div><div>The use of Bayesian statistics in ecology <span class="note">(1 h, lab on-demand)</span></div></div>
+  <div class="cv-row"><div class="yr">2023, 2025</div><div>How to do reproducible science? The GitHub endeavour <span class="note">(4 h, lab on-demand)</span></div></div>
   <div class="cv-row"><div class="yr">2023</div><div>A fully reproducible workflow for meta-analyses in R <span class="note">(4 h, lab on-demand)</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div>Preliminary results from a meta-analysis using natural analogs <span class="note">(1 h, CESAB)</span></div></div>
-  <h5>Coral reefs, MSc courses (EPHE)</h5>
+  <div class="cv-row"><div class="yr">2023</div><div>Preliminary results from a meta-analysis using natural analogs <span class="note">(1 h, CESAB training)</span></div></div>
+  <h5><b>University lecturer</b> &middot; Coral reefs, MSc courses (EPHE)</h5>
   <div class="cv-row"><div class="yr">2021 &ndash; 2025</div><div>Coastal protection and reef functioning <span class="note">(MOOC, 45 min)</span></div></div>
   <div class="cv-row"><div class="yr">2020 &ndash; 2021</div><div>Functional ecology in coral reefs <span class="note">(4 h)</span></div></div>
   <div class="cv-row"><div class="yr">2020 &ndash; 2021</div><div>Coral growth and coastal protection in coral reefs <span class="note">(4 h)</span></div></div>
   <div class="cv-row"><div class="yr">2019</div><div>Diversity&ndash;habitat relationship in coral reefs <span class="note">(8 h)</span></div></div>
   <div class="cv-row"><div class="yr">2016 &ndash; 2025</div><div>Fish distribution in French Polynesia <span class="note">(MOOC, 15 min)</span></div></div>
+  </div>
 
-  <h4>SUPERVISION <span class="n">6 STUDENTS</span></h4>
+  <h4>SUPERVISION <span class="n" id="nStudents"></span></h4>
+  <div id="students">
   <h5>Ph.D.</h5>
-  <div class="cv-row"><div class="yr">2024</div><div><span class="role">Gaia Grasso</span> &middot; Marine biodiversity and ecosystem function of benthic habitats in a changing ocean using novel underwater imaging<br><span class="place">Supervisors: N. Teixidó, S. Comeau &amp; U. Cardini; J. Carlot (advisor)</span></div></div>
+  <div class="cv-row" data-n="1"><div class="yr">2024</div><div><b>Gaia Grasso</b> &middot; Marine biodiversity and ecosystem function of benthic habitats in a changing ocean using novel underwater imaging approaches<br>
+    <span class="place">Main supervisors: N. Teixidó, S. Comeau &amp; U. Cardini; <b>J. Carlot</b> (advisor)</span></div></div>
   <h5>MSc.</h5>
-  <div class="cv-row"><div class="yr">2024</div><div><span class="role">Karla Abril Hernández Ramírez</span> &middot; Understanding ocean acidification effects on coastal marine ecosystems</div></div>
-  <div class="cv-row"><div class="yr">2023</div><div><span class="role">Romane Torchy</span> &middot; Benthic functioning in the face of global change, a meta-analysis</div></div>
-  <div class="cv-row"><div class="yr">2021</div><div><span class="role">Cyril Hautecoeur</span> &middot; Lack of vertical accretion capacity to keep up with future sea-level rise</div></div>
-  <div class="cv-row"><div class="yr">2019</div><div><span class="role">Martin Alessandrini &amp; Hmeniko Tourancheau</span> &middot; Growth of 3 coral species (<em>A. hyacinthus</em>, <em>P. verrucosa</em>, <em>P. lutea</em>) under climate change</div></div>
+  <div class="cv-row" data-n="1"><div class="yr">2024</div><div><b>Karla Abril Hernández Ramírez</b> &middot; Understanding ocean acidification effects on coastal marine ecosystems</div></div>
+  <div class="cv-row" data-n="1"><div class="yr">2023</div><div><b>Romane Torchy</b> &middot; Benthic functioning in the face of global change, a meta-analysis</div></div>
+  <div class="cv-row" data-n="1"><div class="yr">2021</div><div><b>Cyril Hautecoeur</b> &middot; Lack of vertical accretion capacity to keep up with future sea-level rise</div></div>
+  <div class="cv-row" data-n="2"><div class="yr">2019</div><div><b>Martin Alessandrini</b> &amp; <b>Hmeniko Tourancheau</b> &middot; Growth of 3 coral species (<em>A. hyacinthus</em>, <em>P. verrucosa</em> and <em>P. lutea</em>) in a context of climate change</div></div>
+  </div>
 
-  <h4>TALKS <span class="n">14 CONTRIBUTED &middot; 5 INVITED</span></h4>
-  <h5>Invited talks</h5>
-  <div class="cv-row"><div class="yr">2025</div><div>Functional shifts in Mediterranean fish communities over the past two decades<br><span class="place">IEO Baleares, Palma, Spain</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>Ecological trait erosion in the Mediterranean Sea due to mass mortality events<br><span class="place">LOV, Villefranche-sur-Mer, France</span></div></div>
-  <div class="cv-row"><div class="yr">2022</div><div>Benthic functioning in the face of global changes<br><span class="place">MEDAS Center, Ischia, Italy &middot; CRIOBE, Perpignan, France</span></div></div>
-  <div class="cv-row"><div class="yr">2020</div><div>Coastal protection: how to define scenarios of coastal protection for a reef island<br><span class="place">IEO Baleares, Palma, Spain</span></div></div>
-  <h5>Contributed talks</h5>
-  <div class="cv-row"><div class="yr">2026</div><div>Shifts in benthic trait diversity and ecosystem functioning at natural CO<sub>2</sub> vents <span class="note">(Teixidó N. et al.)</span><br><span class="place">6th International Symposium on the Ocean in a High-CO<sub>2</sub> World, Wellington, New Zealand</span></div></div>
-  <div class="cv-row"><div class="yr">2026</div><div>Two decades of fish community change reshape biogeochemical functioning <span class="note">(Carlot J. et al.)</span><br><span class="place">World Conference on Marine Biodiversity, Bruges, Belgium</span></div></div>
-  <div class="cv-row"><div class="yr">2026</div><div>Context-dependent biodiversity change&ndash;pressure relationships across European seas <span class="note">(Gran A. et al., presented as first author)</span><br><span class="place">World Conference on Marine Biodiversity, Bruges, Belgium</span></div></div>
-  <div class="cv-row"><div class="yr">2026</div><div>A collaborative database of coralligenous community species <span class="note">(Campanini C. et al.)</span><br><span class="place">World Conference on Marine Biodiversity, Bruges, Belgium</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>Species trait impairment in the Mediterranean Sea following mortality events <span class="note">(Carlot J. et al.)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>Shallow temperate reefs <span class="note">(Carlot J. et al., session co-chair)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>Coral populations naturally occur in high pCO<sub>2</sub> environments on the coast of Ischia <span class="note">(Teixidó N. et al.)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>Crustose coralline algae contribution to coral reef carbonate production <span class="note">(Comeau S. et al.)</span><br><span class="place">European Coral Reef Symposium, Naples, Italy</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>T-MEDNet: a collaborative network to track mass mortality events in the Mediterranean Sea <span class="note">(Ponti M. et al.)</span><br><span class="place">8th European Conference on Scientific Diving, Heraklion, Greece</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>A window to the future: field research at unique CO<sub>2</sub> vents along the coast of Ischia <span class="note">(Teixidó N. et al.)</span><br><span class="place">8th European Conference on Scientific Diving, Heraklion, Greece</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div>Exploring the mechanisms of emergent community shifts along a CO<sub>2</sub> gradient <span class="note">(Palmisciano M. et al.)</span><br><span class="place">Western Society of Naturalists, Monterey, California</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div>From macrophyte collapses to global environmental change mitigation agents <span class="note">(Boada J. et al.)</span><br><span class="place">International Temperate Reefs Symposium, Hobart, Tasmania</span></div></div>
-  <div class="cv-row"><div class="yr">2022</div><div>Coral structural complexity loss highly threatens the coastline <span class="note">(Carlot J. et al.)</span><br><span class="place">International Coral Reef Symposium, Bremen, Germany</span></div></div>
-  <div class="cv-row"><div class="yr">2021</div><div>Coral carbonate production from juveniles assists coral reef recovery <span class="note">(Carlot J. et al.)</span><br><span class="place">International Coral Reef Symposium, Bremen, Germany</span></div></div>
+  <h4>CONTRIBUTED TALKS <span class="n" id="nTalks"></span></h4>
+  <div id="talks">
+  <div class="cv-row"><div class="yr">2026</div><div>Teixidó N. et al. Shifts in benthic trait diversity and ecosystem functioning at natural CO<sub>2</sub> vents<br><span class="place">6th International Symposium on the Ocean in a High-CO<sub>2</sub> World, Wellington, New Zealand</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div>Gran A. et al. Context-dependent biodiversity change&ndash;pressure relationships across European seas <b>(presented as first author)</b><br><span class="place">World Conference on Marine Biodiversity (WCMB), Bruges, Belgium</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div><b>Carlot J.</b> et al. Two decades of fish community change reshape biogeochemical functioning<br><span class="place">World Conference on Marine Biodiversity (WCMB), Bruges, Belgium</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div>Campanini C. et al. A collaborative database of coralligenous community species<br><span class="place">World Conference on Marine Biodiversity (WCMB), Bruges, Belgium</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div><b>Carlot J.</b> et al. Species trait impairment in the Mediterranean Sea following mortality events<br><span class="place">European Coral Reef Symposium (ECRS), Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div><b>Carlot J.</b> et al. Shallow temperate reefs <b>(co-chairing the session)</b><br><span class="place">European Coral Reef Symposium (ECRS), Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Teixidó N. et al. Coral populations naturally occur in high pCO<sub>2</sub> environments on the coast of Ischia<br><span class="place">European Coral Reef Symposium (ECRS), Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Comeau S. et al. Crustose coralline algae contribution to coral reef carbonate production<br><span class="place">European Coral Reef Symposium (ECRS), Naples, Italy</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Ponti M. et al. T-MEDNet: a collaborative network to track mass mortality events in the Mediterranean Sea<br><span class="place">8th European Conference on Scientific Diving (ECSD8), Heraklion, Greece</span></div></div>
+  <div class="cv-row"><div class="yr">2024</div><div>Teixidó N. et al. A window to the future: field research at unique CO<sub>2</sub> vents along the coast of Ischia (Italy)<br><span class="place">8th European Conference on Scientific Diving (ECSD8), Heraklion, Greece</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div>Palmisciano M. et al. Exploring the mechanisms of emergent community shifts along a CO<sub>2</sub> gradient<br><span class="place">Western Society of Naturalists Conference (WSNC), Monterey, California</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div>Boada J. et al. From macrophyte collapses to global environmental change mitigation agents<br><span class="place">International Temperate Reefs Symposium (ITRS), Hobart, Tasmania</span></div></div>
+  <div class="cv-row"><div class="yr">2022</div><div><b>Carlot J.</b> et al. Coral structural complexity loss highly threatens the coastline<br><span class="place">International Coral Reef Symposium (ICRS), Bremen, Germany</span></div></div>
+  <div class="cv-row"><div class="yr">2021</div><div><b>Carlot J.</b> et al. Coral carbonate production from juveniles assists coral reef recovery<br><span class="place">International Coral Reef Symposium (ICRS), Bremen, Germany</span></div></div>
+  </div>
 
-  <h4>PUBLICATIONS <span class="n">22 PEER-REVIEWED</span></h4>
-  <p style="font-size: 15px">The full list, with PDFs, code and live citation counts, is on the <a href="publications.html" style="color:#2a78d6; text-decoration:none">publications page</a>.</p>
-  <h5>Manuscripts in review</h5>
-  <div class="cv-row"><div class="yr">Submitted</div><div>Graf I. et al. Community responses outweigh species-level plasticity in shaping future Mediterranean marine forests <span class="note">(New Phytologist)</span></div></div>
-  <div class="cv-row"><div class="yr">Submitted</div><div>Garrabou J. et al. Accelerating marine mass mortality events in a global change hotspot <span class="note">(One Earth)</span></div></div>
-  <div class="cv-row"><div class="yr">Submitted</div><div><b>Carlot J.</b> et al. Two decades of fish community change reshape biogeochemical functioning in the Mediterranean Sea <span class="note">(Global Ecology and Biogeography)</span></div></div>
-  <div class="cv-row"><div class="yr">Submitted</div><div>Hudson C. J. et al. Temperature structures sea urchin responses to ocean acidification across global CO<sub>2</sub> seeps <span class="note">(Global Change Biology)</span></div></div>
-  <div class="cv-row"><div class="yr">Submitted</div><div>Palmisciano M. et al. Exploring the mechanisms of emergent community shifts along a natural carbon dioxide gradient <span class="note">(Marine Ecology Progress Series)</span></div></div>
-  <div class="cv-row"><div class="yr">Submitted</div><div>Cardesse O. et al. Habitat-scale coral reef roughness over large scales <span class="note">(Coral Reefs)</span></div></div>
-  <div class="cv-row"><div class="yr">Submitted</div><div>Marie-Luce L. et al. Toward robust benchmarks for reef fish biomass: dual baselines and uncertainty-aware indices <span class="note">(Journal of Applied Ecology)</span></div></div>
-  <div class="cv-row"><div class="yr">Submitted</div><div>Parravicini V. et al. Coral reef ecosystem functions in a human-dominated world <span class="note">(Nature Communications)</span></div></div>
+  <h4>INVITED TALKS <span class="n" id="nInvited"></span></h4>
+  <div id="invited">
+  <div class="cv-row" data-n="1"><div class="yr">2025</div><div>Functional shifts in Mediterranean fish communities over the past two decades<br><span class="place">Instituto Español de Oceanografía (IEO) de Baleares, Palma, Spain</span></div></div>
+  <div class="cv-row" data-n="1"><div class="yr">2024</div><div>Ecological trait erosion in the Mediterranean Sea due to mass mortality events<br><span class="place">Laboratoire d'Océanographie de Villefranche (LOV), Villefranche-sur-Mer, France</span></div></div>
+  <div class="cv-row" data-n="2"><div class="yr">2022</div><div>Benthic functioning in the face of global changes<br><span class="place">Marine Ecological Data Analysis and Synthesis (MEDAS) Center, Ischia, Italy &middot; CRIOBE, Perpignan, France</span></div></div>
+  <div class="cv-row" data-n="1"><div class="yr">2020</div><div>Coastal protection: how to define scenarios of coastal protection for a reef island<br><span class="place">Instituto Español de Oceanografía (IEO) de Baleares, Palma, Spain</span></div></div>
+  </div>
 
-  <h4>OUTREACH <span class="n">9 CONTENTS</span></h4>
+  <h4>OUTREACH <span class="n" id="nOutreach"></span></h4>
+  <div id="outreach">
   <h5>Radio, podcasts &amp; videos</h5>
-  <div class="cv-row"><div class="yr">2026</div><div><a href="https://open.spotify.com/episode/6XPArtG7Cgv1EWEPrgT0n7">Observadores del Mar, Radio Calvià</a> &middot; Climate change and its consequences <span class="note">(Spanish)</span></div></div>
-  <div class="cv-row"><div class="yr">2025</div><div><a href="https://b-useful.eu/meetthescientist-jeremy-carlot-joins-b-useful-as-postdoctoral-researcher/">B-USEFUL, Meet the Scientist</a> <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2018</div><div><a href="https://www.youtube.com/watch?v=Pr39lnkdqn0">Reef Services, System Factory</a> <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2015</div><div><a href="https://www.youtube.com/watch?v=as0Y-c3f9gA">Riverine Input, Surfrider Foundation Europe</a> <span class="note">(French voice-over)</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div><a href="https://open.spotify.com/episode/6XPArtG7Cgv1EWEPrgT0n7"><b>Observadores del Mar</b></a> &ndash; Interview at Radio Calvià on &laquo; Climate change and consequences &raquo; <span class="note">(Spanish)</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><a href="https://b-useful.eu/meetthescientist-jeremy-carlot-joins-b-useful-as-postdoctoral-researcher/"><b>B-USEFUL</b></a> &ndash; Meet the Scientist <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2018</div><div><a href="https://www.youtube.com/watch?v=Pr39lnkdqn0"><b>Reef Services</b></a> &ndash; System Factory <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2015</div><div><a href="https://www.youtube.com/watch?v=as0Y-c3f9gA"><b>Riverine Input</b></a> &ndash; Surfrider Foundation Europe <span class="note">(French voice-over)</span></div></div>
   <h5>Press, newsletters &amp; blogs</h5>
-  <div class="cv-row"><div class="yr">2026</div><div><a href="https://www.icm.csic.es/en/news/ocean-acidification-simplifies-biodiversity">ICM Newsletter</a> &middot; Ocean acidification simplifies biodiversity in Mediterranean coastal ecosystems <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2026</div><div><a href="https://industriaspesqueras.com/noticia-89244">Industrias Pesqueras</a> &middot; Acidification is reducing biodiversity in the Mediterranean <span class="note">(Spanish)</span></div></div>
-  <div class="cv-row"><div class="yr">2025</div><div><a href="https://go.nature.com/4b7CYAq">Springer Research Communities, Behind the Paper</a> &middot; Vulnerability of benthic trait diversity following mass mortality events <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div><a href="https://www.ird.fr/recifs-coralliens-en-bonne-sante-de-veritables-brise-lames-naturels">IRD Newsletter</a> &middot; Healthy coral reefs as natural breakwaters <span class="note">(French)</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div><a href="https://boukan.press/polynesie-francaise-des-recifs-bien-portants-plus-efficaces">Boukan</a> &middot; French Polynesia: healthier reefs protect coasts better <span class="note">(French)</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div><a href="https://www.icm.csic.es/en/news/ocean-acidification-simplifies-biodiversity-mediterranean-coastal-ecosystems-and-alters-their"><b>ICM Newsletter</b></a> &ndash; Ocean acidification simplifies biodiversity in Mediterranean coastal ecosystems and alters their functioning <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2026</div><div><a href="https://industriaspesqueras.com/noticia-89244-sec-Archivo%20IP"><b>Industrias Pesqueras</b></a> &ndash; Un estudio del CSIC constata que la acidificación está reduciendo la biodiversidad en el Mediterráneo <span class="note">(Spanish)</span></div></div>
+  <div class="cv-row"><div class="yr">2025</div><div><a href="https://go.nature.com/4b7CYAq"><b>Springer Research Communities</b></a> &ndash; Behind the Paper: Vulnerability of benthic trait diversity across the Mediterranean Sea following mass mortality events <span class="note">(English)</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div><a href="https://www.ird.fr/recifs-coralliens-en-bonne-sante-de-veritables-brise-lames-naturels"><b>IRD Newsletter</b></a> &ndash; Récifs coralliens en bonne santé : de véritables brise-lames naturels <span class="note">(French)</span></div></div>
+  <div class="cv-row"><div class="yr">2023</div><div><a href="https://boukan.press/polynesie-francaise-des-recifs-bien-portants-plus-efficaces"><b>Boukan</b></a> &ndash; Polynésie française, des récifs plus efficaces pour protéger les côtes <span class="note">(French)</span></div></div>
+  </div>
 
-  <h4>EDITORIAL &amp; REVIEWING <span class="n">46 REVIEWS</span></h4>
-  <div class="cv-row"><div class="yr">2025</div><div><span class="role">Guest editor</span>, Frontiers in Marine Science &middot; Research Topic "Adaptation and Evolution in Marine Extreme Environments"</div></div>
-  <div class="cv-row"><div class="yr">Reviewer</div><div style="font-size:14px; color:#52514e">Nature (1), Nature Ecology &amp; Evolution (1), npj Ocean Sustainability (1), Global Change Biology (6), Communications Earth &amp; Environment (1), Functional Ecology (5), Coral Reefs (8), Scientific Reports (2), PeerJ (1), Ecological Indicators (1), Marine Ecology Progress Series (2), EGUsphere (2), Marine Biology (5), Royal Society Open Science (2), Biology Letters (1), JEMBE (1), Hydrobiologia (1), Restoration Ecology (2), Journal of Phycology (1), Journal of Animal Ecology (1), Ecography (1)</div></div>
+  <h4>EDITORIAL &amp; REVIEWING <span class="n" id="nJournals"></span></h4>
+  <div class="cv-row"><div class="yr">2025</div><div><b>Guest editor</b>, <em>Frontiers in Marine Science</em> &middot; Research Topic &ldquo;Adaptation and Evolution in Marine Extreme Environments&rdquo;</div></div>
+  <div class="cv-row"><div class="yr">Reviewer</div><div class="cv-list" id="journals"><span>Nature</span>, <span>Nature Ecology &amp; Evolution</span>, <span>npj Ocean Sustainability</span>, <span>Global Change Biology</span>, <span>Communications Earth &amp; Environment</span>, <span>Functional Ecology</span>, <span>Coral Reefs</span>, <span>Scientific Reports</span>, <span>PeerJ</span>, <span>Ecological Indicators</span>, <span>Marine Ecology Progress Series</span>, <span>EGUsphere</span>, <span>Marine Biology</span>, <span>Royal Society Open Science</span>, <span>Biology Letters</span>, <span>Journal of Experimental Marine Biology and Ecology</span>, <span>Hydrobiologia</span>, <span>Restoration Ecology</span>, <span>Journal of Phycology</span>, <span>Journal of Animal Ecology</span>, <span>Ecography</span></div></div>
 
   <h4>SKILLS</h4>
   <div class="cv-grid">
-    <div><h5>Field &amp; laboratory</h5>
-      Coral growth (in situ staining, alkalinity anomaly)<br>Benthic complexity (chain-tape, photogrammetry)<br>Underwater ID of corals and reef fishes<br>Benthic metabolism incubations<br>Reef fish capture</div>
-    <div><h5>Statistics (R)</h5>
-      Bayesian, frequentist &amp; descriptive statistics<br>GLM, GAM, mixed models<br>Multivariate analysis (NMDS, PCA, PCoA, RDA&hellip;)<br>Large databases, GitHub &amp; GitLab reproducibility</div>
-    <div><h5>GIS &amp; image analysis</h5>
-      ArcGIS &amp; QGIS: spatial analysis, cumulative impacts<br>Agisoft Metashape &amp; ImageJ: photogrammetry, length, surface &amp; volume</div>
-    <div><h5>Languages &amp; diving</h5>
-      French (native), English &amp; Spanish (fluent), Catalan &amp; Italian (basic)<br>Professional diver CAH1B, N3 FFESSM (CMAS***), ~900 dives<br>Driving &amp; boating licences</div>
+    <div><h5>Fieldwork &amp; laboratory</h5><div class="cv-list">
+      Coral growth by staining (<em>in situ</em>) and alkalinity anomaly (<em>ex situ</em>)<br>Benthic complexity (chain-tape method, photogrammetry)<br>Underwater identification (coral genera, reef fish families)<br>Benthic metabolism incubations (photosynthesis, calcification, respiration, nutrient cycling)<br>Reef fish capture</div></div>
+    <div><h5>Statistics (R)</h5><div class="cv-list">
+      Bayesian, frequentist &amp; descriptive statistics<br>GLM, GAM, mixed models<br>Multivariate analysis (NMDS, PCA, CA, PCoA, RDA, GPA)<br>Large database management, GitHub &amp; GitLab for reproducibility</div></div>
+    <div><h5>Cartography &amp; image analysis</h5><div class="cv-list">
+      ArcGIS &amp; QGIS: spatial analysis, cumulative impacts<br>Agisoft Metashape &amp; ImageJ: photogrammetry, length, surface &amp; volume measures</div></div>
+    <div><h5>Languages, diving &amp; licences</h5><div class="cv-list">
+      French (native) &middot; English &amp; Spanish (fluent) &middot; Catalan &amp; Italian (basic)<br>Professional diver CAH1B, N3 FFESSM (CMAS***)<br>Driving &amp; boating licences</div></div>
   </div>
 
-  <h4>MAIN COLLABORATORS <span class="n">18</span></h4>
-  <div class="cv-grid" style="font-size:14px; color:#52514e">
+  <h4>MAIN COLLABORATORS <span class="n" id="nCollab"></span></h4>
+  <div class="cv-grid cv-list" id="collab">
     <div><b>Valeriano Parravicini</b> &middot; CRIOBE, France</div>
     <div><b>Núria Teixidó</b> &middot; SZN, Italy</div>
     <div><b>Joaquim Garrabou</b> &middot; ICM&ndash;CSIC, Spain</div>
@@ -435,4 +470,47 @@ fetch("StatPub/citations.json?v=" + Date.now())
             `<strong>${score} Altmetric</strong>`;
         } else {altEl.querySelector("span").innerHTML = `<strong>N/A</strong>`;}}});})
   .catch(err => console.error("Error loading citations.json:", err));
+
+// --------------------------------------------------------------------
+// CV page: every count is computed from the page itself or from the
+// citation files, so nothing here needs updating by hand.
+// --------------------------------------------------------------------
+(function () {
+  const rows = sel => Array.from(document.querySelectorAll(sel + " .cv-row"));
+  const sumN = sel => rows(sel).reduce((s, r) => s + (+r.dataset.n || 1), 0);
+  const set  = (id, txt) => {const e = document.getElementById(id); if (e) e.textContent = txt;};
+  const fmtEur = v => v >= 1e6 ? "~" + (v / 1e6).toFixed(1) + "M€" : "~" + Math.round(v / 1000) + "k€";
+
+  // Funding: sum of data-eur on the funding rows (renounced grants have none)
+  const eur = rows("#fundingRows").reduce((s, r) => s + (+r.dataset.eur || 0), 0);
+  set("nFunding", "TOTAL ~" + eur.toLocaleString("en-US") + " €");
+  set("cvFunding", fmtEur(eur));
+
+  // Section counts
+  const lead = rows("#projLead").length, proj = lead + rows("#projCollab").length;
+  set("nProjects", proj + " PROJECTS · " + lead + " AS LEADER");
+  set("nCourses", rows("#courses").length + " COURSES");
+  const st = sumN("#students"); set("nStudents", st + " STUDENTS"); set("cvStudents", st);
+  set("nTalks", rows("#talks").length + " CONTRIBUTIONS");
+  set("nInvited", sumN("#invited") + " PRESENTATIONS");
+  set("nOutreach", rows("#outreach").length + " CONTENTS");
+  set("nJournals", document.querySelectorAll("#journals span").length + " JOURNALS");
+  set("nCollab", document.querySelectorAll("#collab > div").length);
+
+  // Papers (entries with a DOI in citations.json) and Google Scholar totals
+  fetch("StatPub/citations.json?v=" + Date.now()).then(r => r.json()).then(cd => {
+    const n = cd.filter(p => p.doi).length;
+    const cites = cd.map(p => p.cites || 0).sort((a, b) => b - a);
+    let total = cites.reduce((a, b) => a + b, 0), h = 0;
+    while (h < cites.length && cites[h] >= h + 1) h++;
+    set("cvPapers", n); set("cvPapers2", n);
+    fetch("StatPub/scholar_profile.json?v=" + Date.now()).then(r => r.json()).then(sp => {
+      if (sp.citations) total = sp.citations;
+      if (sp.h_index) h = sp.h_index;
+    }).catch(() => {}).finally(() => {
+      set("cvCites", total.toLocaleString("en-US")); set("cvCites2", total.toLocaleString("en-US")); set("cvH", h);
+    });
+  }).catch(err => console.error("Error loading citations.json:", err));
+})();
+
 </script> </body> </html>

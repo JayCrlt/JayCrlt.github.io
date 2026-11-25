@@ -158,8 +158,10 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 .cv-row .note {font-size: 13px; color: #898781}
 .cv a {color: #2a78d6; text-decoration: none}
 .cv a:hover {text-decoration: underline}
+.cv a b, .cv-row a b, .cv p a b {color: #2a78d6}
 .cv-grid {display: grid; grid-template-columns: 1fr 1fr; gap: 6px 28px; font-size: 15px}
 .cv-list {font-size: 15px; line-height: 1.7; color: #52514e}
+.cv-prose {font-size: 15px; line-height: 1.75; text-align: justify; color: #52514e}
 @media screen and (max-width: 768px) {.cv-row {grid-template-columns: 1fr; gap: 0} .cv-grid {grid-template-columns: 1fr}}
 .cv-top {display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; border: 1px solid #e6e5e0; border-radius: 10px; padding: 18px 22px}
 .cv-top .figs {display: flex; gap: 32px; flex-wrap: wrap}
@@ -265,24 +267,10 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
     The full list, with PDFs, code and live citation and Altmetric counts, is on the <a href="publications.html">publications page</a>.</p>
   <div class="cv-row"><div class="yr">2026</div><div><b>Journal cover</b> &ndash; <em>Ecology Letters</em> (Volume 29, Issue 4), for <a href="https://doi.org/10.1111/ele.70376">Unravelling marine benthic functioning shifts under ocean acidification</a> &middot; <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/ele.70371">see the cover</a></div></div>
 
-  <h4>TEACHING <span class="n" id="nCourses"></span></h4>
-  <div id="courses">
-  <h5><b>Course lecturer</b> &middot; Temperate marine benthic ecology (SZN)</h5>
-  <div class="cv-row"><div class="yr">2025</div><div>Benthic physiology &amp; processes: from field to data analysis <span class="note">(8 h, summer school)</span></div></div>
-  <h5><b>Course lecturer</b> &middot; Reproducible science &amp; statistics (CNRS &middot; CESAB &middot; CSIC &middot; SZN)</h5>
-  <div class="cv-row"><div class="yr">2025</div><div>Integrate Zotero with Obsidian <span class="note">(1 h, lab on-demand)</span></div></div>
-  <div class="cv-row"><div class="yr">2025</div><div>GitHub &amp; Markdown: core tools for your research workflow <span class="note">(4 h, summer school)</span></div></div>
-  <div class="cv-row"><div class="yr">2024</div><div>The use of Bayesian statistics in ecology <span class="note">(1 h, lab on-demand)</span></div></div>
-  <div class="cv-row"><div class="yr">2023, 2025</div><div>How to do reproducible science? The GitHub endeavour <span class="note">(4 h, lab on-demand)</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div>A fully reproducible workflow for meta-analyses in R <span class="note">(4 h, lab on-demand)</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div>Preliminary results from a meta-analysis using natural analogs <span class="note">(1 h, CESAB training)</span></div></div>
-  <h5><b>University lecturer</b> &middot; Coral reefs, MSc courses (EPHE)</h5>
-  <div class="cv-row"><div class="yr">2021 &ndash; 2025</div><div>Coastal protection and reef functioning <span class="note">(MOOC, 45 min)</span></div></div>
-  <div class="cv-row"><div class="yr">2020 &ndash; 2021</div><div>Functional ecology in coral reefs <span class="note">(4 h)</span></div></div>
-  <div class="cv-row"><div class="yr">2020 &ndash; 2021</div><div>Coral growth and coastal protection in coral reefs <span class="note">(4 h)</span></div></div>
-  <div class="cv-row"><div class="yr">2019</div><div>Diversity&ndash;habitat relationship in coral reefs <span class="note">(8 h)</span></div></div>
-  <div class="cv-row"><div class="yr">2016 &ndash; 2025</div><div>Fish distribution in French Polynesia <span class="note">(MOOC, 15 min)</span></div></div>
-  </div>
+  <h4>TEACHING</h4>
+  <p class="cv-prose">I teach at three levels. At the Stazione Zoologica di Napoli (SZN), I lead a summer-school course in <b>temperate marine benthic ecology</b>, <em>Benthic physiology &amp; processes: from field to data analysis</em> (2025).
+  For the CNRS, CESAB, CSIC and SZN, I run hands-on sessions on <b>reproducible science &amp; statistics</b>: GitHub and Markdown as core tools for a research workflow (summer school, 2025), reproducible science with GitHub (2023, 2025), fully reproducible meta-analyses in R (2023), Bayesian statistics in ecology (2024) and connecting Zotero with Obsidian (2025).
+  Since 2016, I have also been a <b>university lecturer</b> in the <b>coral reef</b> MSc programme of the École Pratique des Hautes Études (EPHE), teaching functional ecology, coral growth and coastal protection, and diversity&ndash;habitat relationships on reefs, and recording two MOOCs, on coastal protection and reef functioning, and on fish distribution in French Polynesia.</p>
 
   <h4>SUPERVISION <span class="n" id="nStudents"></span></h4>
   <div id="students">
@@ -322,20 +310,9 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   <div class="cv-row" data-n="1"><div class="yr">2020</div><div>Coastal protection: how to define scenarios of coastal protection for a reef island<br><span class="place">Instituto Español de Oceanografía (IEO) de Baleares, Palma, Spain</span></div></div>
   </div>
 
-  <h4>OUTREACH <span class="n" id="nOutreach"></span></h4>
-  <div id="outreach">
-  <h5>Radio, podcasts &amp; videos</h5>
-  <div class="cv-row"><div class="yr">2026</div><div><a href="https://open.spotify.com/episode/6XPArtG7Cgv1EWEPrgT0n7"><b>Observadores del Mar</b></a> &ndash; Interview at Radio Calvià on &laquo; Climate change and consequences &raquo; <span class="note">(Spanish)</span></div></div>
-  <div class="cv-row"><div class="yr">2025</div><div><a href="https://b-useful.eu/meetthescientist-jeremy-carlot-joins-b-useful-as-postdoctoral-researcher/"><b>B-USEFUL</b></a> &ndash; Meet the Scientist <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2018</div><div><a href="https://www.youtube.com/watch?v=Pr39lnkdqn0"><b>Reef Services</b></a> &ndash; System Factory <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2015</div><div><a href="https://www.youtube.com/watch?v=as0Y-c3f9gA"><b>Riverine Input</b></a> &ndash; Surfrider Foundation Europe <span class="note">(French voice-over)</span></div></div>
-  <h5>Press, newsletters &amp; blogs</h5>
-  <div class="cv-row"><div class="yr">2026</div><div><a href="https://www.icm.csic.es/en/news/ocean-acidification-simplifies-biodiversity-mediterranean-coastal-ecosystems-and-alters-their"><b>ICM Newsletter</b></a> &ndash; Ocean acidification simplifies biodiversity in Mediterranean coastal ecosystems and alters their functioning <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2026</div><div><a href="https://industriaspesqueras.com/noticia-89244-sec-Archivo%20IP"><b>Industrias Pesqueras</b></a> &ndash; Un estudio del CSIC constata que la acidificación está reduciendo la biodiversidad en el Mediterráneo <span class="note">(Spanish)</span></div></div>
-  <div class="cv-row"><div class="yr">2025</div><div><a href="https://go.nature.com/4b7CYAq"><b>Springer Research Communities</b></a> &ndash; Behind the Paper: Vulnerability of benthic trait diversity across the Mediterranean Sea following mass mortality events <span class="note">(English)</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div><a href="https://www.ird.fr/recifs-coralliens-en-bonne-sante-de-veritables-brise-lames-naturels"><b>IRD Newsletter</b></a> &ndash; Récifs coralliens en bonne santé : de véritables brise-lames naturels <span class="note">(French)</span></div></div>
-  <div class="cv-row"><div class="yr">2023</div><div><a href="https://boukan.press/polynesie-francaise-des-recifs-bien-portants-plus-efficaces"><b>Boukan</b></a> &ndash; Polynésie française, des récifs plus efficaces pour protéger les côtes <span class="note">(French)</span></div></div>
-  </div>
+  <h4>OUTREACH</h4>
+  <p class="cv-prose">I like taking research beyond scientific journals. I have talked about climate change and its consequences on Radio Calvià's <a href="https://open.spotify.com/episode/6XPArtG7Cgv1EWEPrgT0n7"><b>Observadores del Mar</b></a> (2026, in Spanish), introduced my work in B-USEFUL's <a href="https://b-useful.eu/meetthescientist-jeremy-carlot-joins-b-useful-as-postdoctoral-researcher/"><b>Meet the Scientist</b></a> series (2025), and appeared in videos for <a href="https://www.youtube.com/watch?v=Pr39lnkdqn0"><b>Reef Services</b></a> (2018) and for Surfrider Foundation Europe's <a href="https://www.youtube.com/watch?v=as0Y-c3f9gA"><b>Riverine Input</b></a> (2015).
+  Our results on ocean acidification in the Mediterranean were covered by the <a href="https://www.icm.csic.es/en/news/ocean-acidification-simplifies-biodiversity-mediterranean-coastal-ecosystems-and-alters-their"><b>ICM newsletter</b></a> and <a href="https://industriaspesqueras.com/noticia-89244-sec-Archivo%20IP"><b>Industrias Pesqueras</b></a> (2026), and our work on healthy coral reefs as natural breakwaters by the <a href="https://www.ird.fr/recifs-coralliens-en-bonne-sante-de-veritables-brise-lames-naturels"><b>IRD newsletter</b></a> and <a href="https://boukan.press/polynesie-francaise-des-recifs-bien-portants-plus-efficaces"><b>Boukan</b></a> (2023). I also wrote a <a href="https://go.nature.com/4b7CYAq"><b>Behind the Paper</b></a> story for Springer Research Communities (2025) on the vulnerability of Mediterranean benthic species after mass mortality events.</p>
 
   <h4>EDITORIAL &amp; REVIEWING <span class="n" id="nJournals"></span></h4>
   <div class="cv-row"><div class="yr">2025</div><div><b>Guest editor</b>, <em>Frontiers in Marine Science</em> &middot; Research Topic &ldquo;Adaptation and Evolution in Marine Extreme Environments&rdquo;</div></div>

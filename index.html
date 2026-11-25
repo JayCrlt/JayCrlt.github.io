@@ -60,6 +60,7 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 @media screen and (max-width: 768px) {.pub-info {text-align: justify}}
 /* ---------- Section intros ---------- */
 .intro {max-width: 760px; margin: 0 auto 36px auto; text-align: center; font-size: 17px; line-height: 1.7; color: #555}
+.intro.wide {max-width: 980px}
 .intro .kicker {display: block; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #2a78d6; margin-bottom: 8px}
 .intro strong {color: #222}
 /* ---------- Climate tiles ---------- */
@@ -161,7 +162,7 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 	<p style: align="justify"> I am a post-doctoral fellow with the <font color="#282828"><a href="https://www.icm.csic.es/en" style="text-decoration:none">Institut de Ciènces del Mar</a></font> at CSIC in Spain. I am mostly interested in measuring the physiological traits of marine organisms (<em>e.g.,</em> calcification or net photosynthesis for benthic organisms, nutrients uptake for fish) to quantify how the ecosystem functioning is changing in the face of global change. My works involve a combination of fieldwork, <em>in situ</em> and ex-situ experiments, and advanced statistical modeling across local and large spatial scales. 
 	<p style="line-height:1.2">
 	You can download my full resume here: <a href="Papers/CARLOT_CV.pdf"><input type="button" class="favorite styled" value="Download"></a> <br>
-	<font size = "1"> <em>last update: November 2026</em> </font> </p> </p> </div> </div> </div> </div>
+	<font size = "1"> <em>last update: October 2026</em> </font> </p> </p> </div> </div> </div> </div>
 
 <!-- Separator -->
 <div class="w3-content w3-container"><div class="section-divider"></div></div>
@@ -231,10 +232,9 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 
   <div class="chart-card" id="sstCard">
     <p class="chart-title">Daily Mediterranean sea surface temperature, 1982 to today</p>
-    <p class="chart-sub">Basin-average temperature for every day of the year. Each grey line is one year.</p>
+    <p class="chart-sub">Basin-average temperature for every day of the year. Each grey line is one year; highlighted are this year and the two warmest years (mean anomaly vs 1982&ndash;2011, this year counted so far).</p>
     <div class="legend">
-      <span><i style="border-top-color:#e34948"></i><b id="lgCur">This year</b></span>
-      <span><i style="border-top-color:#0b0b0b"></i><span id="lgRec">Last year</span></span>
+      <span id="lgHi" style="display:contents"></span>
       <span><i style="border-top-color:#52514e; border-top-style:dashed; border-top-width:2px"></i>1982&ndash;2011 average</span>
       <span><i style="border-top-color:#d9d8d3; border-top-width:2px"></i>Other years</span>
     </div>
@@ -377,7 +377,7 @@ fetch("StatPub/citations.json?v=" + Date.now())
 // --------------------------------------------------------------------
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const MSTART = [0,31,59,90,120,151,181,212,243,273,304,334,365];
-const C_CUR = "#e34948", C_PREV = "#0b0b0b", C_BASE = "#52514e", C_PAST = "#d9d8d3";
+const C_CUR = "#e34948", C_RED = "#e34948", C_BLUE = "#2a78d6", C_BLACK = "#0b0b0b", C_BASE = "#52514e", C_PAST = "#d9d8d3";
 const NS = "http://www.w3.org/2000/svg";
 function fmtDate(iso) {const d = new Date(iso + "T00:00:00"); return d.getDate() + " " + MONTHS[d.getMonth()] + " " + d.getFullYear();}
 function dayLabel(i) {let m = 0; while (i >= MSTART[m + 1]) m++; return (i - MSTART[m] + 1) + " " + MONTHS[m];}
@@ -388,8 +388,18 @@ function drawSST(d) {
   const W = 900, H = 380, m = {l: 46, r: 56, t: 12, b: 30};
   const years = Object.keys(d.years).sort();
   const cur = years[years.length - 1];
-  const prev = String(+cur - 1);                       // previous year, drawn in black
-  const prevVals = d.years[prev] || [];
+  // Rank years by their mean anomaly vs 1982-2011 (the current year over the days so far).
+  //  - current year among the two warmest: warmest in red, 2nd warmest in blue
+  //  - otherwise: current year in red, warmest in blue, 2nd warmest in black
+  const anom = {};
+  years.forEach(yr => {let s = 0, n = 0; d.years[yr].forEach((t, i) => {if (t !== null && t !== undefined) {s += t - d.climatology[i]; n++;}}); if (n >= 30) anom[yr] = s / n;});
+  const ranked = Object.keys(anom).sort((a, b) => anom[b] - anom[a]);
+  const w1 = ranked[0], w2 = ranked[1];
+  const tag = (yr, r) => yr + (r === 1 ? " (warmest" : " (2nd warmest") + (yr === cur ? " so far)" : ")");
+  const hl = (cur === w1 || cur === w2)
+    ? [{yr: w1, c: C_RED, w: 2.5, label: tag(w1, 1)}, {yr: w2, c: C_BLUE, w: 2, label: tag(w2, 2)}]
+    : [{yr: cur, c: C_RED, w: 2.5, label: cur}, {yr: w1, c: C_BLUE, w: 2, label: tag(w1, 1)}, {yr: w2, c: C_BLACK, w: 1.8, label: tag(w2, 2)}];
+  const hlYears = hl.map(h => h.yr);
   let lo = Infinity, hi = -Infinity;
   years.forEach(y => d.years[y].forEach(v => {if (v !== null) {lo = Math.min(lo, v); hi = Math.max(hi, v);}}));
   lo = Math.floor(lo) - 1; hi = Math.ceil(hi) + 1;
@@ -407,26 +417,23 @@ function drawSST(d) {
   for (let k = 0; k < 12; k++) el("text", {x: x((MSTART[k] + MSTART[k + 1]) / 2), y: H - 8, "text-anchor": "middle"}, svg).textContent = MONTHS[k];
 
   // lines: context years, baseline, record, current
-  years.forEach(yr => {if (yr !== cur && yr !== prev) el("path", {d: path(d.years[yr]), fill: "none", stroke: C_PAST, "stroke-width": 1}, svg);});
+  years.forEach(yr => {if (!hlYears.includes(yr)) el("path", {d: path(d.years[yr]), fill: "none", stroke: C_PAST, "stroke-width": 1}, svg);});
   el("path", {d: path(d.climatology), fill: "none", stroke: C_BASE, "stroke-width": 1.5, "stroke-dasharray": "5 4"}, svg);
-  if (prevVals.length) el("path", {d: path(prevVals), fill: "none", stroke: C_PREV, "stroke-width": 1.8, "stroke-linejoin": "round"}, svg);
-  el("path", {d: path(d.years[cur]), fill: "none", stroke: C_CUR, "stroke-width": 2.5, "stroke-linejoin": "round"}, svg);
+  hl.slice().reverse().forEach(h => el("path", {d: path(d.years[h.yr]), fill: "none", stroke: h.c, "stroke-width": h.w, "stroke-linejoin": "round"}, svg));
 
-  // direct labels (ink colour, next to the line ends)
-  const curVals = d.years[cur]; let last = curVals.length - 1; while (curVals[last] === null) last--;
-  el("circle", {cx: x(last), cy: y(curVals[last]), r: 4, fill: C_CUR, stroke: "#fff", "stroke-width": 2}, svg);
-  const lc = el("text", {x: x(last) + 8, y: y(curVals[last]) - 6}, svg); lc.textContent = cur; lc.style.fill = "#0b0b0b";
-  if (prevVals.length) {
-    let pl = prevVals.length - 1; while (prevVals[pl] === null) pl--;
-    const lp = el("text", {x: x(pl) + 6, y: y(prevVals[pl]) + 4}, svg); lp.textContent = prev; lp.style.fill = "#0b0b0b";
-  }
+  // direct labels at the line ends (ink colour), nudged apart when they overlap
+  const curVals = d.years[cur];
+  const ends = hl.map(h => {const v = d.years[h.yr]; let k = v.length - 1; while (k > 0 && (v[k] === null || v[k] === undefined)) k--; return {yr: h.yr, k: k, py: y(v[k])};});
+  const lastCur = ends.find(e => e.yr === cur);
+  if (lastCur) el("circle", {cx: x(lastCur.k), cy: lastCur.py, r: 4, fill: hl.find(h => h.yr === cur).c, stroke: "#fff", "stroke-width": 2}, svg);
+  ends.slice().sort((a, b) => a.py - b.py).forEach((e, j, arr) => {if (j && e.py - arr[j - 1].ly < 13) e.ly = arr[j - 1].ly + 13; else e.ly = e.py; });
+  ends.forEach(e => {const t = el("text", {x: x(e.k) + 8, y: e.ly + 4}, svg); t.textContent = e.yr; t.style.fill = "#0b0b0b";});
 
-  document.getElementById("lgCur").textContent = cur;
-  document.getElementById("lgRec").textContent = prev;
+  document.getElementById("lgHi").innerHTML = hl.map(h => '<span><i style="border-top-color:' + h.c + '"></i>' + (h.yr === cur ? "<b>" + h.label + "</b>" : h.label) + "</span>").join("");
 
   // hover: crosshair + tooltip
   const cross = el("line", {y1: m.t, y2: H - m.b, stroke: "#898781", "stroke-width": 1, visibility: "hidden"}, svg);
-  const dot = el("circle", {r: 4, fill: C_CUR, stroke: "#fff", "stroke-width": 2, visibility: "hidden"}, svg);
+  const dot = el("circle", {r: 4, fill: (hl.find(h => h.yr === cur) || {c: C_RED}).c, stroke: "#fff", "stroke-width": 2, visibility: "hidden"}, svg);
   const hit = el("rect", {x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent"}, svg);
   const tip = document.getElementById("sstTip"), card = document.getElementById("sstCard");
   const f = v => v === null || v === undefined ? "–" : v.toFixed(1) + "°C";
@@ -437,8 +444,7 @@ function drawSST(d) {
     cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.setAttribute("visibility", "visible");
     if (curVals[i] !== null && curVals[i] !== undefined) {dot.setAttribute("cx", x(i)); dot.setAttribute("cy", y(curVals[i])); dot.setAttribute("visibility", "visible");} else dot.setAttribute("visibility", "hidden");
     tip.innerHTML = "<b>" + dayLabel(i) + "</b><br>" +
-      '<span class="sw" style="background:' + C_CUR + '"></span>' + cur + ": " + f(curVals[i]) + "<br>" +
-      '<span class="sw" style="background:' + C_PREV + '"></span>' + prev + ": " + f(prevVals[i]) + "<br>" +
+      hl.map(h => '<span class="sw" style="background:' + h.c + '"></span>' + h.yr + ": " + f(d.years[h.yr][i]) + "<br>").join("") +
       '<span class="sw" style="background:' + C_BASE + '"></span>1982–2011: ' + f(d.climatology[i]);
     tip.style.display = "block";
     const cr = card.getBoundingClientRect();

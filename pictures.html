@@ -21,6 +21,12 @@
     .button-container{display:flex;justify-content:space-between;max-width:900px;margin:1em auto;}
     .button-container .w3-button{flex:1;margin:0 0.5em;text-align:center;}
     @media(max-width:600px){.gallery-item{flex:0 0 45%;height:120px;}.button-container{flex-direction:column;}.button-container .w3-button{margin:0.5em 0;}}
+    /* Large view (lightbox) */
+    #viewer{display:none;position:fixed;z-index:1000;inset:0;background:rgba(0,0,0,.88);align-items:center;justify-content:center;flex-direction:column;cursor:zoom-out;padding:16px}
+    #viewer.open{display:flex}
+    #viewer img{max-width:95vw;max-height:85vh;object-fit:contain;box-shadow:0 4px 24px rgba(0,0,0,.5)}
+    #viewer .vcap{color:#eee;margin-top:10px;font-size:15px;text-align:center}
+    #viewer .vclose{position:absolute;top:10px;right:18px;color:#fff;font-size:34px;line-height:1;cursor:pointer}
   </style>
 </head>
 <body>
@@ -53,74 +59,74 @@
 <div class="w3-row">
   <div class="w3-col w3-padding-large">
     <div class="gallery" id="gallery">
-      <div class="gallery-item"><img src="Pictures/My_pictures/Belvedere.jpg" alt="Belvedere"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Biarritz.jpg" alt="Biarritz"><div class="caption">Biarritz (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Bike_Crohot.jpg" alt="Bike"><div class="caption">Lege Cap-Ferret (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Bridge.jpg" alt="Bridge"><div class="caption">Camarasa (Spain)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Cactus.JPG" alt="Cactus"><div class="caption">Lanzarote (Canarias islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Casa.JPG" alt="House"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Castel.jpg" alt="Castle"><div class="caption">Ischia (Italy)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Cave.JPG" alt="Cave"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Ciel_Moorea.JPG" alt="Sky"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Climbing.jpg" alt="Climbing"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Collioure.jpg" alt="Collioure"><div class="caption">Collioure (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Dance.jpeg" alt="Rolling"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/DayOff.jpg" alt="Scooter"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/DiveDiploma.JPG" alt="CAH"><div class="caption">Marseille (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Eclipsis.jpg" alt="Eclipse"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Ferry_MOZ.jpg" alt="Ferry"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Fieldwork_udw.JPG" alt="Panarea"><div class="caption">Panarea (Aeolian Islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Freedive.JPG" alt="Freedive"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Geologic.jpeg" alt="Pilar"><div class="caption">Fljótsdalshérað (Iceland)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/GPS.jpeg" alt="GPS"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Heaven_door.jpg" alt="Arch"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/High_fume.jpg" alt="Fog"><div class="caption">Reine (Norway)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Hike.jpg" alt="Hike"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Hossegor.JPG" alt="Hossegor"><div class="caption">Hossegor (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Isa.JPG" alt="Qualité"><div class="caption">Biarritz (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Ischia.jpeg" alt="incubations"><div class="caption">Ischia (Italy)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Jellyfish.JPG" alt="Jellies"><div class="caption">La Rochelle (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/LabStation.jpg" alt="MOZLab"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Lafitenia.JPG" alt="Lafit"><div class="caption">Saint Jean de Luz (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Laurie.jpg" alt="Lau"><div class="caption">Lege Cap-Ferret (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Ma'a.JPG" alt="Ma'a"><div class="caption">Tahiti (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Mahimahi.JPG" alt="Mahimahi"><div class="caption">Rangiroa (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Malo.jpg" alt="Gull"><div class="caption">Saint-Malo (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Moro.JPG" alt="Moro"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/MOZ_HEIC.jpg" alt="Morning"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Nacre.JPG" alt="Nacre"><div class="caption">Cabrera (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Nice.jpg" alt="Nice"><div class="caption">Nice (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Nudi.JPG" alt="Nudi"><div class="caption">Villefranche sur mer (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Paddle.JPG" alt="Paddle"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Palma.JPG" alt="Palma"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Pano_Canarias.jpg" alt="Canabeach"><div class="caption">Lanzarote (Canary islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Pano_Mallorca.jpeg" alt="Formentor"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Pano_Petit_Crohot.jpeg" alt="Dune"><div class="caption">Lege Cap-Ferret (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Papetoai_Boat.jpeg" alt="Boat"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Parapente.JPG" alt="Glide"><div class="caption">Tenerife (Canary islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Periph.jpg" alt="Snow"><div class="caption">Arcalis (Andorra)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Pico.JPG" alt="Teide"><div class="caption">Tenerife (Canary islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Pier.JPG" alt="Pier"><div class="caption">Lege Cap-Ferret (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Pinky.jpg" alt="Pink sunset"><div class="caption">Mallorca (Balears islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Puffins.JPG" alt="Puffins"><div class="caption">Dyrhólaey (Iceland)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Rainfall.JPG" alt="Rainfall"><div class="caption">Hvammstangi (Iceland)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Ray_Feeding_Retouched.jpeg" alt="Ray"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/RedCoral.JPG" alt="RedCoral"><div class="caption">Villefranche sur mer (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Reef_Crest.jpeg" alt="Crest"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Rhodo.jpg" alt="Anemones"><div class="caption">Lofotakvariet (Norway)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/River.jpg" alt="River"><div class="caption">Lødingen (Norway)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Rolling.JPG" alt="Wave"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Staining.JPG" alt="Staining"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Stairs.jpg" alt="Stairs"><div class="caption">Reinebringen (Norway)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Sunset.jpg" alt="Sunset"><div class="caption">ile d'Oléron (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Swimming.jpg" alt="Swimming"><div class="caption">Mo'orea (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Tenerife.JPG" alt="Tenerife"><div class="caption">Tenerife (Canary islands)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Tetiaroa.JPG" alt="Tetia"><div class="caption">Tetiaroa (French Polynesia)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Tourism.jpg" alt="Canal"><div class="caption">Bruges (Belgium)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Trail.jpg" alt="Trail"><div class="caption">Paulilles (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Underwater.JPG" alt="Udw"><div class="caption">Ischia (Italy)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/Verdon.JPG" alt="Verdon"><div class="caption">Verdon (France)</div></div>
-      <div class="gallery-item"><img src="Pictures/My_pictures/WorkNight.jpg" alt="Work"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Belvedere.jpg" data-full="Pictures/Web/Belvedere.jpg" loading="lazy" alt="Belvedere"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Biarritz.jpg" data-full="Pictures/Web/Biarritz.jpg" loading="lazy" alt="Biarritz"><div class="caption">Biarritz (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Bike_Crohot.jpg" data-full="Pictures/Web/Bike_Crohot.jpg" loading="lazy" alt="Bike"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Bridge.jpg" data-full="Pictures/Web/Bridge.jpg" loading="lazy" alt="Bridge"><div class="caption">Camarasa (Spain)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Cactus.jpg" data-full="Pictures/Web/Cactus.jpg" loading="lazy" alt="Cactus"><div class="caption">Lanzarote (Canarias islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Casa.jpg" data-full="Pictures/Web/Casa.jpg" loading="lazy" alt="House"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Castel.jpg" data-full="Pictures/Web/Castel.jpg" loading="lazy" alt="Castle"><div class="caption">Ischia (Italy)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Cave.jpg" data-full="Pictures/Web/Cave.jpg" loading="lazy" alt="Cave"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Ciel_Moorea.jpg" data-full="Pictures/Web/Ciel_Moorea.jpg" loading="lazy" alt="Sky"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Climbing.jpg" data-full="Pictures/Web/Climbing.jpg" loading="lazy" alt="Climbing"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Collioure.jpg" data-full="Pictures/Web/Collioure.jpg" loading="lazy" alt="Collioure"><div class="caption">Collioure (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Dance.jpg" data-full="Pictures/Web/Dance.jpg" loading="lazy" alt="Rolling"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/DayOff.jpg" data-full="Pictures/Web/DayOff.jpg" loading="lazy" alt="Scooter"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/DiveDiploma.jpg" data-full="Pictures/Web/DiveDiploma.jpg" loading="lazy" alt="CAH"><div class="caption">Marseille (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Eclipsis.jpg" data-full="Pictures/Web/Eclipsis.jpg" loading="lazy" alt="Eclipse"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Ferry_MOZ.jpg" data-full="Pictures/Web/Ferry_MOZ.jpg" loading="lazy" alt="Ferry"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Fieldwork_udw.jpg" data-full="Pictures/Web/Fieldwork_udw.jpg" loading="lazy" alt="Panarea"><div class="caption">Panarea (Aeolian Islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Freedive.jpg" data-full="Pictures/Web/Freedive.jpg" loading="lazy" alt="Freedive"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Geologic.jpg" data-full="Pictures/Web/Geologic.jpg" loading="lazy" alt="Pilar"><div class="caption">Fljótsdalshérað (Iceland)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/GPS.jpg" data-full="Pictures/Web/GPS.jpg" loading="lazy" alt="GPS"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Heaven_door.jpg" data-full="Pictures/Web/Heaven_door.jpg" loading="lazy" alt="Arch"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/High_fume.jpg" data-full="Pictures/Web/High_fume.jpg" loading="lazy" alt="Fog"><div class="caption">Reine (Norway)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Hike.jpg" data-full="Pictures/Web/Hike.jpg" loading="lazy" alt="Hike"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Hossegor.jpg" data-full="Pictures/Web/Hossegor.jpg" loading="lazy" alt="Hossegor"><div class="caption">Hossegor (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Isa.jpg" data-full="Pictures/Web/Isa.jpg" loading="lazy" alt="Qualité"><div class="caption">Biarritz (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Ischia.jpg" data-full="Pictures/Web/Ischia.jpg" loading="lazy" alt="incubations"><div class="caption">Ischia (Italy)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Jellyfish.jpg" data-full="Pictures/Web/Jellyfish.jpg" loading="lazy" alt="Jellies"><div class="caption">La Rochelle (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/LabStation.jpg" data-full="Pictures/Web/LabStation.jpg" loading="lazy" alt="MOZLab"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Lafitenia.jpg" data-full="Pictures/Web/Lafitenia.jpg" loading="lazy" alt="Lafit"><div class="caption">Saint Jean de Luz (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Laurie.jpg" data-full="Pictures/Web/Laurie.jpg" loading="lazy" alt="Lau"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Ma'a.jpg" data-full="Pictures/Web/Ma'a.jpg" loading="lazy" alt="Ma'a"><div class="caption">Tahiti (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Mahimahi.jpg" data-full="Pictures/Web/Mahimahi.jpg" loading="lazy" alt="Mahimahi"><div class="caption">Rangiroa (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Malo.jpg" data-full="Pictures/Web/Malo.jpg" loading="lazy" alt="Gull"><div class="caption">Saint-Malo (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Moro.jpg" data-full="Pictures/Web/Moro.jpg" loading="lazy" alt="Moro"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/MOZ_HEIC.jpg" data-full="Pictures/Web/MOZ_HEIC.jpg" loading="lazy" alt="Morning"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Nacre.jpg" data-full="Pictures/Web/Nacre.jpg" loading="lazy" alt="Nacre"><div class="caption">Cabrera (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Nice.jpg" data-full="Pictures/Web/Nice.jpg" loading="lazy" alt="Nice"><div class="caption">Nice (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Nudi.jpg" data-full="Pictures/Web/Nudi.jpg" loading="lazy" alt="Nudi"><div class="caption">Villefranche sur mer (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Paddle.jpg" data-full="Pictures/Web/Paddle.jpg" loading="lazy" alt="Paddle"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Palma.jpg" data-full="Pictures/Web/Palma.jpg" loading="lazy" alt="Palma"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Pano_Canarias.jpg" data-full="Pictures/Web/Pano_Canarias.jpg" loading="lazy" alt="Canabeach"><div class="caption">Lanzarote (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Pano_Mallorca.jpg" data-full="Pictures/Web/Pano_Mallorca.jpg" loading="lazy" alt="Formentor"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Pano_Petit_Crohot.jpg" data-full="Pictures/Web/Pano_Petit_Crohot.jpg" loading="lazy" alt="Dune"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Papetoai_Boat.jpg" data-full="Pictures/Web/Papetoai_Boat.jpg" loading="lazy" alt="Boat"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Parapente.jpg" data-full="Pictures/Web/Parapente.jpg" loading="lazy" alt="Glide"><div class="caption">Tenerife (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Periph.jpg" data-full="Pictures/Web/Periph.jpg" loading="lazy" alt="Snow"><div class="caption">Arcalis (Andorra)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Pico.jpg" data-full="Pictures/Web/Pico.jpg" loading="lazy" alt="Teide"><div class="caption">Tenerife (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Pier.jpg" data-full="Pictures/Web/Pier.jpg" loading="lazy" alt="Pier"><div class="caption">Lege Cap-Ferret (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Pinky.jpg" data-full="Pictures/Web/Pinky.jpg" loading="lazy" alt="Pink sunset"><div class="caption">Mallorca (Balears islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Puffins.jpg" data-full="Pictures/Web/Puffins.jpg" loading="lazy" alt="Puffins"><div class="caption">Dyrhólaey (Iceland)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Rainfall.jpg" data-full="Pictures/Web/Rainfall.jpg" loading="lazy" alt="Rainfall"><div class="caption">Hvammstangi (Iceland)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Ray_Feeding_Retouched.jpg" data-full="Pictures/Web/Ray_Feeding_Retouched.jpg" loading="lazy" alt="Ray"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/RedCoral.jpg" data-full="Pictures/Web/RedCoral.jpg" loading="lazy" alt="RedCoral"><div class="caption">Villefranche sur mer (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Reef_Crest.jpg" data-full="Pictures/Web/Reef_Crest.jpg" loading="lazy" alt="Crest"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Rhodo.jpg" data-full="Pictures/Web/Rhodo.jpg" loading="lazy" alt="Anemones"><div class="caption">Lofotakvariet (Norway)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/River.jpg" data-full="Pictures/Web/River.jpg" loading="lazy" alt="River"><div class="caption">Lødingen (Norway)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Rolling.jpg" data-full="Pictures/Web/Rolling.jpg" loading="lazy" alt="Wave"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Staining.jpg" data-full="Pictures/Web/Staining.jpg" loading="lazy" alt="Staining"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Stairs.jpg" data-full="Pictures/Web/Stairs.jpg" loading="lazy" alt="Stairs"><div class="caption">Reinebringen (Norway)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Sunset.jpg" data-full="Pictures/Web/Sunset.jpg" loading="lazy" alt="Sunset"><div class="caption">ile d'Oléron (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Swimming.jpg" data-full="Pictures/Web/Swimming.jpg" loading="lazy" alt="Swimming"><div class="caption">Mo'orea (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Tenerife.jpg" data-full="Pictures/Web/Tenerife.jpg" loading="lazy" alt="Tenerife"><div class="caption">Tenerife (Canary islands)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Tetiaroa.jpg" data-full="Pictures/Web/Tetiaroa.jpg" loading="lazy" alt="Tetia"><div class="caption">Tetiaroa (French Polynesia)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Tourism.jpg" data-full="Pictures/Web/Tourism.jpg" loading="lazy" alt="Canal"><div class="caption">Bruges (Belgium)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Trail.jpg" data-full="Pictures/Web/Trail.jpg" loading="lazy" alt="Trail"><div class="caption">Paulilles (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Underwater.jpg" data-full="Pictures/Web/Underwater.jpg" loading="lazy" alt="Udw"><div class="caption">Ischia (Italy)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/Verdon.jpg" data-full="Pictures/Web/Verdon.jpg" loading="lazy" alt="Verdon"><div class="caption">Verdon (France)</div></div>
+      <div class="gallery-item"><img src="Pictures/Thumbs/WorkNight.jpg" data-full="Pictures/Web/WorkNight.jpg" loading="lazy" alt="Work"><div class="caption">Mo'orea (French Polynesia)</div></div>
     </div>
 
     <div class="button-container">
@@ -133,6 +139,9 @@
 <div class="w3-center w3-padding-64">
   <a href="index.html" class="w3-button w3-black">Back to Home</a>
 </div>
+
+<!-- Large view -->
+<div id="viewer" aria-hidden="true"><span class="vclose" title="Close">&times;</span><img alt=""><div class="vcap"></div></div>
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-64">
@@ -173,6 +182,24 @@ function myFunction() {var navbar = document.getElementById("myNavbar");
 // Used to toggle the menu on small screens when clicking on the menu button
 function toggleFunction() {var x = document.getElementById("navDemo"); if (x.className.indexOf("w3-show") == -1) {x.className += " w3-show";
     } else {x.className = x.className.replace(" w3-show", "");}}
+</script>
+
+<script>
+// Large view: click a thumbnail to open its 0.5 MB version, click or Esc to close
+(function(){
+  const v=document.getElementById("viewer"), vi=v.querySelector("img"), vc=v.querySelector(".vcap");
+  document.querySelectorAll("#gallery .gallery-item").forEach(function(it){
+    it.addEventListener("click",function(){
+      const img=it.querySelector("img");
+      vi.src=img.dataset.full||img.src; vi.alt=img.alt;
+      vc.textContent=(it.querySelector(".caption")||{}).textContent||"";
+      v.classList.add("open"); v.setAttribute("aria-hidden","false");
+    });
+  });
+  function close(){v.classList.remove("open"); v.setAttribute("aria-hidden","true"); vi.removeAttribute("src");}
+  v.addEventListener("click",close);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape") close();});
+})();
 </script>
 
 </body>

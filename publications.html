@@ -60,6 +60,7 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
 @media screen and (max-width: 768px) {.pub-info {text-align: justify}}
 /* ---------- Section intros ---------- */
 .intro {max-width: 760px; margin: 0 auto 36px auto; text-align: center; font-size: 17px; line-height: 1.7; color: #555}
+.intro.wide {max-width: 980px}
 .intro .kicker {display: block; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #2a78d6; margin-bottom: 8px}
 .intro strong {color: #222}
 /* ---------- Climate tiles ---------- */
@@ -151,12 +152,12 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   <div class="w3-display-middle">
     <span class="w3-xxlarge w3-text-white w3-wide">MY PUBLICATIONS</span> </div> </div>
 <div class="w3-content w3-container w3-padding-64" style="padding-bottom:0 !important">
-  <div class="intro">
-    Since 2017, I've co-authored <strong><span id="nPapers">22</span> peer-reviewed papers</strong>, in journals including
+  <div class="intro wide">
+    I have co-authored <strong><span id="nPapers"></span> peer-reviewed papers</strong>, in journals including
     <em>Nature Communications</em>, <em>Ecology Letters</em>, <em>Global Change Biology</em> and <em>Communications Earth &amp; Environment</em>.
-    My work runs from the coral reefs of French Polynesia and the Indo-Pacific to the rocky reefs, CO<sub>2</sub> vents and seagrass meadows of the Mediterranean.
-    The common thread is measuring what marine organisms actually do (calcify, photosynthesise, take up nutrients) and how global change is reshaping it.
-    Every paper links to its PDF, code, and live citation and Altmetric counts.
+    My research spans tropical coral reefs, from French Polynesia to the wider Indo-Pacific, and temperate Mediterranean habitats, from rocky reefs and coralligenous assemblages to seagrass meadows and natural CO<sub>2</sub> vents.
+    My objectives are to understand how marine ecosystems <strong>function</strong> (how much carbonate they build, how much carbon they fix, how nutrients flow through them) and how global change, from marine heatwaves to ocean acidification, is reshaping these processes.
+    What drives me is a simple conviction: protecting the ocean takes more than counting species. We need to measure what they do, and anticipate what we stand to lose.
   </div>
   <div class="pub-stats">
     <div><b id="sPapers">&ndash;</b><span>Peer-reviewed papers</span></div>
@@ -747,9 +748,14 @@ fetch("StatPub/citations.json?v=" + Date.now())
         } else {altEl.querySelector("span").innerHTML = `<strong>N/A</strong>`;}}});})
   .catch(err => console.error("Error loading citations.json:", err));
 
-// Publication stats (peer-reviewed count, total citations, h-index)
+// Number of peer-reviewed papers: counted straight from the list on this page
+const nPeer = document.querySelectorAll(".peer .paper-entry").length;
+document.getElementById("nPapers").textContent = nPeer;
+document.getElementById("sPapers").textContent = nPeer;
+
+// Citations and h-index
 fetch("StatPub/citations.json?v=" + Date.now()).then(r => r.json()).then(cd => {
-  const n = document.querySelectorAll("#peer-reviewed ~ .paper-entry, .peer .paper-entry").length;
+  const n = nPeer;
   document.getElementById("sPapers").textContent = n;
   document.getElementById("nPapers").textContent = n;
   // Citations and h-index: Google Scholar's own profile totals (StatPub/scholar_profile.json).

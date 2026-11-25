@@ -180,6 +180,8 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
   - Paper count, citations and h-index come live from StatPub/citations.json and StatPub/scholar_profile.json.
   - Every number in a section title (students, talks, projects, journals...) is counted automatically
     from the rows below it: add or remove a row and the number follows.
+  - Talks = sum of data-talks on the venue names; projects = linked project names; outreach = links;
+    students = names in <b class="student">; teaching hours are written by hand (52 HOURS).
   - Funding total = sum of the data-eur values on the funding rows (leave data-eur out for renounced grants).
 -->
 
@@ -241,9 +243,11 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
     <span class="place">Study of the fish distribution in French Polynesia, Marseille, France</span></div></div>
   </div>
 
-  <h4>RESEARCH PROJECTS</h4>
+  <h4>RESEARCH PROJECTS <span class="n" id="nProjects"></span></h4>
+  <div id="projects">
   <p class="cv-prose">I lead two projects as principal investigator. <a href="https://cordis.europa.eu/project/id/101266997"><b>MEDSHIFTS</b></a> (since 2026, with J. Garrabou) studies Mediterranean shifts in macrophyte functioning and is funded by my Beatriu de Pinós and Marie Skłodowska-Curie fellowships (~371,000&nbsp;€). <a href="https://e.pcloud.link/publink/show?code=XZCRqtZ14I2w0flrcVgd2Qb8nNQ642HYarX"><b>MEDSYNERGIES</b></a> (2024, with N. Teixidó) explores the synergies of benthic communities to ocean acidification (~3,675&nbsp;€).</p>
-  <p class="cv-prose">I have also contributed to four larger collaborative projects: <a href="https://cordis.europa.eu/project/id/101059823/results"><b>B-USEFUL</b></a> (2024, PI M. Lindegren, ~4.6&nbsp;M€), on user-oriented solutions to monitor and manage biodiversity and ecosystem services in vulnerable European seas; <a href="https://www.enseignementsup-recherche.gouv.fr/en/make-our-planet-great-again-presentation-18-first-researchers-47180"><b>4OCEANS</b></a> (2021, PI N. Teixidó, ~745,000&nbsp;€), on predicting future oceans under climate change; <a href="https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/score-reef/"><b>SCORE-REEF</b></a> (2020, PIs M. Adjeroud &amp; V. Parravicini, ~220,000&nbsp;€), on the spatio-temporal variability of coral reefs at the global scale; and <a href="https://fondation.bnpparibas/en/environment/programme/climate-biodiversity-initiative/the-laureate-projects/"><b>REEF SERVICES</b></a> (2018, PI V. Parravicini, ~800,000&nbsp;€), on the consequences of global warming for coral reefs and the services they provide.</p>
+  <p class="cv-prose">I have also contributed to four larger collaborative projects: <a href="https://cordis.europa.eu/project/id/101059823/results"><b>B-USEFUL</b></a> (2024, ~4.6&nbsp;M€), on user-oriented solutions to monitor and manage biodiversity and ecosystem services in vulnerable European seas; <a href="https://www.enseignementsup-recherche.gouv.fr/en/make-our-planet-great-again-presentation-18-first-researchers-47180"><b>4OCEANS</b></a> (2021, ~745,000&nbsp;€), on predicting future oceans under climate change; <a href="https://www.fondationbiodiversite.fr/en/the-frb-in-action/programs-and-projects/le-cesab/score-reef/"><b>SCORE-REEF</b></a> (2020, ~220,000&nbsp;€), on the spatio-temporal variability of coral reefs at the global scale; and <a href="https://fondation.bnpparibas/en/environment/programme/climate-biodiversity-initiative/the-laureate-projects/"><b>REEF SERVICES</b></a> (2018, ~800,000&nbsp;€), on the consequences of global warming for coral reefs and the services they provide.</p>
+  </div>
 
   <h4>PUBLICATIONS <span class="n">GOOGLE SCHOLAR, UPDATED DAILY</span></h4>
   <p style="font-size: 15px"><b id="cvPapers2">&ndash;</b> peer-reviewed papers &middot; <b id="cvCites2">&ndash;</b> citations &middot; h-index <b id="cvH">&ndash;</b>
@@ -251,61 +255,33 @@ body, html {height: 100%; color: #777;line-height: 1.8;}
     The full list, with PDFs, code and live citation and Altmetric counts, is on the <a href="publications.html">publications page</a>.</p>
   <div class="cv-row"><div class="yr">2026</div><div><b>Journal cover</b> &ndash; <em>Ecology Letters</em> (Volume 29, Issue 4), for <a href="https://doi.org/10.1111/ele.70376">Unravelling marine benthic functioning shifts under ocean acidification</a> &middot; <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1111/ele.70371">see the cover</a></div></div>
 
-  <h4>TEACHING</h4>
-  <p class="cv-prose">I teach at three levels. At the Stazione Zoologica di Napoli (SZN), I lead a summer-school course in <b>temperate marine benthic ecology</b>, <em>Benthic physiology &amp; processes: from field to data analysis</em> (2025).</p>
-  <p class="cv-prose">For the CNRS, CESAB, CSIC and SZN, I run hands-on sessions on <b>reproducible science &amp; statistics</b>: GitHub and Markdown as core tools for a research workflow (summer school, 2025), reproducible science with GitHub (2023, 2025), fully reproducible meta-analyses in R (2023), Bayesian statistics in ecology (2024) and connecting Zotero with Obsidian (2025).</p>
-  <p class="cv-prose">Since 2016, I have also been a <b>university lecturer</b> in the <b>coral reef</b> MSc programme of the École Pratique des Hautes Études (EPHE), teaching functional ecology, coral growth and coastal protection, and diversity&ndash;habitat relationships on reefs, and recording two MOOCs, on coastal protection and reef functioning, and on fish distribution in French Polynesia.</p>
-
-  <h4>SUPERVISION</h4>
-  <div id="students"><p class="cv-prose">I am an advisor on the Ph.D. of <b class="student">Gaia Grasso</b> (since 2024, main supervisors N. Teixidó, S. Comeau &amp; U. Cardini), on marine biodiversity and ecosystem function of benthic habitats in a changing ocean using novel underwater imaging approaches.</p>
-  <p class="cv-prose">I have also supervised five MSc students: <b class="student">Karla Abril Hernández Ramírez</b> (2024), on ocean acidification effects on coastal marine ecosystems; <b class="student">Romane Torchy</b> (2023), on a meta-analysis of benthic functioning in the face of global change; <b class="student">Cyril Hautecoeur</b> (2021), on the lack of vertical reef accretion to keep up with future sea-level rise; and <b class="student">Martin Alessandrini</b> &amp; <b class="student">Hmeniko Tourancheau</b> (2019), on the growth of three coral species (<em>A. hyacinthus</em>, <em>P. verrucosa</em> and <em>P. lutea</em>) in a context of climate change.</p></div>
-
-  <h4>TALKS</h4>
-  <p class="cv-prose">I have presented my work at the <b>International Coral Reef Symposium</b> (Bremen, 2021 &amp; 2022), the <b>European Coral Reef Symposium</b> (Naples, 2024), where I also co-chaired the session on shallow temperate reefs, and the <b>World Conference on Marine Biodiversity</b> (Bruges, 2026). These talks covered carbonate production by juvenile corals during reef recovery (2021), how the loss of coral structural complexity threatens coastlines (2022), species trait impairment after Mediterranean mortality events (2024) and how two decades of fish community change reshape biogeochemical functioning (2026). In Bruges, I also presented A. Gran et al.'s work on biodiversity change&ndash;pressure relationships across European seas.</p>
-  <p class="cv-prose">As a co-author, I contributed to talks given by colleagues at the <b>International Symposium on the Ocean in a High-CO<sub>2</sub> World</b> (Wellington, 2026), the <b>World Conference on Marine Biodiversity</b> (Bruges, 2026), the <b>European Coral Reef Symposium</b> (Naples, 2024), the <b>European Conference on Scientific Diving</b> (Heraklion, 2024), the <b>International Temperate Reefs Symposium</b> (Hobart, 2023) and the <b>Western Society of Naturalists</b> (Monterey, 2023), on natural CO<sub>2</sub> vents, crustose coralline algae, macrophyte collapses, coralligenous communities and the T-MEDNet network.</p>
-  <p class="cv-prose">I have been invited to speak at the <b>Instituto Español de Oceanografía (IEO)</b> in Palma (2020 &amp; 2025), the <b>Marine Ecology Data Analysis and Synthesis (MEDAS)</b> center in Ischia and the <b>Island Research Center and Environmental Observatory (CRIOBE)</b> in Perpignan (2022), and the <b>Laboratoire d'Océanographie de Villefranche-sur-Mer (LOV)</b> (2024), on topics ranging from coastal protection scenarios for reef islands to functional shifts in Mediterranean fish communities.</p>
-
-  <h4>OUTREACH</h4>
-  <p class="cv-prose">I like taking research beyond scientific journals. I have talked about climate change and its consequences on Radio Calvià's <a href="https://open.spotify.com/episode/6XPArtG7Cgv1EWEPrgT0n7"><b>Observadores del Mar</b></a> (2026, in Spanish), introduced my work in B-USEFUL's <a href="https://b-useful.eu/meetthescientist-jeremy-carlot-joins-b-useful-as-postdoctoral-researcher/"><b>Meet the Scientist</b></a> series (2025), and appeared in videos for <a href="https://www.youtube.com/watch?v=Pr39lnkdqn0"><b>Reef Services</b></a> (2018) and for Surfrider Foundation Europe's <a href="https://www.youtube.com/watch?v=as0Y-c3f9gA"><b>Riverine Input</b></a> (2015).</p>
-  <p class="cv-prose">Our results on ocean acidification in the Mediterranean were covered by the <a href="https://www.icm.csic.es/en/news/ocean-acidification-simplifies-biodiversity-mediterranean-coastal-ecosystems-and-alters-their"><b>ICM newsletter</b></a> and <a href="https://industriaspesqueras.com/noticia-89244-sec-Archivo%20IP"><b>Industrias Pesqueras</b></a> (2026), and our work on healthy coral reefs as natural breakwaters by the <a href="https://www.ird.fr/recifs-coralliens-en-bonne-sante-de-veritables-brise-lames-naturels"><b>IRD newsletter</b></a> and <a href="https://boukan.press/polynesie-francaise-des-recifs-bien-portants-plus-efficaces"><b>Boukan</b></a> (2023). I also wrote a <a href="https://go.nature.com/4b7CYAq"><b>Behind the Paper</b></a> story for Springer Research Communities (2025) on the vulnerability of Mediterranean benthic species after mass mortality events.</p>
-
   <h4>EDITORIAL &amp; REVIEWING <span class="n" id="nJournals"></span></h4>
   <div class="cv-row"><div class="yr">2025</div><div><b>Guest editor</b>, <em>Frontiers in Marine Science</em> &middot; Research Topic &ldquo;Adaptation and Evolution in Marine Extreme Environments&rdquo;</div></div>
   <div class="cv-row"><div class="yr">Reviewer</div><div class="cv-list" id="journals"><span>Nature</span>, <span>Nature Ecology &amp; Evolution</span>, <span>npj Ocean Sustainability</span>, <span>Global Change Biology</span>, <span>Communications Earth &amp; Environment</span>, <span>Functional Ecology</span>, <span>Coral Reefs</span>, <span>Scientific Reports</span>, <span>PeerJ</span>, <span>Ecological Indicators</span>, <span>Marine Ecology Progress Series</span>, <span>EGUsphere</span>, <span>Marine Biology</span>, <span>Royal Society Open Science</span>, <span>Biology Letters</span>, <span>Journal of Experimental Marine Biology and Ecology</span>, <span>Hydrobiologia</span>, <span>Restoration Ecology</span>, <span>Journal of Phycology</span>, <span>Journal of Animal Ecology</span>, <span>Ecography</span></div></div>
 
-  <h4>SKILLS</h4>
-  <div class="cv-grid">
-    <div><h5>Fieldwork &amp; laboratory</h5><div class="cv-list">
-      Coral growth by staining (<em>in situ</em>) and alkalinity anomaly (<em>ex situ</em>)<br>Benthic complexity (chain-tape method, photogrammetry)<br>Underwater identification (coral genera, reef fish families)<br>Benthic metabolism incubations (photosynthesis, calcification, respiration, nutrient cycling)<br>Reef fish capture</div></div>
-    <div><h5>Statistics (R)</h5><div class="cv-list">
-      Bayesian, frequentist &amp; descriptive statistics<br>GLM, GAM, mixed models<br>Multivariate analysis (NMDS, PCA, CA, PCoA, RDA, GPA)<br>Large database management, GitHub &amp; GitLab for reproducibility</div></div>
-    <div><h5>Cartography &amp; image analysis</h5><div class="cv-list">
-      ArcGIS &amp; QGIS: spatial analysis, cumulative impacts<br>Agisoft Metashape &amp; ImageJ: photogrammetry, length, surface &amp; volume measures</div></div>
-    <div><h5>Languages, diving &amp; licences</h5><div class="cv-list">
-      French (native) &middot; English &amp; Spanish (fluent) &middot; Catalan &amp; Italian (basic)<br>Professional diver CAH1B, N3 FFESSM (CMAS***)<br>Driving &amp; boating licences</div></div>
+  <h4>TALKS <span class="n" id="nTalks"></span></h4>
+  <div id="talks">
+  <p class="cv-prose">My work has been presented at the main conferences of the field, including the <b data-talks="2">International Coral Reef Symposium</b> (Bremen, 2021 &amp; 2022), the <b data-talks="4">European Coral Reef Symposium</b> (Naples, 2024), where I also co-chaired the session on shallow temperate reefs, the <b data-talks="3">World Conference on Marine Biodiversity</b> (Bruges, 2026), the <b data-talks="1">International Symposium on the Ocean in a High-CO<sub>2</sub> World</b> (Wellington, 2026), the <b data-talks="2">European Conference on Scientific Diving</b> (Heraklion, 2024), the <b data-talks="1">International Temperate Reefs Symposium</b> (Hobart, 2023) and the <b data-talks="1">Western Society of Naturalists</b> (Monterey, 2023). These contributions range from carbonate production by juvenile corals and the coastal protection lost with reef structural complexity, to trait impairment after Mediterranean mortality events, benthic communities at natural CO<sub>2</sub> vents, and how two decades of fish community change reshape biogeochemical functioning. I have also been invited to speak at the <b data-talks="2">Instituto Español de Oceanografía (IEO)</b> in Palma (2020 &amp; 2025), the <b data-talks="1">Marine Ecology Data Analysis and Synthesis (MEDAS)</b> center in Ischia and the <b data-talks="1">Island Research Center and Environmental Observatory (CRIOBE)</b> in Perpignan (2022), and the <b data-talks="1">Laboratoire d'Océanographie de Villefranche-sur-Mer (LOV)</b> (2024).</p>
   </div>
 
-  <h4>MAIN COLLABORATORS <span class="n" id="nCollab"></span></h4>
-  <div class="cv-grid cv-list" id="collab">
-    <div><b>Valeriano Parravicini</b> &middot; CRIOBE, France</div>
-    <div><b>Núria Teixidó</b> &middot; SZN, Italy</div>
-    <div><b>Joaquim Garrabou</b> &middot; ICM&ndash;CSIC, Spain</div>
-    <div><b>Steeve Comeau</b> &middot; LOV, France</div>
-    <div><b>José Manuel Hidalgo</b> &middot; IEO, Spain</div>
-    <div><b>Jean-Pierre Gattuso</b> &middot; LOV, France</div>
-    <div><b>Catriona L. Hurd</b> &middot; IMAS, Australia</div>
-    <div><b>Mehdi Adjeroud</b> &middot; IRD, France</div>
-    <div><b>Ulisse Cardini</b> &middot; SZN, Italy</div>
-    <div><b>Hunter S. Lenihan</b> &middot; UCSB, USA</div>
-    <div><b>Alessio Rovere</b> &middot; Ca' Foscari University, Italy</div>
-    <div><b>Simon J. Brandl</b> &middot; UTMSI, USA</div>
-    <div><b>Jordan M. Casey</b> &middot; UTMSI, USA</div>
-    <div><b>Héloïse Rouzé</b> &middot; University of Guam, USA</div>
-    <div><b>Mohsen Kayal</b> &middot; IRD, New Caledonia</div>
-    <div><b>Laetitia Hédouin</b> &middot; CRIOBE, French Polynesia</div>
-    <div><b>Nicolas Casajus</b> &middot; CESAB, France</div>
-    <div><b>Diego R. Barneche</b> &middot; AIMS, Australia</div>
+  <h4>TEACHING <span class="n">52 HOURS</span></h4>
+  <div id="teaching">
+  <p class="cv-prose">I teach at three levels: (1) at the Stazione Zoologica di Napoli (SZN), a summer-school course in <b>temperate marine benthic ecology</b>, <em>Benthic physiology &amp; processes: from field to data analysis</em> (2025); (2) for the CNRS, CESAB, CSIC and SZN, hands-on sessions on <b>reproducible science &amp; statistics</b>, from GitHub and Markdown workflows and fully reproducible meta-analyses in R to Bayesian statistics in ecology (2023&ndash;2025); and (3) since 2016, <b>MSc courses on coral reefs</b> at the École Pratique des Hautes Études (EPHE), on functional ecology, coral growth and coastal protection, and diversity&ndash;habitat relationships, including two MOOCs.</p>
   </div>
+
+  <h4>SUPERVISION <span class="n" id="nStudents"></span></h4>
+  <div id="supervision">
+  <div id="students"><p class="cv-prose">I am an advisor on the Ph.D. of <b class="student">Gaia Grasso</b> (since 2024, main supervisors N. Teixidó, S. Comeau &amp; U. Cardini), on marine biodiversity and ecosystem function of benthic habitats in a changing ocean using novel underwater imaging approaches.</p>
+  <p class="cv-prose">I have also supervised five MSc students: <b class="student">Karla Abril Hernández Ramírez</b> (2024), on ocean acidification effects on coastal marine ecosystems; <b class="student">Romane Torchy</b> (2023), on a meta-analysis of benthic functioning in the face of global change; <b class="student">Cyril Hautecoeur</b> (2021), on the lack of vertical reef accretion to keep up with future sea-level rise; and <b class="student">Martin Alessandrini</b> &amp; <b class="student">Hmeniko Tourancheau</b> (2019), on the growth of three coral species (<em>A. hyacinthus</em>, <em>P. verrucosa</em> and <em>P. lutea</em>) in a context of climate change.</p></div>
+  </div>
+
+  <h4>OUTREACH <span class="n" id="nOutreach"></span></h4>
+  <div id="outreach">
+  <p class="cv-prose">I like taking research beyond scientific journals. I have talked about climate change and its consequences on Radio Calvià's <a href="https://open.spotify.com/episode/6XPArtG7Cgv1EWEPrgT0n7"><b>Observadores del Mar</b></a> (2026, in Spanish), introduced my work in B-USEFUL's <a href="https://b-useful.eu/meetthescientist-jeremy-carlot-joins-b-useful-as-postdoctoral-researcher/"><b>Meet the Scientist</b></a> series (2025), and appeared in videos for <a href="https://www.youtube.com/watch?v=Pr39lnkdqn0"><b>Reef Services</b></a> (2018) and for Surfrider Foundation Europe's <a href="https://www.youtube.com/watch?v=as0Y-c3f9gA"><b>Riverine Input</b></a> (2015).</p>
+  <p class="cv-prose">Our results on ocean acidification in the Mediterranean were covered by the <a href="https://www.icm.csic.es/en/news/ocean-acidification-simplifies-biodiversity-mediterranean-coastal-ecosystems-and-alters-their"><b>ICM newsletter</b></a> and <a href="https://industriaspesqueras.com/noticia-89244-sec-Archivo%20IP"><b>Industrias Pesqueras</b></a> (2026), and our work on healthy coral reefs as natural breakwaters by the <a href="https://www.ird.fr/recifs-coralliens-en-bonne-sante-de-veritables-brise-lames-naturels"><b>IRD newsletter</b></a> and <a href="https://boukan.press/polynesie-francaise-des-recifs-bien-portants-plus-efficaces"><b>Boukan</b></a> (2023). I also wrote a <a href="https://go.nature.com/4b7CYAq"><b>Behind the Paper</b></a> story for Springer Research Communities (2025) on the vulnerability of Mediterranean benthic species after mass mortality events.</p>
+  </div>
+
+
 </div>
 
 <!-- Footer -->
@@ -418,16 +394,14 @@ fetch("StatPub/citations.json?v=" + Date.now())
   set("nFunding", "TOTAL ~" + eur.toLocaleString("en-US") + " €");
   set("cvFunding", fmtEur(eur));
 
-  // Section counts
-  const lead = rows("#projLead").length, proj = lead + rows("#projCollab").length;
-  set("nProjects", proj + " PROJECTS · " + lead + " AS LEADER");
-  set("nCourses", rows("#courses").length + " COURSES");
-  const st = document.querySelectorAll("#students .student").length; set("cvStudents", st);   // names in bold in Supervision
-  set("nTalks", rows("#talks").length + " CONTRIBUTIONS");
-  set("nInvited", sumN("#invited") + " PRESENTATIONS");
-  set("nOutreach", rows("#outreach").length + " CONTENTS");
+  // Section counts, read from the prose
+  set("nProjects", document.querySelectorAll("#projects a b").length + " PROJECTS");
+  const st = document.querySelectorAll("#supervision .student").length;
+  set("nStudents", st + " STUDENTS"); set("cvStudents", st);
+  const tk = Array.from(document.querySelectorAll("#talks [data-talks]")).reduce((a, e) => a + (+e.dataset.talks || 0), 0);
+  set("nTalks", tk + " TALKS");
+  set("nOutreach", document.querySelectorAll("#outreach a").length + " CONTENTS");
   set("nJournals", document.querySelectorAll("#journals span").length + " JOURNALS");
-  set("nCollab", document.querySelectorAll("#collab > div").length);
 
   // Papers (entries with a DOI in citations.json) and Google Scholar totals
   fetch("StatPub/citations.json?v=" + Date.now()).then(r => r.json()).then(cd => {

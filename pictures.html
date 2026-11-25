@@ -30,6 +30,11 @@
     /* Intro text */
     .intro{max-width:880px;margin:44px auto 20px auto;padding:0 16px;text-align:center;font-size:17px;line-height:1.75;color:#555}
     .intro strong{color:#222}
+    /* ---------- Parallax header labels (light label) ---------- */
+    .plx-mid {width: 92%; text-align: center}
+    .plx-label {display: inline-block; background: rgba(255,255,255,.85); color: #222; padding: 10px 26px; border-radius: 8px;
+                font-size: 34px; letter-spacing: 3px; line-height: 1.3; text-transform: uppercase; text-align: center}
+    @media screen and (max-width: 600px) {.plx-label {font-size: 20px; letter-spacing: 2px; padding: 8px 16px}}
   </style>
 </head>
 <body>
@@ -55,8 +60,8 @@
     <a href="pictures.html" class="w3-bar-item w3-button" onclick="toggleFunction()">MY PICTURES</a>
 	<a href="index.html#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a></div> </div>
 
-<div class="bgimg-2 w3-display-container w3-opacity-min" id="images">
-  <div class="w3-display-middle"><span class="w3-xxlarge w3-text-white w3-wide">MY PICTURES</span></div>
+<div class="bgimg-2 w3-display-container" id="images">
+  <div class="w3-display-middle plx-mid"><span class="plx-label">MY PICTURES</span></div>
 </div>
 
 <div class="intro">
